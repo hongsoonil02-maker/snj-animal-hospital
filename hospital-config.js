@@ -26,6 +26,9 @@ const HOSPITAL_CONFIG = {
   logoImage: "./sj_logo.png",
   qrImage: "./snj_qr_branded.png",
   portalUrl: "https://hongsoonil02-maker.github.io/snj-animal-hospital/",
+  // 주문 전송 엔드포인트 (선택): Google Apps Script / Formspree / Cloudflare Worker URL 입력 시 자동 POST
+  // 예: "https://script.google.com/macros/s/XXXX/exec"  빈 문자열이면 로컬 저장+클립보드+SNS 공유만 수행
+  orderEndpoint: "",
 
   // 3. 연락처 및 진료 시간
   phone: "031-321-6562",
@@ -35,7 +38,7 @@ const HOSPITAL_CONFIG = {
     regular: "월~금 09:30 ~ 19:00",
     saturday: "토요일 09:30 ~ 16:00",
     specialCare: "매주 수요일 소화기 특화 집중 진료 및 사전 예약 조제",
-    closed: "일요일 및 공휴일 휴진 (온라인 AI 문진 24시간 연중무휴)"
+    closed: "일요일 및 공휴일 휴진 (온라인 스마트 문진 24시간 연중무휴)"
   },
 
   // 4. 몬스멕타 공식 공급원 인증
