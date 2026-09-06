@@ -1667,6 +1667,11 @@
           </div>
 
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
+            <label><input type="checkbox" id="itemCoronaKit" /> 🔬 코로나(CCV 단독) 신속 진단키트 (10T/box)</label>
+            <input type="number" id="qtyCoronaKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
             <label><input type="checkbox" id="itemComboKit" /> 🔬 파보+코로나 콤보 키트 (10T/box)</label>
             <input type="number" id="qtyComboKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
           </div>
@@ -1820,6 +1825,7 @@
       let items = [];
       if (document.getElementById('itemParvogel').checked) items.push(`파보겔 ${document.getElementById('qtyParvogel').value}개`);
       if (document.getElementById('itemParvoKit').checked) items.push(`파보키트 ${document.getElementById('qtyParvoKit').value}박스`);
+      if (document.getElementById('itemCoronaKit') && document.getElementById('itemCoronaKit').checked) items.push(`코로나(단독)키트 ${document.getElementById('qtyCoronaKit').value}박스`);
       if (document.getElementById('itemComboKit').checked) items.push(`파보+코로나콤보 ${document.getElementById('qtyComboKit').value}박스`);
       if (document.getElementById('itemBrucellaKit').checked) items.push(`브루셀라키트 ${document.getElementById('qtyBrucellaKit').value}박스`);
       if (document.getElementById('itemRxMeds').checked) items.push(`수의사 처방약(구충제/항생제/소염진통제/점안액/연고 등) 사전조제 신청`);
