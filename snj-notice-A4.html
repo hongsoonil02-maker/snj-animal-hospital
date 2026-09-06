@@ -191,7 +191,7 @@
     .hero-banner {
       background: linear-gradient(135deg, #0f273d 0%, #132e47 60%, #0d9488 100%);
       border-radius: 14px;
-      padding: 16px 20px;
+      padding: 20px 24px;
       color: #ffffff;
       box-shadow: 0 8px 20px rgba(19, 46, 71, 0.25);
       position: relative;
@@ -203,20 +203,20 @@
       gap: 6px;
       background: #f59e0b;
       color: #0f172a;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 900;
-      padding: 3px 10px;
+      padding: 4px 12px;
       border-radius: 999px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       letter-spacing: -0.3px;
     }
 
     .hero-headline {
-      font-size: 1.45rem;
+      font-size: 1.55rem;
       font-weight: 900;
-      line-height: 1.3;
+      line-height: 1.35;
       letter-spacing: -0.8px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .hero-headline span.highlight {
@@ -226,66 +226,24 @@
     }
 
     .hero-subdesc {
-      font-size: 0.84rem;
-      color: #cbd5e1;
-      line-height: 1.45;
-      font-weight: 500;
-    }
-
-    /* 3. 왜 에스앤제이 온라인 포털인가? (경매장 번식농장 & 펫샵 3대 애로사항 해결) */
-    .pain-solution-strip {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .ps-box {
-      background: #f8fafc;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .ps-box .ps-tag {
-      font-size: 0.70rem;
-      font-weight: 850;
-      padding: 2px 7px;
-      border-radius: 4px;
-      width: fit-content;
-    }
-    .ps-tag.tag-pain { background: #fee2e2; color: #b91c1c; }
-    .ps-tag.tag-sol { background: #dcfce7; color: #15803d; }
-
-    .ps-box h4 {
       font-size: 0.88rem;
-      font-weight: 850;
-      color: var(--primary);
-      letter-spacing: -0.4px;
-    }
-
-    .ps-box p {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      line-height: 1.35;
+      color: #cbd5e1;
+      line-height: 1.55;
       font-weight: 500;
     }
 
-    /* 4. 핵심 포털 4대 활용 가이드 & 서비스 */
+    /* 3. 핵심 포털 4대 활용 가이드 & 서비스 */
     .features-section {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
 
     .feature-card {
       background: #ffffff;
       border: 1.5px solid #e2e8f0;
       border-radius: 12px;
-      padding: 11px 14px;
+      padding: 14px 16px;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
       position: relative;
     }
@@ -299,19 +257,19 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
 
     .card-icon {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 8px;
       background: #e0f2fe;
       color: #0369a1;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       flex-shrink: 0;
     }
 
@@ -321,7 +279,7 @@
     }
 
     .card-head h3 {
-      font-size: 0.92rem;
+      font-size: 0.98rem;
       font-weight: 850;
       color: var(--primary);
       letter-spacing: -0.4px;
@@ -332,16 +290,16 @@
       padding-left: 0;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
     }
 
     .feature-card li {
-      font-size: 0.76rem;
+      font-size: 0.80rem;
       color: #334155;
-      line-height: 1.35;
+      line-height: 1.4;
       display: flex;
       align-items: flex-start;
-      gap: 5px;
+      gap: 6px;
     }
 
     .feature-card li::before {
@@ -351,11 +309,11 @@
       flex-shrink: 0;
     }
 
-    /* 5. 핵심 비치 품목 & 현장 원스톱 (파보겔 & 키트 & 몬스멕타 구분) */
+    /* 4. 핵심 비치 품목 & 현장 원스톱 */
     .products-strip {
       background: #f1f5f9;
       border-radius: 12px;
-      padding: 11px 16px;
+      padding: 12px 18px;
       border: 1px solid #cbd5e1;
     }
 
@@ -591,7 +549,6 @@
       }
 
       .hero-banner,
-      .ps-box,
       .feature-card,
       .products-strip,
       .portal-access-box,
@@ -617,7 +574,6 @@
         height: auto;
         min-height: 1131px;
       }
-      .pain-solution-strip,
       .features-section,
       .product-cards-row {
         grid-template-columns: 1fr;
@@ -671,32 +627,7 @@
       </p>
     </section>
 
-    <!-- 3. 번식농장 & 펫샵 3대 애로사항 해결 비교 -->
-    <section class="pain-solution-strip">
-      <div class="ps-box">
-        <span class="ps-tag tag-pain">기존의 불편</span>
-        <h4>수요일 당일 품절 걱정</h4>
-        <p>현장에 와서야 파보겔이나 키트 재고를 확인하고 헛걸음하던 번거로움</p>
-        <span class="ps-tag tag-sol" style="margin-top:auto;">온라인 사전 예약</span>
-        <p style="color:#0f766e; font-weight:700;">사전 주문 시 전량 확보 및 수요일 즉시 픽업</p>
-      </div>
 
-      <div class="ps-box">
-        <span class="ps-tag tag-pain">기존의 불편</span>
-        <h4>갑작스런 야간·주말 증상</h4>
-        <p>경매가 없는 평일이나 야간에 자견이 구토·설사할 때 막막했던 대처</p>
-        <span class="ps-tag tag-sol" style="margin-top:auto;">24시간 AI 사전문진</span>
-        <p style="color:#0f766e; font-weight:700;">365일 수의 임상 기준 4단계 행동가이드 제공</p>
-      </div>
-
-      <div class="ps-box">
-        <span class="ps-tag tag-pain">기존의 불편</span>
-        <h4>바쁜 경매 중 상담 부족</h4>
-        <p>복잡한 경매장 소음 속에서 환축 상태나 투약량을 자세히 묻기 어려움</p>
-        <span class="ps-tag tag-sol" style="margin-top:auto;">1:1 핫라인 & 요약서</span>
-        <p style="color:#0f766e; font-weight:700;">증상 입력 시 진료 요약서 자동 생성 & 수의사 상담</p>
-      </div>
-    </section>
 
     <!-- 4. 에스앤제이 온라인 포털 4대 핵심 기능 -->
     <section class="features-section">
