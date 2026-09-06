@@ -1315,8 +1315,8 @@
     <div class="footer-bottom">
       <div>&copy; 2026 에스앤제이 동물병원 (Dr. S & J Animal Hospital). All Rights Reserved.</div>
       <div style="display: flex; gap: 16px;">
-        <a href="#">개인정보처리방침</a>
-        <a href="#">이용약관</a>
+        <a href="javascript:void(0)" onclick="openModal('privacyModal')" style="text-decoration: underline;">개인정보처리방침</a>
+        <a href="javascript:void(0)" onclick="openModal('termsModal')" style="text-decoration: underline;">이용약관</a>
         <a href="#info">오시는 길</a>
       </div>
     </div>
@@ -1385,12 +1385,72 @@
     </div>
   </div>
 
-  <!-- 모달 5: 처방전 & 복약 번역기 -->
-  <div id="rxModal" class="modal-backdrop">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal('rxModal')">&times;</button>
+  <!-- 모달: 개인정보처리방침 -->
+  <div id="privacyModal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 680px; max-height: 85vh; overflow-y: auto;">
+      <button class="modal-close" onclick="closeModal('privacyModal')">&times;</button>
       <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
-        <span style="font-size: 26px;">💊</span>
+        <span style="font-size: 26px;">🔒</span>
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">에스앤제이 동물병원 개인정보처리방침</h3>
+      </div>
+      <div style="font-size: 13.5px; color: #334155; line-height: 1.75; margin-bottom: 20px;">
+        <p>에스앤제이 동물병원(이하 '병원')은 개인정보 보호법 등 관련 법령을 준수하며, 이용자의 개인정보 및 반려동물 진료 데이터를 안전하게 보호하기 위해 다음과 같은 처리방침을 수립·운영하고 있습니다.</p>
+        
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 16px 0 6px 0;">1. 수집하는 개인정보 항목 및 수집 방법</h4>
+        <p>· 수집 항목: 보호자 성명/상호, 연락처(휴대폰 번호), 반려동물 정보(이름, 견종, 나이, 체중, 임상 증상 기록), 상담 및 문진 내용<br />
+        · 수집 방법: 온라인 사전 문진표, 진료실 한 장 요약서 생성기, 전화 및 내원 상담 접수</p>
+
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 16px 0 6px 0;">2. 개인정보의 수집 및 이용 목적</h4>
+        <p>· 반려동물 진료실 사전 문진 및 응급 트리아지(Triage) 분류 보조<br />
+        · 수의사 처방 상담, 처방전 발급 및 조제 안내, 내원 예약 관리<br />
+        · 몬스멕타 공식 공급 및 임상 복약 상담 응대</p>
+
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 16px 0 6px 0;">3. 보유 및 이용 기간</h4>
+        <p>· 수의사법 및 의료 관련 법령에 따른 진료기록부 보존 기준(1년~3년)을 준수하며, 목적 달성 시 혹은 이용자의 파기 요청 시 지체 없이 파기합니다.</p>
+
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 16px 0 6px 0;">4. 개인정보의 제3자 제공 및 위탁</h4>
+        <p>· 병원은 이용자의 동의 없이 개인정보를 외부에 제공하지 않습니다. 단, 법령에 정해진 의무 규정이 있는 경우에 한하여 최소한의 정보를 제공합니다.</p>
+
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 16px 0 6px 0;">5. 개인정보 보호책임자</h4>
+        <p>· 책임자: 홍순일 원장 (대표 수의사)<br />
+        · 문의처: 031-321-6562 / 010-5407-5708 (에스앤제이 동물병원 원내 데스크)</p>
+      </div>
+      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="closeModal('privacyModal')">
+        확인 및 닫기
+      </button>
+    </div>
+  </div>
+
+  <!-- 모달: 서비스 이용약관 -->
+  <div id="termsModal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 680px; max-height: 85vh; overflow-y: auto;">
+      <button class="modal-close" onclick="closeModal('termsModal')">&times;</button>
+      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
+        <span style="font-size: 26px;">📑</span>
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">에스앤제이 동물병원 서비스 이용약관</h3>
+      </div>
+      <div style="font-size: 13.5px; color: #334155; line-height: 1.75; margin-bottom: 20px;">
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 12px 0 6px 0;">제1조 (목적)</h4>
+        <p>본 약관은 에스앤제이 동물병원(이하 '병원')이 제공하는 온라인 사전 문진, 임상 트리아지 보조 정보, 진료실 요약서 및 병원 안내 웹서비스의 이용 조건 및 절차를 규정함을 목적으로 합니다.</p>
+
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 16px 0 6px 0;">제2조 (의료적 한계 고지 및 면책)</h4>
+        <p>1. 본 웹사이트에서 제공되는 <strong>AI 스마트 트리아지 및 사전 문진 결과는 수의사의 직접적인 진찰과 진단을 대신할 수 없는 참고용 의학 보조 정보</strong>입니다.<br />
+        2. 반려동물의 급성 호흡곤란, 경련, 다량의 출혈 등 심각한 응급 증상이 감지된 경우 보호자는 온라인 상담에 의존하지 않고 즉시 인근 동물병원에 대면 내원해야 합니다.<br />
+        3. 보호자가 입력한 부정확한 정보로 인해 발생하는 임상적 오판에 대해 병원은 책임을 지지 않습니다.</p>
+
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 16px 0 6px 0;">제3조 (처방 의약품 및 서비스 이용)</h4>
+        <p>1. 몬스멕타 및 원내 처방 전문의약품은 수의사법에 의거하여 수의사의 직접 진료 또는 유선·온라인 사전 진료 확인 절차를 거친 후 정식 투약·교부됩니다.<br />
+        2. 병원은 건전한 진료 질서 유지를 위해 비정상적인 의약품 오남용 시도를 거부할 권리를 갖습니다.</p>
+
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 16px 0 6px 0;">제4조 (관할 법원)</h4>
+        <p>서비스 이용과 관련하여 발생한 분쟁은 병원 소재지(대한민국 경기도 용인시)를 관할하는 법원을 전속 관할 법원으로 합니다.</p>
+        <p style="margin-top:12px; font-size:12px; color:#64748b;">공고일자: 2025년 8월 1일 / 시행일자: 2025년 8월 1일</p>
+      </div>
+      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="closeModal('termsModal')">
+        확인 및 닫기
+      </button>
+    </div>
+  </div>
   <script>
     // 1. 스마트 트리아지 빠른 칩 적용
     function applyChip(text) {

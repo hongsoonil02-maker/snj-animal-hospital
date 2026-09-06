@@ -478,8 +478,49 @@
       대표자: 홍순일 (수의사 면허 제5374호) | 사업자등록번호: 792-66-00615 | 개설신고번호: 제 5620000-010-2025-0002 호<br />
       소재지: 경기도 용인시 처인구 포곡읍 선장1로 98-8 | 유선: 031-321-6562 / 010-5407-5708
     </p>
-    <div style="color:#475569; font-size: 11px;">&copy; 2026 Dr. S & J Animal Hospital. All Rights Reserved. (본 페이지는 제휴처 전용 폐쇄형 시스템입니다.)</div>
+    <div style="margin-top: 10px; display:flex; justify-content:center; gap: 16px;">
+      <a href="javascript:void(0)" onclick="openModal('p_privacyModal')" style="color:#94a3b8; text-decoration: underline;">개인정보처리방침</a>
+      <a href="javascript:void(0)" onclick="openModal('p_termsModal')" style="color:#94a3b8; text-decoration: underline;">이용약관</a>
+    </div>
+    <div style="color:#475569; font-size: 11px; margin-top: 8px;">&copy; 2026 Dr. S & J Animal Hospital. All Rights Reserved. (본 페이지는 제휴처 전용 폐쇄형 시스템입니다.)</div>
   </footer>
+
+  <!-- 모달: 개인정보처리방침 (파트너용) -->
+  <div id="p_privacyModal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 680px; max-height: 85vh; overflow-y: auto;">
+      <button class="modal-close" onclick="closeModal('p_privacyModal')">&times;</button>
+      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
+        <span style="font-size: 26px;">🔒</span>
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary);">에스앤제이 동물병원 개인정보처리방침</h3>
+      </div>
+      <div style="font-size: 13.5px; color: #334155; line-height: 1.75; margin-bottom: 20px;">
+        <p>에스앤제이 동물병원은 개인정보 보호법 등 관련 법령을 준수하며, 제휴 브리더 및 펫샵 파트너의 사전 발주 정보와 상담 데이터를 안전하게 관리합니다.</p>
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 14px 0 6px 0;">1. 수집 항목 및 목적</h4>
+        <p>· 수집 항목: 상호명, 담당자 연락처, 사전 예약 품목 및 수량, 수령 메모<br />· 수집 목적: 매주 수요일 현장 조제 약품 및 진단키트 사전 패킹 준비, 비상 연락</p>
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 14px 0 6px 0;">2. 보관 및 책임자</h4>
+        <p>· 보유 기간: 발주 및 수령 완료 후 1년 보관 후 파기<br />· 책임자: 홍순일 원장 (031-321-6562 / 010-5407-5708)</p>
+      </div>
+      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="closeModal('p_privacyModal')">확인 및 닫기</button>
+    </div>
+  </div>
+
+  <!-- 모달: 서비스 이용약관 (파트너용) -->
+  <div id="p_termsModal" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 680px; max-height: 85vh; overflow-y: auto;">
+      <button class="modal-close" onclick="closeModal('p_termsModal')">&times;</button>
+      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
+        <span style="font-size: 26px;">📑</span>
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary);">B2B 파트너 전용 포털 이용약관</h3>
+      </div>
+      <div style="font-size: 13.5px; color: #334155; line-height: 1.75; margin-bottom: 20px;">
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 12px 0 6px 0;">제1조 (목적)</h4>
+        <p>본 약관은 에스앤제이 동물병원과 제휴 브리더·펫샵 간의 수요일 현장 진료 및 원내 처방약·진단키트 사전 주문 서비스의 원활한 운영을 목적으로 합니다.</p>
+        <h4 style="font-size: 14.5px; color: #0f172a; margin: 14px 0 6px 0;">제2조 (처방 의약품 교부 준수)</h4>
+        <p>수의사 처방약 및 전문의약품은 수의사법에 의거하여 수의사의 확인 및 현장 교부 원칙을 준수하며, 목적 외 재판매나 오남용을 금지합니다.</p>
+      </div>
+      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="closeModal('p_termsModal')">확인 및 닫기</button>
+    </div>
+  </div>
 
   <script>
     function calculateDosage() {
