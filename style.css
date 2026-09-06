@@ -43,6 +43,23 @@
       padding: 0;
     }
 
+    /* 전역 한글 줄맞춤: 단어 단위 유지 + 어색한 끊김 방지 */
+    html {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      line-break: strict;
+      -webkit-hyphens: none;
+      hyphens: none;
+      text-wrap: pretty;
+    }
+    h1, h2, h3, h4, h5, h6,
+    p, li, span, a, button, label, strong, em {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      line-break: strict;
+      word-wrap: break-word;
+    }
+
     body {
       font-family: "Noto Sans KR", system-ui, -apple-system, sans-serif;
       background-color: #f4f8fa;

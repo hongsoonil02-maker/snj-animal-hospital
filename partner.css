@@ -20,6 +20,15 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      line-break: strict;
+      -webkit-hyphens: none;
+      hyphens: none;
+      text-wrap: pretty;
+    }
+    h1, h2, h3, h4, p, li, span, a, button, label, strong { word-break: keep-all; overflow-wrap: break-word; line-break: strict; }
     body { font-family: "Noto Sans KR", system-ui, sans-serif; background-color: #f8fafc; color: var(--text-main); line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     button { font-family: inherit; cursor: pointer; border: none; outline: none; }
