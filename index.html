@@ -837,82 +837,6 @@
       text-align: center;
     }
 
-    /* 알림판 배너 카드 스타일 */
-    .notice-board-card {
-      background: linear-gradient(135deg, #132e47 0%, #1e4e79 100%);
-      border-radius: var(--radius-lg);
-      color: #ffffff;
-      padding: 32px;
-      box-shadow: var(--shadow-lg);
-      margin-bottom: 50px;
-      display: grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap: 30px;
-      align-items: center;
-      border: 2px solid #10b981;
-      position: relative;
-      overflow: hidden;
-    }
-    .qr-preview-box {
-      background: #ffffff;
-      padding: 16px;
-      border-radius: var(--radius-md);
-      text-align: center;
-      box-shadow: var(--shadow-md);
-      color: #1e293b;
-    }
-    .qr-preview-img {
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 10px;
-      display: block;
-      border-radius: 8px;
-    }
-
-    /* 알림판 전용 대형 커스텀 모달 */
-    .notice-modal-content {
-      max-width: 1100px;
-      width: 96%;
-      height: 92vh;
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-    }
-    .notice-modal-body {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 20px;
-      flex: 1;
-      overflow: hidden;
-      margin-top: 16px;
-    }
-    .notice-modal-form {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-md);
-      padding: 18px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .notice-modal-preview {
-      background: #475569;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      border: 2px solid #002b90;
-    }
-    .notice-modal-preview iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background: #ffffff;
-    }
-
     /* 반응형 모바일 */
     @media (max-width: 960px) {
       .hero-container {
@@ -1166,60 +1090,8 @@
     </div>
   </section>
 
-  <!-- 4대 핵심 케어 모듈 & 온라인병원 사이트 알림판 -->
+  <!-- 4대 핵심 케어 모듈 -->
   <section class="section-module" id="services">
-
-    <!-- 에스앤제이 동물병원 온라인병원 공식 알림판 -->
-    <div class="notice-board-card">
-      <div>
-        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 800; margin-bottom: 14px;">
-          <span>📢</span> 공식 공지 알림판 · NOTICE BOARD
-        </div>
-        <h2 style="font-size: 26px; font-weight: 900; line-height: 1.35; margin-bottom: 14px;">
-          에스앤제이 동물병원 <span style="color:#6ee7b7;">스마트 수의 포털</span> 오픈 안내
-        </h2>
-        <p style="font-size: 14.5px; color: #cbd5e1; line-height: 1.7; margin-bottom: 20px;">
-          에스앤제이 동물병원은 <strong>몬스멕타(Monsmecta) 소화기 전문 처방, 진단키트, 수의사 처방 전문약</strong>을 원내에서 안전하게 공급하며, 보호자를 위한 <strong>온라인 사전 문진 &amp; 진료 연계 시스템</strong>을 365일 지원합니다.
-        </p>
-
-        <div style="background: rgba(255, 255, 255, 0.08); padding: 14px 18px; border-radius: 12px; margin-bottom: 22px; font-size: 13.5px;">
-          <div style="color: #fcd34d; font-weight: 800; margin-bottom: 4px;">⚡ 주요 진료 및 처방 혜택:</div>
-          <p style="color: #e2e8f0; line-height: 1.6;">
-            · 수의사 처방 1위 <strong>'몬스멕타(Monsmecta)'</strong> 소화기 점막 보호 전문 처방<br />
-            · <strong>진단키트 검사</strong> 10분 현장 판독 및 수의 임상 상담<br />
-            · <strong>수의사 처방약(구충제, 항생제, 소염진통제, 점안액, 연고 등)</strong> 사전 예약 후 내원 수령<br />
-            · <strong>365일 실시간 비대면 사전 문진표</strong> 연계 진료 지원
-          </p>
-        </div>
-
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <button class="btn-primary" style="padding: 12px 22px;" onclick="openNoticeModal()">
-            <span>🖨️</span> 에스앤제이 A4 알림판 인쇄 & 출력
-          </button>
-          <button class="btn-call" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 12px 18px;" onclick="openModal('summaryModal')">
-            <span>📋</span> 모바일 문진표 작성
-          </button>
-          <a href="./snj-notice-A4.html" target="_blank" class="btn-call" style="background: #ffffff; color: #132e47; border: none; padding: 12px 18px;">
-            <span>👁️</span> A4 알림판 새 창 원본 보기
-          </a>
-        </div>
-      </div>
-
-      <!-- 우측 QR코드 카드 -->
-      <div class="qr-preview-box">
-        <div style="font-size:11px; font-weight:800; color:#002b90; background:#e0f2fe; padding:2px 8px; border-radius:4px; margin-bottom:8px; display:inline-block;">
-          🐾 공식 A4 알림판 탑재 QR
-        </div>
-        <img src="./snj_qr_branded.png" alt="에스앤제이 온라인병원 QR코드" class="qr-preview-img" />
-        <strong style="display: block; font-size: 14px; color: #132e47; margin-bottom: 4px;">스마트폰 QR 스캔</strong>
-        <span style="font-size: 11px; color: #64748b; line-height: 1.4; display: block;">
-          카메라를 비추면 에스앤제이 온라인 포털로 즉시 연결됩니다.
-        </span>
-        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #cbd5e1; font-size: 11px; font-weight: 700; color: #0d9488;">
-          hongsoonil02-maker.github.io/snj-animal-hospital/
-        </div>
-      </div>
-    </div>
 
     <div class="section-header-center">
       <div class="section-kicker">WHAT DR. S&J DOES</div>
