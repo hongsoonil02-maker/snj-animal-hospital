@@ -757,6 +757,65 @@
       font-size: 24px;
       color: #94a3b8;
       cursor: pointer;
+    /* 모바일 전용 하단 고정 액션 바 */
+    .mobile-bottom-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid #e2e8f0;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      z-index: 999;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+      display: none;
+      grid-template-columns: 1fr 1.3fr 1.2fr;
+      gap: 8px;
+    }
+    .btn-m-bar {
+      padding: 11px 6px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      text-align: center;
+    }
+
+    /* 알림판 배너 카드 스타일 */
+    .notice-board-card {
+      background: linear-gradient(135deg, #132e47 0%, #1e4e79 100%);
+      border-radius: var(--radius-lg);
+      color: #ffffff;
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 50px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 30px;
+      align-items: center;
+      border: 2px solid #10b981;
+      position: relative;
+      overflow: hidden;
+    }
+    .qr-preview-box {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      color: #1e293b;
+    }
+    .qr-preview-img {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 10px;
+      display: block;
+      border-radius: 8px;
     }
 
     /* 반응형 모바일 */
@@ -780,16 +839,56 @@
       .footer-container {
         grid-template-columns: 1fr;
       }
+      .notice-board-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 24px;
+      }
       .nav-menu {
         display: none;
       }
       .hero-title {
-        font-size: 34px;
+        font-size: 32px;
       }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      .mobile-bottom-bar {
+        display: grid;
+      }
+      body {
+        padding-bottom: 75px; /* 하단 바 가림 방지 */
+      }
+      .header-actions .btn-call {
+        display: none; /* 모바일 하단 바로 이동 */
+      }
+      .brand-title span.sub {
+        display: none;
+      }
+      .hero-section {
+        padding: 40px 16px 50px;
+      }
+      .section-module {
+        padding: 60px 16px;
+      }
+      .hero-title {
+        font-size: 27px;
+        line-height: 1.3;
+      }
+      .hero-desc {
+        font-size: 15px;
+      }
       .services-grid-4 {
         grid-template-columns: 1fr;
+      }
+      .b2b-box {
+        padding: 24px 18px;
+      }
+      .products-grid {
+        padding: 24px 18px;
+      }
+      .modal-content {
+        padding: 22px 18px;
+        width: 95%;
       }
     }
   </style>
@@ -915,8 +1014,54 @@
     </div>
   </section>
 
-  <!-- 4대 핵심 케어 모듈 (Vetaze 핵심 기능 이식) -->
+  <!-- 4대 핵심 케어 모듈 & 온라인병원 사이트 알림판 -->
   <section class="section-module" id="services">
+
+    <!-- 에스앤제이 동물병원 온라인병원 공식 알림판 (경매장 펫샵 & 번식농장 맞춤) -->
+    <div class="notice-board-card">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 800; margin-bottom: 14px;">
+          <span>📢</span> 경매장 공지 알림판 · NOTICE BOARD
+        </div>
+        <h2 style="font-size: 26px; font-weight: 900; line-height: 1.35; margin-bottom: 14px;">
+          에스앤제이 동물병원 <span style="color:#6ee7b7;">온라인 수의 포털</span> 오픈 안내
+        </h2>
+        <p style="font-size: 14.5px; color: #cbd5e1; line-height: 1.7; margin-bottom: 20px;">
+          수요일 경매 당일에만 바쁘게 이루어지던 <strong>파보겔, 진단키트(파보·코로나·지알디아), 동물용 상비약 구매와 질병 상담</strong>을 이제 <strong>온라인 사이트에서 365일 사전에 간편하게 주문/예약</strong>하실 수 있습니다!
+        </p>
+
+        <div style="background: rgba(255, 255, 255, 0.08); padding: 14px 18px; border-radius: 12px; margin-bottom: 22px; font-size: 13.5px;">
+          <div style="color: #fcd34d; font-weight: 800; margin-bottom: 4px;">⚡ 펫샵 & 번식농장 대표님을 위한 혜택:</div>
+          <p style="color: #e2e8f0; line-height: 1.6;">
+            · 입소문 완판 <strong>'파보겔(Parvogel)'</strong> 수요일 경매장 현장 픽업 사전 수량 확보<br />
+            · 파보/코로나 신속 진단키트 도매 번들 사전 주문 & 당일 대기 없는 즉시 수령<br />
+            · 급성 설사·구토 발생 시 <strong>24시간 모바일 사전 문진(트리아지)</strong> 지원
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn-primary" style="padding: 12px 22px;" onclick="openOrderModal()">
+            <span>📦</span> 수요일 경매장 수령 사전 주문하기
+          </button>
+          <a href="./snj_notice_board.png" download="에스앤제이_온라인병원_알림판_QR.png" class="btn-call" style="background: #ffffff; color: #132e47; border: none;">
+            <span>📥</span> 포스터·QR 다운로드
+          </a>
+        </div>
+      </div>
+
+      <!-- 우측 QR코드 카드 -->
+      <div class="qr-preview-box">
+        <img src="./snj_qr_branded.png" alt="에스앤제이 온라인병원 QR코드" class="qr-preview-img" />
+        <strong style="display: block; font-size: 14px; color: #132e47; margin-bottom: 4px;">스마트폰으로 QR 스캔</strong>
+        <span style="font-size: 11px; color: #64748b; line-height: 1.4; display: block;">
+          카메라를 비추면 에스앤제이 온라인 포털로 즉시 연결됩니다.
+        </span>
+        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #cbd5e1; font-size: 11px; font-weight: 700; color: #0d9488;">
+          hongsoonil02-maker.github.io/snj-animal-hospital/
+        </div>
+      </div>
+    </div>
+
     <div class="section-header-center">
       <div class="section-kicker">WHAT DR. S&J DOES</div>
       <h2 class="section-title">
@@ -1432,6 +1577,158 @@
     }
     function closeModal(modalId) {
       document.getElementById(modalId).style.display = 'none';
+  <!-- 모달 6: 수요일 경매장 수령 사전 주문 폼 -->
+  <div id="orderModal" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('orderModal')">&times;</button>
+      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
+        <span style="font-size: 26px;">📦</span>
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">수요일 경매장 현장 수령 · 사전 발주</h3>
+      </div>
+      <p style="font-size: 13px; color: #64748b; margin-bottom: 18px;">
+        경매 당일 품절 걱정 없이, 사전에 신청하시면 <strong>매주 수요일 봄봄솔루션 에스앤제이 진료실에서 즉시 픽업</strong>하실 수 있도록 준비해 드립니다.
+      </p>
+
+      <form onsubmit="handlePreOrderSubmit(event)">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+          <div>
+            <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">상호명 (펫샵/농장)</label>
+            <input type="text" id="orderCompany" required placeholder="예: 봄봄펫샵" style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:8px; font-size:13px;" />
+          </div>
+          <div>
+            <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">담당자 연락처</label>
+            <input type="tel" id="orderPhone" required placeholder="010-0000-0000" style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:8px; font-size:13px;" />
+          </div>
+        </div>
+
+        <div style="background: #f8fafc; padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 14px;">
+          <strong style="display:block; font-size: 13px; color: var(--primary-800); margin-bottom: 8px;">필요 품목 및 수량 체크:</strong>
+          
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
+            <label><input type="checkbox" id="itemParvogel" checked /> 🔥 <strong>파보겔 (Parvogel)</strong></label>
+            <input type="number" id="qtyParvogel" value="5" min="1" max="100" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 개
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
+            <label><input type="checkbox" id="itemParvoKit" /> 🔬 파보(CPV) 신속 진단키트 (10T/box)</label>
+            <input type="number" id="qtyParvoKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
+            <label><input type="checkbox" id="itemComboKit" /> 🔬 파보+코로나 콤보 키트 (10T/box)</label>
+            <input type="number" id="qtyComboKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size: 13px;">
+            <label><input type="checkbox" id="itemElectrolyte" /> 💧 전해질 수액제 & 동물용 상비약</label>
+            <input type="number" id="qtyElectrolyte" value="1" min="1" max="20" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 세트
+          </div>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">수령 희망 일자 / 추가 메모</label>
+          <input type="text" id="orderMemo" value="이번 주 수요일 경매 시작 전 11시 픽업 희망합니다." style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:8px; font-size:13px;" />
+        </div>
+
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:13px; font-size:15px;">
+          📝 수요일 현장 픽업 예약 완료하기
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 모바일 전용 하단 고정 액션 바 -->
+  <nav class="mobile-bottom-bar" aria-label="모바일 빠른 메뉴">
+    <a href="tel:031-321-6562" class="btn-m-bar" style="background:#f1f5f9; color:#1e293b; border:1px solid #cbd5e1;">
+      <span>📞</span> 전화걸기
+    </a>
+    <button class="btn-m-bar" style="background:linear-gradient(135deg, #0d9488, #10b981); color:#fff;" onclick="openOrderModal()">
+      <span>📦</span> 수요일 사전주문
+    </button>
+    <button class="btn-m-bar" style="background:#132e47; color:#fff;" onclick="focusTriageInput()">
+      <span>🚦</span> AI 트리아지
+    </button>
+  </nav>
+
+  <script>
+    // 1. 스마트 트리아지 빠른 칩 적용
+    function applyChip(text) {
+      const textarea = document.getElementById('symptomText');
+      textarea.value = text;
+      textarea.focus();
+    }
+
+    function focusTriageInput() {
+      const area = document.getElementById('triage');
+      area.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('symptomText').focus();
+    }
+
+    // 2. 실시간 AI 스마트 트리아지 알고리즘
+    function runSmartTriage() {
+      const text = document.getElementById('symptomText').value.trim();
+      const resultArea = document.getElementById('triageResultArea');
+      const pill = document.getElementById('resultStatusPill');
+      const heading = document.getElementById('resultHeading');
+      const guide = document.getElementById('resultActionGuide');
+
+      if (!text) {
+        alert('증상을 간략하게 입력해 주시거나 추천 칩을 클릭해 주세요.');
+        return;
+      }
+
+      resultArea.style.display = 'block';
+
+      // 응급도 분류 휴리스틱 (자견 및 임상 규칙 기반)
+      if (text.includes('혈변') || text.includes('경련') || text.includes('발작') || text.includes('호흡') || text.includes('숨') || text.includes('의식')) {
+        pill.className = 'triage-status-pill status-red';
+        pill.innerHTML = '<span>🔴 RED : 즉시 응급 내원 필요</span>';
+        heading.innerText = '생명과 직결될 수 있는 응급 위험 신호입니다.';
+        guide.innerHTML = '자가 처치나 대기 시간을 갖지 마시고 즉시 가장 가까운 24시 동물병원 또는 에스앤제이 핫라인으로 연락 후 즉각 내원하시기 바랍니다.';
+      } else if (text.includes('구토') || text.includes('토') || text.includes('설사') || text.includes('처져') || text.includes('무기력')) {
+        pill.className = 'triage-status-pill status-orange';
+        pill.innerHTML = '<span>🟠 ORANGE : 오늘 중 동물병원 방문 권고</span>';
+        heading.innerText = '급성 탈수 및 잠복기 전염병(파보/코로나) 검진이 시급합니다.';
+        guide.innerHTML = '어린 자견의 경우 2~3회의 구토만으로도 저혈당 및 쇼크가 올 수 있습니다. 파보겔을 상비 투여하시고 금식 상태를 유지하며 신속히 내원하세요.';
+      } else if (text.includes('안 먹') || text.includes('식욕') || text.includes('기운')) {
+        pill.className = 'triage-status-pill status-yellow';
+        pill.innerHTML = '<span>🟡 YELLOW : 수의사 유선 상담 및 12시간 경과 관찰</span>';
+        heading.innerText = '초기 컨디션 저하 신호로 주의 깊은 관찰이 필요합니다.';
+        guide.innerHTML = '환경 변화나 스트레스성일 수 있으나 추가 구토나 변 상태 변화가 있는지 3시간 간격으로 체크해 주시기 바랍니다.';
+      } else {
+        pill.className = 'triage-status-pill status-green';
+        pill.innerHTML = '<span>🟢 GREEN : 자택 내 안정 및 경과 관찰 가능</span>';
+        heading.innerText = '현재 즉각적인 위급 신호는 감지되지 않았습니다.';
+        guide.innerHTML = '깨끗한 미온수를 급여하시고, 증상이 24시간 이상 지속되거나 악화될 경우 사전 문진표를 작성해 문의해 주세요.';
+      }
+
+      // 작성된 증상을 모바일 요약서에도 자동 반영
+      document.getElementById('summarySymptoms').value = text;
+    }
+
+    // 3. 투약량 계산기
+    function calculateDosage() {
+      const weight = parseFloat(document.getElementById('petWeight').value);
+      const res = document.getElementById('calcResult');
+      if (isNaN(weight) || weight <= 0) {
+        res.innerText = '올바른 체중을 입력하세요';
+        return;
+      }
+      // 통상 파보겔 체중 kg당 1.0~1.5ml 기준
+      const minDose = (weight * 1.0).toFixed(1);
+      const maxDose = (weight * 1.5).toFixed(1);
+      res.innerText = `약 ${minDose} ~ ${maxDose} ml (눈금 주사기 또는 펌핑)`;
+    }
+
+    // 4. 모달 제어
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+    function openOrderModal() {
+      openModal('orderModal');
     }
     window.onclick = function(event) {
       if (event.target.classList.contains('modal-backdrop')) {
@@ -1455,6 +1752,22 @@
 
       alert(`[B2B 접수 완료]\n- 구분: ${type}\n- 업체: ${comp}\n- 연락처: ${phone}\n\n에스앤제이 동물병원 담당 수의사가 내용 검토 후 즉시 연락드리겠습니다.`);
       closeModal('b2bModal');
+    }
+
+    function handlePreOrderSubmit(e) {
+      e.preventDefault();
+      const comp = document.getElementById('orderCompany').value;
+      const phone = document.getElementById('orderPhone').value;
+      const memo = document.getElementById('orderMemo').value;
+      
+      let items = [];
+      if (document.getElementById('itemParvogel').checked) items.push(`파보겔 ${document.getElementById('qtyParvogel').value}개`);
+      if (document.getElementById('itemParvoKit').checked) items.push(`파보키트 ${document.getElementById('qtyParvoKit').value}박스`);
+      if (document.getElementById('itemComboKit').checked) items.push(`콤보키트 ${document.getElementById('qtyComboKit').value}박스`);
+      if (document.getElementById('itemElectrolyte').checked) items.push(`전해질수액제 ${document.getElementById('qtyElectrolyte').value}세트`);
+
+      alert(`[수요일 현장 수령 사전 예약 접수 완료]\n- 상호: ${comp}\n- 연락처: ${phone}\n- 주문 품목: ${items.join(', ')}\n- 요청사항: ${memo}\n\n수요일 경매 당일 에스앤제이 동물병원 진료실에 준비해 두겠습니다. 감사합니다!`);
+      closeModal('orderModal');
     }
 
     // 5. 진료실 요약서 인쇄 및 복사
