@@ -771,13 +771,23 @@
 
   </div>
 
+  <script src="./hospital-config.js"></script>
   <script>
-    // iframe 내장 모드 감지 (모달 미리보기 창에서 여백 제거 및 제어바 숨김)
+    // 1. hospital-config.js 기본값 자동 주입
+    if (typeof HOSPITAL_CONFIG !== 'undefined') {
+      if (document.getElementById('dyn-name')) document.getElementById('dyn-name').innerText = HOSPITAL_CONFIG.hospitalNameKo;
+      if (document.getElementById('dyn-tel')) document.getElementById('dyn-tel').innerText = '📞 상담/사전주문: ' + HOSPITAL_CONFIG.hotline;
+      if (document.getElementById('dyn-addr')) document.getElementById('dyn-addr').innerText = HOSPITAL_CONFIG.address;
+      if (document.getElementById('dyn-bottom-tel')) document.getElementById('dyn-bottom-tel').innerText = `${HOSPITAL_CONFIG.phone} · ${HOSPITAL_CONFIG.hotline}`;
+      if (document.getElementById('ctrl-title')) document.getElementById('ctrl-title').innerText = `${HOSPITAL_CONFIG.hospitalNameKo} 공식 안내판`;
+    }
+
+    // 2. iframe 내장 모드 감지 (모달 미리보기 창에서 여백 제거 및 제어바 숨김)
     if (window.self !== window.top) {
       document.body.classList.add('embedded');
     }
 
-    // 모달에서 실시간으로 데이터 전송 시 즉각 반영
+    // 3. 모달에서 실시간으로 데이터 전송 시 즉각 반영
     window.addEventListener('message', function(event) {
       const data = event.data;
       if (!data) return;
@@ -792,7 +802,7 @@
       }
     });
 
-    // URL 파라미터로 자동 인쇄 트리거 지원
+    // 4. URL 파라미터로 자동 인쇄 트리거 지원
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('autoPrint') === 'true') {
       window.onload = function() {
