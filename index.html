@@ -1078,14 +1078,15 @@
           에스앤제이 동물병원 <span style="color:#6ee7b7;">온라인 수의 포털</span> 오픈 안내
         </h2>
         <p style="font-size: 14.5px; color: #cbd5e1; line-height: 1.7; margin-bottom: 20px;">
-          수요일 경매 당일에만 바쁘게 이루어지던 <strong>파보겔, 진단키트(파보·코로나·지알디아), 동물용 상비약 구매와 질병 상담</strong>을 이제 <strong>온라인 사이트에서 365일 사전에 간편하게 주문/예약</strong>하실 수 있습니다!
+          수요일 경매 당일에만 바쁘게 이루어지던 <strong>파보겔, 진단키트(파보·코로나·브루셀라), 수의사 처방 전문약(구충제·항생제·소염진통제·점안액·연고 등)</strong>을 이제 <strong>온라인 사이트에서 사전에 주문하고 수요일 내원 시 대기 없이 즉시 픽업</strong>하실 수 있습니다!
         </p>
 
         <div style="background: rgba(255, 255, 255, 0.08); padding: 14px 18px; border-radius: 12px; margin-bottom: 22px; font-size: 13.5px;">
           <div style="color: #fcd34d; font-weight: 800; margin-bottom: 4px;">⚡ 펫샵 & 번식농장 대표님을 위한 혜택:</div>
           <p style="color: #e2e8f0; line-height: 1.6;">
             · 입소문 완판 <strong>'파보겔(Parvogel)'</strong> 수요일 경매장 현장 픽업 사전 수량 확보<br />
-            · 파보/코로나 신속 진단키트 도매 번들 사전 주문 & 당일 대기 없는 즉시 수령<br />
+            · <strong>신속 진단키트(파보·코로나·브루셀라)</strong> 도매 번들 사전 주문 & 대기 없는 즉시 수령<br />
+            · <strong>수의사 처방약(구충제, 항생제, 소염진통제, 점안액, 연고 등)</strong> 사전 예약 후 내원 시 바로 픽업<br />
             · 급성 설사·구토 발생 시 <strong>24시간 모바일 사전 문진(트리아지)</strong> 지원
           </p>
         </div>
@@ -1670,9 +1671,14 @@
             <input type="number" id="qtyComboKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
           </div>
 
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
+            <label><input type="checkbox" id="itemBrucellaKit" /> 🔬 브루셀라 신속 진단키트 (10T/box)</label>
+            <input type="number" id="qtyBrucellaKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
+          </div>
+
           <div style="display:flex; justify-content:space-between; align-items:center; font-size: 13px;">
-            <label><input type="checkbox" id="itemElectrolyte" /> 💧 전해질 수액제 & 동물용 상비약</label>
-            <input type="number" id="qtyElectrolyte" value="1" min="1" max="20" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 세트
+            <label><input type="checkbox" id="itemRxMeds" /> 💊 수의사 처방약 (구충제·항생제·소염진통제·점안액·연고 등)</label>
+            <span style="font-size:11.5px; color:#0d9488; font-weight:700;">내원 시 수령</span>
           </div>
         </div>
 
@@ -1814,8 +1820,9 @@
       let items = [];
       if (document.getElementById('itemParvogel').checked) items.push(`파보겔 ${document.getElementById('qtyParvogel').value}개`);
       if (document.getElementById('itemParvoKit').checked) items.push(`파보키트 ${document.getElementById('qtyParvoKit').value}박스`);
-      if (document.getElementById('itemComboKit').checked) items.push(`콤보키트 ${document.getElementById('qtyComboKit').value}박스`);
-      if (document.getElementById('itemElectrolyte').checked) items.push(`전해질수액제 ${document.getElementById('qtyElectrolyte').value}세트`);
+      if (document.getElementById('itemComboKit').checked) items.push(`파보+코로나콤보 ${document.getElementById('qtyComboKit').value}박스`);
+      if (document.getElementById('itemBrucellaKit').checked) items.push(`브루셀라키트 ${document.getElementById('qtyBrucellaKit').value}박스`);
+      if (document.getElementById('itemRxMeds').checked) items.push(`수의사 처방약(구충제/항생제/소염진통제/점안액/연고 등) 사전조제 신청`);
 
       alert(`[수요일 현장 수령 사전 예약 접수 완료]\n- 상호: ${comp}\n- 연락처: ${phone}\n- 주문 품목: ${items.join(', ')}\n- 요청사항: ${memo}\n\n수요일 경매 당일 에스앤제이 동물병원 진료실에 준비해 두겠습니다. 감사합니다!`);
       closeModal('orderModal');
