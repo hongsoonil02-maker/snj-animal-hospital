@@ -107,6 +107,7 @@
     }
 
     /* A4 실제 인쇄 시트 (210mm x 297mm 정밀 비율: 800px x 1131px) */
+    /* A4 실제 인쇄 시트 (210mm x 297mm 정밀 비율: 800px x 1131px) */
     .a4-sheet {
       width: 800px;
       height: 1131px;
@@ -117,10 +118,11 @@
       border-radius: 12px;
       position: relative;
       overflow: hidden;
-      padding: 22px 28px 20px;
+      padding: 24px 30px 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 16px;
       border-top: 8px solid var(--primary);
       border-bottom: 8px solid var(--secondary);
     }
@@ -191,7 +193,7 @@
     .hero-banner {
       background: linear-gradient(135deg, #0f273d 0%, #132e47 60%, #0d9488 100%);
       border-radius: 14px;
-      padding: 20px 24px;
+      padding: 18px 22px;
       color: #ffffff;
       box-shadow: 0 8px 20px rgba(19, 46, 71, 0.25);
       position: relative;
@@ -205,18 +207,18 @@
       color: #0f172a;
       font-size: 0.78rem;
       font-weight: 900;
-      padding: 4px 12px;
+      padding: 3px 11px;
       border-radius: 999px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       letter-spacing: -0.3px;
     }
 
     .hero-headline {
-      font-size: 1.55rem;
+      font-size: 1.50rem;
       font-weight: 900;
-      line-height: 1.35;
+      line-height: 1.32;
       letter-spacing: -0.8px;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
 
     .hero-headline span.highlight {
@@ -226,9 +228,9 @@
     }
 
     .hero-subdesc {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: #cbd5e1;
-      line-height: 1.55;
+      line-height: 1.5;
       font-weight: 500;
     }
 
@@ -243,7 +245,7 @@
       background: #ffffff;
       border: 1.5px solid #e2e8f0;
       border-radius: 12px;
-      padding: 14px 16px;
+      padding: 13px 16px;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
       position: relative;
     }
@@ -257,19 +259,19 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
 
     .card-icon {
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       border-radius: 8px;
       background: #e0f2fe;
       color: #0369a1;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.05rem;
+      font-size: 1.0rem;
       flex-shrink: 0;
     }
 
@@ -279,7 +281,7 @@
     }
 
     .card-head h3 {
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       font-weight: 850;
       color: var(--primary);
       letter-spacing: -0.4px;
@@ -294,7 +296,7 @@
     }
 
     .feature-card li {
-      font-size: 0.80rem;
+      font-size: 0.79rem;
       color: #334155;
       line-height: 1.4;
       display: flex;
@@ -313,7 +315,7 @@
     .products-strip {
       background: #f1f5f9;
       border-radius: 12px;
-      padding: 12px 18px;
+      padding: 12px 16px;
       border: 1px solid #cbd5e1;
     }
 
@@ -389,7 +391,7 @@
       margin-top: 2px;
     }
 
-    /* 6. QR 접속 및 병원 이용 가이드 (하단 CTA 블록) */
+    /* 5. QR 접속 및 병원 이용 가이드 (하단 CTA 블록) */
     .portal-access-box {
       background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
       border: 2px solid #0d9488;
@@ -475,16 +477,34 @@
       margin-top: 3px;
     }
 
-    /* 7. 최하단 위치 및 연락처 풋바 */
+    /* 6. 최하단 위치 및 연락처 풋바 (깔끔한 한글 줄맞춤 & 여백) */
     .footer-bar {
       border-top: 1px solid #cbd5e1;
-      padding-top: 8px;
-      display: flex;
-      justify-content: space-between;
+      padding-top: 10px;
+      padding-bottom: 2px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
       align-items: center;
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       color: #64748b;
       font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .footer-bar .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .footer-bar .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      text-align: right;
     }
 
     .footer-bar strong {
@@ -534,7 +554,8 @@
         max-width: 210mm !important;
         max-height: 297mm !important;
         margin: 0 !important;
-        padding: 16mm 18mm 14mm !important;
+        padding: 14mm 16mm 12mm !important;
+        gap: 12px !important;
         box-shadow: none !important;
         border: none !important;
         border-top: 8px solid var(--primary) !important;
@@ -735,13 +756,16 @@
       </div>
     </section>
 
-    <!-- 7. 최하단 위치 및 연락처 풋바 -->
+    <!-- 6. 최하단 위치 및 연락처 풋바 -->
     <footer class="footer-bar">
-      <div>
-        <strong>에스앤제이 동물병원 진료실</strong>: <span id="dyn-addr">경기도 용인시 처인구 포곡읍 선장1로 98-8 (봄봄솔루션 내)</span>
+      <div class="footer-left">
+        <strong>에스앤제이 동물병원 진료실</strong>
+        <span>|</span>
+        <span id="dyn-addr">용인시 처인구 포곡읍 선장1로 98-8 (봄봄솔루션 내)</span>
       </div>
-      <div>
-        <strong>문의/예약</strong>: <span id="dyn-bottom-tel">031-321-6562 / 010-5407-5708</span>
+      <div class="footer-right">
+        <strong>문의/예약</strong>
+        <span id="dyn-bottom-tel">031-321-6562 · 010-5407-5708</span>
       </div>
     </footer>
 
