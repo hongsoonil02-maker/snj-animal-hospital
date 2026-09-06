@@ -276,3 +276,23 @@
       .partner-hero { padding: 28px 20px; }
       .partner-hero h1 { font-size: 24px; }
     }
+    /* 모바일 전역 좌우폭 10% 축소 (갤럭시 울트라 대응) */
+    @media (max-width: 960px) {
+      html, body { overflow-x: hidden; }
+      .nav-container,
+      .partner-wrap,
+      .partner-hero,
+      .b2b-grid,
+      .product-section {
+        max-width: 90% !important;
+        width: 90% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box;
+      }
+      header { padding-left: 5% !important; padding-right: 5% !important; }
+      .partner-hero,
+      .product-section,
+      .b2b-grid { padding-left: 5% !important; padding-right: 5% !important; }
+      .partner-banner { padding-left: 5% !important; padding-right: 5% !important; }
+    }
