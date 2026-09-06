@@ -757,6 +757,14 @@
       font-size: 24px;
       color: #94a3b8;
       cursor: pointer;
+      background: none;
+      border: none;
+      transition: color 0.2s;
+    }
+    .modal-close:hover {
+      color: #1e293b;
+    }
+
     /* 모바일 전용 하단 고정 액션 바 */
     .mobile-bottom-bar {
       display: none;
@@ -770,7 +778,6 @@
       padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
       z-index: 999;
       box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
-      display: none;
       grid-template-columns: 1fr 1.3fr 1.2fr;
       gap: 8px;
     }
@@ -816,6 +823,50 @@
       margin: 0 auto 10px;
       display: block;
       border-radius: 8px;
+    }
+
+    /* 알림판 전용 대형 커스텀 모달 */
+    .notice-modal-content {
+      max-width: 1100px;
+      width: 96%;
+      height: 92vh;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+    .notice-modal-body {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 20px;
+      flex: 1;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+    .notice-modal-form {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .notice-modal-preview {
+      background: #475569;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 2px solid #002b90;
+    }
+    .notice-modal-preview iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #ffffff;
     }
 
     /* 반응형 모바일 */
@@ -1040,19 +1091,25 @@
         </div>
 
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <button class="btn-primary" style="padding: 12px 22px;" onclick="openOrderModal()">
-            <span>📦</span> 수요일 경매장 수령 사전 주문하기
+          <button class="btn-primary" style="padding: 12px 22px;" onclick="openNoticeModal()">
+            <span>🖨️</span> A4 알림판 실시간 커스텀 & 출력
           </button>
-          <a href="./snj_notice_board.png" download="에스앤제이_온라인병원_알림판_QR.png" class="btn-call" style="background: #ffffff; color: #132e47; border: none;">
-            <span>📥</span> 포스터·QR 다운로드
+          <button class="btn-call" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 12px 18px;" onclick="openOrderModal()">
+            <span>📦</span> 수요일 경매장 사전 주문
+          </button>
+          <a href="./parvogel-notice-A4.html" target="_blank" class="btn-call" style="background: #ffffff; color: #132e47; border: none; padding: 12px 18px;">
+            <span>👁️</span> A4 알림판 새 창 원본 보기
           </a>
         </div>
       </div>
 
       <!-- 우측 QR코드 카드 -->
       <div class="qr-preview-box">
+        <div style="font-size:11px; font-weight:800; color:#002b90; background:#e0f2fe; padding:2px 8px; border-radius:4px; margin-bottom:8px; display:inline-block;">
+          🐾 공식 A4 알림판 탑재 QR
+        </div>
         <img src="./snj_qr_branded.png" alt="에스앤제이 온라인병원 QR코드" class="qr-preview-img" />
-        <strong style="display: block; font-size: 14px; color: #132e47; margin-bottom: 4px;">스마트폰으로 QR 스캔</strong>
+        <strong style="display: block; font-size: 14px; color: #132e47; margin-bottom: 4px;">스마트폰 QR 스캔</strong>
         <span style="font-size: 11px; color: #64748b; line-height: 1.4; display: block;">
           카메라를 비추면 에스앤제이 온라인 포털로 즉시 연결됩니다.
         </span>
@@ -1501,82 +1558,81 @@
     </div>
   </div>
 
-  <script>
-    // 1. 스마트 트리아지 빠른 칩 적용
-    function applyChip(text) {
-      const textarea = document.getElementById('symptomText');
-      textarea.value = text;
-      textarea.focus();
-    }
 
-    function focusTriageInput() {
-      const area = document.getElementById('triage');
-      area.scrollIntoView({ behavior: 'smooth' });
-      document.getElementById('symptomText').focus();
-    }
+  <!-- 모달: 공식 A4 알림판 실시간 커스텀 & 출력 센터 -->
+  <div id="noticeModal" class="modal-backdrop">
+    <div class="modal-content notice-modal-content">
+      <button class="modal-close" onclick="closeModal('noticeModal')">&times;</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:12px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size: 26px;">🖨️</span>
+          <div>
+            <h3 style="font-size: 19px; font-weight: 800; color: var(--primary-900);">에스앤제이 동물병원 파보겔 A4 알림판 인쇄 센터</h3>
+            <p style="font-size: 12px; color: #64748b; margin: 0;">몬스멕타·파보겔 공식 규격(210x297mm) 단 1장 칼인쇄 지원 및 실시간 문구 편집</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <a href="./parvogel-notice-A4.html" target="_blank" class="btn-call" style="font-size:12px; padding:6px 14px;">
+            새 창에서 전체화면
+          </a>
+          <button class="btn-primary" style="font-size:13px; padding:8px 18px;" onclick="printNoticeIframe()">
+            🖨️ A4 칼인쇄 / PDF 저장
+          </button>
+        </div>
+      </div>
 
-    // 2. 실시간 AI 스마트 트리아지 알고리즘
-    function runSmartTriage() {
-      const text = document.getElementById('symptomText').value.trim();
-      const resultArea = document.getElementById('triageResultArea');
-      const pill = document.getElementById('resultStatusPill');
-      const heading = document.getElementById('resultHeading');
-      const guide = document.getElementById('resultActionGuide');
+      <div class="notice-modal-body">
+        <!-- 좌측: 실시간 정보 커스텀 폼 -->
+        <div class="notice-modal-form">
+          <div style="font-size:13px; font-weight:800; color:var(--primary-800); border-bottom:1px solid #cbd5e1; padding-bottom:6px;">
+            ✏️ 알림판 실시간 정보 편집
+          </div>
 
-      if (!text) {
-        alert('증상을 간략하게 입력해 주시거나 추천 칩을 클릭해 주세요.');
-        return;
-      }
+          <div>
+            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">병원/매장 상호명</label>
+            <input type="text" id="n_name" value="에스앤제이 동물병원" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" oninput="updateNoticeIframe()" />
+          </div>
 
-      resultArea.style.display = 'block';
+          <div>
+            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">하단 매장 위치 (선택)</label>
+            <input type="text" id="n_addr" value="경기도 용인시 처인구 포곡읍 선장1로 98-8" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" oninput="updateNoticeIframe()" />
+          </div>
 
-      // 응급도 분류 휴리스틱 (자견 및 임상 규칙 기반)
-      if (text.includes('혈변') || text.includes('경련') || text.includes('발작') || text.includes('호흡') || text.includes('숨') || text.includes('의식')) {
-        pill.className = 'triage-status-pill status-red';
-        pill.innerHTML = '<span>🔴 RED : 즉시 응급 내원 필요</span>';
-        heading.innerText = '생명과 직결될 수 있는 응급 위험 신호입니다.';
-        guide.innerHTML = '자가 처치나 대기 시간을 갖지 마시고 즉시 가장 가까운 24시 동물병원 또는 에스앤제이 핫라인으로 연락 후 즉각 내원하시기 바랍니다.';
-      } else if (text.includes('구토') || text.includes('토') || text.includes('설사') || text.includes('처져') || text.includes('무기력')) {
-        pill.className = 'triage-status-pill status-orange';
-        pill.innerHTML = '<span>🟠 ORANGE : 오늘 중 동물병원 방문 권고</span>';
-        heading.innerText = '급성 탈수 및 잠복기 전염병(파보/코로나) 검진이 시급합니다.';
-        guide.innerHTML = '어린 자견의 경우 2~3회의 구토만으로도 저혈당 및 쇼크가 올 수 있습니다. 금식 상태를 유지하며 체온을 보온하고 신속히 내원하세요.';
-      } else if (text.includes('안 먹') || text.includes('식욕') || text.includes('기운')) {
-        pill.className = 'triage-status-pill status-yellow';
-        pill.innerHTML = '<span>🟡 YELLOW : 수의사 유선 상담 및 12시간 경과 관찰</span>';
-        heading.innerText = '초기 컨디션 저하 신호로 주의 깊은 관찰이 필요합니다.';
-        guide.innerHTML = '환경 변화나 스트레스성일 수 있으나 추가 구토나 변 상태 변화가 있는지 3시간 간격으로 체크해 주시기 바랍니다.';
-      } else {
-        pill.className = 'triage-status-pill status-green';
-        pill.innerHTML = '<span>🟢 GREEN : 자택 내 안정 및 경과 관찰 가능</span>';
-        heading.innerText = '현재 즉각적인 위급 신호는 감지되지 않았습니다.';
-        guide.innerHTML = '깨끗한 미온수를 급여하시고, 증상이 24시간 이상 지속되거나 악화될 경우 사전 문진표를 작성해 문의해 주세요.';
-      }
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+            <div>
+              <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">상단 상담전화</label>
+              <input type="text" id="n_top_tel" value="010-5407-5708" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px;" oninput="updateNoticeIframe()" />
+            </div>
+            <div>
+              <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">하단 구매전화</label>
+              <input type="text" id="n_bot_tel" value="031-321-6562" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px;" oninput="updateNoticeIframe()" />
+            </div>
+          </div>
 
-      // 작성된 증상을 모바일 요약서에도 자동 반영
-      document.getElementById('summarySymptoms').value = text;
-    }
+          <div>
+            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">권장 판매가 (원)</label>
+            <input type="text" id="n_price" value="18,000" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px; font-weight:800; color:#002b90;" oninput="updateNoticeIframe()" />
+          </div>
 
-    // 3. 투약량 계산기
-    function calculateDosage() {
-      const weight = parseFloat(document.getElementById('petWeight').value);
-      const res = document.getElementById('calcResult');
-      if (isNaN(weight) || weight <= 0) {
-        res.innerText = '올바른 체중을 입력하세요';
-        return;
-      }
-      // 통상 스멕타이트 체중 kg당 1.0~1.5ml (또는 g) 기준
-      const minDose = (weight * 1.0).toFixed(1);
-      const maxDose = (weight * 1.5).toFixed(1);
-      res.innerText = `약 ${minDose} ~ ${maxDose} ml (또는 g)`;
-    }
+          <div style="background:#e0f2fe; padding:10px; border-radius:8px; font-size:11.5px; color:#0369a1; line-height:1.5;">
+            💡 <strong>출력 꿀팁:</strong><br />
+            · 브라우저 인쇄 설정에서 대상 프린터를 <strong>'A4'</strong>로 지정하세요.<br />
+            · 여백을 <strong>'없음(None)'</strong>으로 하시면 오차 없이 1페이지에 딱 맞게 인쇄됩니다.
+          </div>
 
-    // 4. 모달 제어
-    function openModal(modalId) {
-      document.getElementById(modalId).style.display = 'flex';
-    }
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
+          <button class="btn-primary" style="width:100%; justify-content:center; padding:11px; margin-top:auto;" onclick="printNoticeIframe()">
+            🖨️ 바로 인쇄하기 (출력창 열기)
+          </button>
+        </div>
+
+        <!-- 우측: A4 실시간 프리뷰 캔버스 -->
+        <div class="notice-modal-preview">
+          <iframe id="noticeIframe" src="./parvogel-notice-A4.html" title="A4 알림판 실시간 미리보기"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- 모달 6: 수요일 경매장 수령 사전 주문 폼 -->
   <div id="orderModal" class="modal-backdrop">
     <div class="modal-content">
@@ -1786,6 +1842,45 @@
       }).catch(() => {
         alert('복사에 실패했습니다. 직접 복사해 주세요.');
       });
+    }
+
+    // 6. 공식 A4 알림판 모달 및 실시간 iframe 동기화
+    function openNoticeModal() {
+      openModal('noticeModal');
+      updateNoticeIframe();
+    }
+
+    function updateNoticeIframe() {
+      const iframe = document.getElementById('noticeIframe');
+      if (iframe && iframe.contentWindow) {
+        const name = document.getElementById('n_name').value;
+        const addr = document.getElementById('n_addr').value;
+        const topTel = document.getElementById('n_top_tel').value;
+        const botTel = document.getElementById('n_bot_tel').value;
+        const price = document.getElementById('n_price').value;
+
+        iframe.contentWindow.postMessage({
+          type: 'UPDATE_POSTER',
+          name: name,
+          address: addr,
+          tel: botTel,
+          vetTel: topTel,
+          price: price
+        }, '*');
+      }
+    }
+
+    function printNoticeIframe() {
+      const iframe = document.getElementById('noticeIframe');
+      if (iframe && iframe.contentWindow) {
+        try {
+          iframe.contentWindow.postMessage({ type: 'PRINT_POSTER' }, '*');
+        } catch(e) {
+          window.open('./parvogel-notice-A4.html?autoPrint=true', '_blank');
+        }
+      } else {
+        window.open('./parvogel-notice-A4.html?autoPrint=true', '_blank');
+      }
     }
   </script>
 </body>
