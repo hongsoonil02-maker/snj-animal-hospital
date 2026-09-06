@@ -14,7 +14,7 @@ const HOSPITAL_CONFIG = {
   // 1. 병원 기본 정보
   hospitalNameKo: "에스앤제이 동물병원",
   hospitalNameEn: "DR. S & J ANIMAL HOSPITAL",
-  branchName: "용인 봄봄솔루션 진료실",
+  branchName: "용인 특화 진료센터",
   directorName: "홍수의사 원장",
   directorTitle: "수의학 박사 / 외과·소화기내과 전문",
   
@@ -26,11 +26,11 @@ const HOSPITAL_CONFIG = {
   // 3. 연락처 및 진료 시간
   phone: "031-321-6562",
   hotline: "010-5407-5708",
-  address: "경기도 용인시 처인구 포곡읍 선장1로 98-8 (봄봄솔루션 내)",
+  address: "경기도 용인시 처인구 포곡읍 선장1로 98-8",
   hours: {
     regular: "월~금 09:30 ~ 19:00",
     saturday: "토요일 09:30 ~ 16:00",
-    auctionDay: "매주 수요일 봄봄솔루션 경매장 현장 특별 진료실 운영",
+    specialCare: "매주 수요일 전문 B2B 파트너 정기 진료 및 사전 예약 조제",
     closed: "일요일 및 공휴일 휴진 (온라인 AI 문진 24시간 연중무휴)"
   },
 
