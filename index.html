@@ -1003,6 +1003,64 @@
     body.is-partner-mode .public-only-block {
       display: none !important;
     }
+
+    /* 인쇄 전용 스타일: 요약서 인쇄 시 전체 웹사이트를 숨기고 요약서 1장만 깔끔하게 출력 */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      /* 전체 페이지 요소 숨김 */
+      .top-banner, header, .hero-section, .section-module, .b2b-hub-section, 
+      .products-section, .hospital-info-section, footer, .mobile-bottom-bar,
+      .partner-unlock-banner, #partnerGateModal, #b2bModal, #parvogelModal,
+      .modal-close, .modal-backdrop:not(#summaryModal) {
+        display: none !important;
+      }
+
+      /* 모달 배경 해제 및 요약서 단독 출력 */
+      .modal-backdrop#summaryModal {
+        display: block !important;
+        position: static !important;
+        background: none !important;
+        backdrop-filter: none !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        inset: auto !important;
+      }
+      #summaryModal .modal-content {
+        box-shadow: none !important;
+        border: 2px solid #0f172a !important;
+        border-radius: 12px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 24px 30px !important;
+        margin: 0 auto !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      #summaryModal .modal-close,
+      #summaryModal button,
+      #summaryModal .btn-primary,
+      #summaryModal .btn-call {
+        display: none !important;
+      }
+      #summaryModal input,
+      #summaryModal textarea {
+        border: 1px solid #94a3b8 !important;
+        background: #f8fafc !important;
+        color: #0f172a !important;
+        font-size: 14px !important;
+        box-shadow: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2041,9 +2099,101 @@
       closeModal('orderModal');
     }
 
-    // 5. 진료실 요약서 인쇄 및 복사
+    // 5. 진료실 요약서 인쇄 및 복사 (전체 사이트 9페이지 인쇄 방지 -> 깔끔한 A4 1장 전용 인쇄창)
     function printSummary() {
-      window.print();
+      const pet = document.getElementById('summaryPetName').value || '미입력';
+      const info = document.getElementById('summaryPetInfo').value || '미입력';
+      const sym = document.getElementById('summarySymptoms').value || '특이사항 없음';
+      const q = document.getElementById('summaryQuestion').value || '특이사항 없음';
+      const today = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+      const printHtml = `
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>에스앤제이 동물병원 - 진료실 모바일 사전 문진표</title>
+  <style>
+    @page { size: A4 portrait; margin: 15mm; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif; }
+    body { background: #fff; color: #0f172a; padding: 20px; }
+    .sheet { max-width: 680px; margin: 0 auto; border: 2px solid #0d9488; border-radius: 14px; padding: 28px; }
+    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0d9488; padding-bottom: 14px; margin-bottom: 20px; }
+    .h-title { font-size: 22px; font-weight: 900; color: #132e47; }
+    .h-sub { font-size: 13px; color: #0d9488; font-weight: 700; margin-top: 4px; }
+    .h-right { text-align: right; font-size: 12px; color: #64748b; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+    .field-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px; }
+    .label { font-size: 11px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+    .value { font-size: 15px; font-weight: 700; color: #0f172a; }
+    .block-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; margin-bottom: 16px; }
+    .value-area { font-size: 14px; line-height: 1.6; color: #1e293b; white-space: pre-wrap; margin-top: 4px; }
+    .footer { margin-top: 24px; padding-top: 14px; border-top: 1px dashed #cbd5e1; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748b; }
+    .stamp { font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 4px; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="header">
+      <div>
+        <div class="h-title">📋 진료실 모바일 사전 문진표</div>
+        <div class="h-sub">DR. S & J ANIMAL HOSPITAL · 전문 진료센터</div>
+      </div>
+      <div class="h-right">
+        <div>접수일자: ${today}</div>
+        <div style="font-weight:700; color:#132e47; margin-top:2px;">원내 진료용 원본</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="field-box">
+        <div class="label">반려동물 이름</div>
+        <div class="value">${pet}</div>
+      </div>
+      <div class="field-box">
+        <div class="label">견종 / 나이 / 체중</div>
+        <div class="value">${info}</div>
+      </div>
+    </div>
+
+    <div class="block-box">
+      <div class="label">주요 증상 및 발생 시점</div>
+      <div class="value-area">${sym}</div>
+    </div>
+
+    <div class="block-box">
+      <div class="label">수의사 문진 핵심 질의사항</div>
+      <div class="value-area" style="font-weight: 700; color: #0d9488;">${q}</div>
+    </div>
+
+    <div style="background:#fefce8; border:1px solid #fef08a; border-radius:8px; padding:12px; font-size:12px; color:#854d0e; line-height:1.5;">
+      💡 <strong>진료실 알림:</strong> 본 문진표는 보호자가 내원 전 온라인 AI 문진을 통해 사전 작성한 정보입니다. 수의사 진료 시 대기 시간 단축 및 정밀 처방에 활용됩니다.
+    </div>
+
+    <div class="footer">
+      <div>에스앤제이 동물병원 (경기도 용인시 처인구 포곡읍 선장1로 98-8)</div>
+      <div class="stamp">상담·예약: 031-321-6562</div>
+    </div>
+  </div>
+  <script>
+    window.onload = function() {
+      setTimeout(function() {
+        window.print();
+      }, 250);
+    };
+  <\/script>
+</body>
+</html>
+      `;
+
+      const printWin = window.open('', '_blank', 'width=750,height=850');
+      if (printWin) {
+        printWin.document.open();
+        printWin.document.write(printHtml);
+        printWin.document.close();
+      } else {
+        window.print();
+      }
     }
     function copySummaryText() {
       const pet = document.getElementById('summaryPetName').value;
