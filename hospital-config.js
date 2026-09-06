@@ -11,12 +11,16 @@
  */
 
 const HOSPITAL_CONFIG = {
-  // 1. 병원 기본 정보
+  // 1. 병원 및 사업자 기본 정보 (공식 인허가 등록 정보)
   hospitalNameKo: "에스앤제이 동물병원",
   hospitalNameEn: "DR. S & J ANIMAL HOSPITAL",
   branchName: "용인 특화 진료센터",
-  directorName: "홍수의사 원장",
-  directorTitle: "수의학 박사 / 외과·소화기내과 전문",
+  businessNumber: "792-66-00615", // 사업자등록번호
+  licenseNumber: "제 5620000-010-2025-0002 호", // 동물병원 개설신고확인증 (용인시 처인구청)
+  directorName: "홍순일 원장", // 대표 수의사
+  vetLicense1: "면허 제 5374 호 (홍순일 수의사)",
+  vetLicense2: "면허 제 5398 호 (성하정 수의사)",
+  directorTitle: "면허 제5374호 수의사 / 소화기내과·외과 임상",
   
   // 2. 브랜딩 & 로고 이미지
   logoImage: "./sj_logo.png",
