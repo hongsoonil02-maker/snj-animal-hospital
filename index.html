@@ -1092,12 +1092,12 @@
 
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
           <button class="btn-primary" style="padding: 12px 22px;" onclick="openNoticeModal()">
-            <span>🖨️</span> A4 알림판 실시간 커스텀 & 출력
+            <span>🖨️</span> 에스앤제이 A4 알림판 인쇄 & 출력
           </button>
           <button class="btn-call" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 12px 18px;" onclick="openOrderModal()">
             <span>📦</span> 수요일 경매장 사전 주문
           </button>
-          <a href="./parvogel-notice-A4.html" target="_blank" class="btn-call" style="background: #ffffff; color: #132e47; border: none; padding: 12px 18px;">
+          <a href="./snj-notice-A4.html" target="_blank" class="btn-call" style="background: #ffffff; color: #132e47; border: none; padding: 12px 18px;">
             <span>👁️</span> A4 알림판 새 창 원본 보기
           </a>
         </div>
@@ -1567,12 +1567,12 @@
         <div style="display:flex; align-items:center; gap:10px;">
           <span style="font-size: 26px;">🖨️</span>
           <div>
-            <h3 style="font-size: 19px; font-weight: 800; color: var(--primary-900);">에스앤제이 동물병원 파보겔 A4 알림판 인쇄 센터</h3>
-            <p style="font-size: 12px; color: #64748b; margin: 0;">몬스멕타·파보겔 공식 규격(210x297mm) 단 1장 칼인쇄 지원 및 실시간 문구 편집</p>
+            <h3 style="font-size: 19px; font-weight: 800; color: var(--primary-900);">에스앤제이 동물병원 공식 안내판 인쇄 센터</h3>
+            <p style="font-size: 12px; color: #64748b; margin: 0;">A4(210x297mm) 단 1장 완벽 인쇄 지원 및 병원 정보 실시간 편집</p>
           </div>
         </div>
         <div style="display:flex; gap:8px;">
-          <a href="./parvogel-notice-A4.html" target="_blank" class="btn-call" style="font-size:12px; padding:6px 14px;">
+          <a href="./snj-notice-A4.html" target="_blank" class="btn-call" style="font-size:12px; padding:6px 14px;">
             새 창에서 전체화면
           </a>
           <button class="btn-primary" style="font-size:13px; padding:8px 18px;" onclick="printNoticeIframe()">
@@ -1589,35 +1589,30 @@
           </div>
 
           <div>
-            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">병원/매장 상호명</label>
+            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">병원/진료실 명칭</label>
             <input type="text" id="n_name" value="에스앤제이 동물병원" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" oninput="updateNoticeIframe()" />
           </div>
 
           <div>
-            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">하단 매장 위치 (선택)</label>
-            <input type="text" id="n_addr" value="경기도 용인시 처인구 포곡읍 선장1로 98-8" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" oninput="updateNoticeIframe()" />
+            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">진료실 위치</label>
+            <input type="text" id="n_addr" value="경기도 용인시 처인구 포곡읍 선장1로 98-8 (봄봄솔루션 내)" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" oninput="updateNoticeIframe()" />
           </div>
 
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
             <div>
-              <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">상단 상담전화</label>
+              <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">상단 핫라인</label>
               <input type="text" id="n_top_tel" value="010-5407-5708" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px;" oninput="updateNoticeIframe()" />
             </div>
             <div>
-              <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">하단 구매전화</label>
-              <input type="text" id="n_bot_tel" value="031-321-6562" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px;" oninput="updateNoticeIframe()" />
+              <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">하단 유선전화</label>
+              <input type="text" id="n_bot_tel" value="031-321-6562 / 010-5407-5708" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px;" oninput="updateNoticeIframe()" />
             </div>
           </div>
 
-          <div>
-            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">권장 판매가 (원)</label>
-            <input type="text" id="n_price" value="18,000" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px; font-weight:800; color:#002b90;" oninput="updateNoticeIframe()" />
-          </div>
-
-          <div style="background:#e0f2fe; padding:10px; border-radius:8px; font-size:11.5px; color:#0369a1; line-height:1.5;">
-            💡 <strong>출력 꿀팁:</strong><br />
-            · 브라우저 인쇄 설정에서 대상 프린터를 <strong>'A4'</strong>로 지정하세요.<br />
-            · 여백을 <strong>'없음(None)'</strong>으로 하시면 오차 없이 1페이지에 딱 맞게 인쇄됩니다.
+          <div style="background:#f0fdfa; padding:11px; border-radius:8px; font-size:11.5px; color:#0f766e; line-height:1.55; border:1px solid #99f6e4;">
+            📋 <strong>포털 안내판 활용 안내:</strong><br />
+            · 경매장 현장, 분양장 입구, 카운터에 부착하여 펫샵·브리더 사장님들이 <strong>QR로 접속해 사전 문진 및 수요일 약품 사전 주문</strong>을 하도록 안내하는 공식 포스터입니다.<br />
+            · 인쇄 설정에서 여백을 <strong>'없음(None)'</strong>으로 설정하시면 깔끔하게 1장으로 출력됩니다.
           </div>
 
           <button class="btn-primary" style="width:100%; justify-content:center; padding:11px; margin-top:auto;" onclick="printNoticeIframe()">
@@ -1627,7 +1622,7 @@
 
         <!-- 우측: A4 실시간 프리뷰 캔버스 -->
         <div class="notice-modal-preview">
-          <iframe id="noticeIframe" src="./parvogel-notice-A4.html" title="A4 알림판 실시간 미리보기"></iframe>
+          <iframe id="noticeIframe" src="./snj-notice-A4.html" title="에스앤제이 A4 알림판 실시간 미리보기"></iframe>
         </div>
       </div>
     </div>
@@ -1876,10 +1871,10 @@
         try {
           iframe.contentWindow.postMessage({ type: 'PRINT_POSTER' }, '*');
         } catch(e) {
-          window.open('./parvogel-notice-A4.html?autoPrint=true', '_blank');
+          window.open('./snj-notice-A4.html?autoPrint=true', '_blank');
         }
       } else {
-        window.open('./parvogel-notice-A4.html?autoPrint=true', '_blank');
+        window.open('./snj-notice-A4.html?autoPrint=true', '_blank');
       }
     }
   </script>
