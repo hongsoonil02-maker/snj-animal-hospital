@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>에스앤제이 동물병원 | Dr. S&J Animal Hospital - 스마트 수의 포털 & 사전 문진</title>
-  <meta name="description" content="에스앤제이 동물병원 용인 전문 진료센터. 반려동물 AI 스마트 트리아지(사전 문진), 신생아·소화기 집중 치료, 진단키트/처방약 B2B 파트너 포털." />
+  <meta name="description" content="에스앤제이 동물병원 용인 전문 진료센터. 반려동물 AI 스마트 트리아지(사전 문진), 신생아·소화기 집중 치료, 몬스멕타 전문 처방 동물병원." />
   <link rel="icon" type="image/png" href="./sj_logo.png" />
   
   <!-- 웹폰트: 프리미엄 Noto Sans KR -->
@@ -149,19 +149,6 @@
     .nav-link:hover {
       color: var(--accent-teal);
     }
-    .nav-link.badge-new::after {
-      content: "B2B";
-      position: absolute;
-      top: -10px;
-      right: -24px;
-      background: #f59e0b;
-      color: #fff;
-      font-size: 9px;
-      font-weight: 800;
-      padding: 1px 5px;
-      border-radius: 4px;
-    }
-
     .header-actions {
       display: flex;
       align-items: center;
@@ -506,96 +493,6 @@
       gap: 6px;
     }
 
-    /* B2B 파트너 전용 허브 (번식농장 50곳 & 펫샵 50곳 특화) */
-    .b2b-hub-section {
-      background: linear-gradient(135deg, #0d1e2e 0%, #173b57 100%);
-      color: #ffffff;
-      padding: 90px 24px;
-      position: relative;
-    }
-    .b2b-container {
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-    .b2b-badge {
-      display: inline-block;
-      background: rgba(245, 158, 11, 0.2);
-      color: #fcd34d;
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-    .b2b-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-top: 48px;
-    }
-    .b2b-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-      backdrop-filter: blur(10px);
-      transition: all 0.25s;
-    }
-    .b2b-box:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(16, 185, 129, 0.5);
-      transform: translateY(-3px);
-    }
-    .b2b-box-icon {
-      font-size: 32px;
-      margin-bottom: 16px;
-    }
-    .b2b-box-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 14px;
-    }
-    .b2b-box-desc {
-      font-size: 15px;
-      color: #cbd5e1;
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-    .b2b-list {
-      list-style: none;
-      margin-bottom: 28px;
-    }
-    .b2b-list li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: #e2e8f0;
-      margin-bottom: 10px;
-    }
-    .b2b-list li::before {
-      content: "✓";
-      color: var(--accent-emerald);
-      font-weight: 900;
-    }
-    .btn-b2b {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--accent-emerald);
-      color: #ffffff;
-      padding: 12px 24px;
-      border-radius: var(--radius-full);
-      font-weight: 700;
-      font-size: 14px;
-      transition: background 0.2s;
-    }
-    .btn-b2b:hover {
-      background: #059669;
-    }
-
     /* 몬스멕타 및 시그니처 처방제 섹션 */
     .products-section {
       padding: 90px 24px;
@@ -878,9 +775,6 @@
       .services-grid-4 {
         grid-template-columns: repeat(2, 1fr);
       }
-      .b2b-grid {
-        grid-template-columns: 1fr;
-      }
       .products-grid {
         grid-template-columns: 1fr;
       }
@@ -931,9 +825,6 @@
       .services-grid-4 {
         grid-template-columns: 1fr;
       }
-      .b2b-box {
-        padding: 24px 18px;
-      }
       .products-grid {
         padding: 24px 18px;
       }
@@ -941,67 +832,11 @@
         padding: 22px 18px;
         width: 95%;
       }
-    }
-
-    /* B2B 파트너 전용 라운지 & 몬스멕타 클리닉 전용 스타일 */
-    .partner-unlock-banner {
-      display: none;
-      background: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%);
-      color: #ffffff;
-      padding: 12px 20px;
-      font-size: 13.5px;
-      font-weight: 700;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1001;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .partner-unlock-banner.active {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-    }
-    .btn-exit-partner {
-      background: rgba(255,255,255,0.2);
-      color: #ffffff;
-      border: 1px solid rgba(255,255,255,0.4);
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-size: 11.5px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-exit-partner:hover {
-      background: rgba(255,255,255,0.3);
-    }
-    .partner-gate-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 12px;
-      font-weight: 700;
-      background: rgba(13, 148, 136, 0.1);
-      color: var(--accent-teal);
-      border: 1px solid rgba(13, 148, 136, 0.3);
-      padding: 5px 12px;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .partner-gate-btn:hover {
-      background: var(--accent-teal);
-      color: #ffffff;
-    }
-    .partner-only-block {
-      display: none;
-    }
-    body.is-partner-mode .partner-only-block {
-      display: block !important;
-    }
-    body.is-partner-mode .public-only-block {
-      display: none !important;
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
     }
 
     /* 인쇄 전용 스타일: 요약서 인쇄 시 전체 웹사이트를 숨기고 요약서 1장만 깔끔하게 출력 */
@@ -1017,9 +852,8 @@
         margin: 0 !important;
       }
       /* 전체 페이지 요소 숨김 */
-      .top-banner, header, .hero-section, .section-module, .b2b-hub-section, 
+      .top-banner, header, .hero-section, .section-module, 
       .products-section, .hospital-info-section, footer, .mobile-bottom-bar,
-      .partner-unlock-banner, #partnerGateModal, #b2bModal, #parvogelModal,
       .modal-close, .modal-backdrop:not(#summaryModal) {
         display: none !important;
       }
@@ -1065,12 +899,6 @@
 </head>
 <body>
 
-  <!-- B2B 파트너 모드 활성화 시 상단 배너 -->
-  <div id="partnerBanner" class="partner-unlock-banner">
-    <span>🔒 <strong>B2B 인증 파트너 라운지 활성화</strong> (번식농장·펫샵 전용 공급가 및 파보겔 발주 모드)</span>
-    <button class="btn-exit-partner" onclick="togglePartnerMode(false)">일반 모드로 전환</button>
-  </div>
-
   <!-- 상단 공지 배너 -->
   <aside class="top-banner" aria-label="진료 안내">
     <span class="top-banner-badge">현장 & 온라인 연계</span>
@@ -1091,15 +919,11 @@
       <nav class="nav-menu" aria-label="주요 메뉴">
         <a href="#triage" class="nav-link">AI 스마트 문진</a>
         <a href="#services" class="nav-link">4대 안심 케어</a>
-        <a href="#b2b" class="nav-link badge-new partner-only-block" id="navB2bLink">번식농장·펫샵 발주</a>
         <a href="#digestive-care" class="nav-link" id="navDigestiveLink">몬스멕타(Monsmecta) 처방</a>
         <a href="#info" class="nav-link">오시는 길 & 진료시간</a>
       </nav>
 
       <div class="header-actions">
-        <button class="partner-gate-btn" onclick="openPartnerGateModal()" id="partnerGateBtn">
-          <span>🔒</span> 파트너 라운지
-        </button>
         <a href="tel:031-321-6562" class="btn-call">
           <span>📞</span> 031-321-6562
         </a>
@@ -1124,7 +948,7 @@
         </h1>
         <p class="hero-desc">
           에스앤제이 동물병원은 물리적 거리와 시간의 한계를 넘어,<br />
-          <strong>전국 반려가족과 전문 파트너사를 위한 365일 온라인 사전 문진·트리아지 및 수의 처방 지사제 몬스멕타(Monsmecta) 임상 솔루션</strong>을 지원합니다.
+          <strong>전국 반려가족을 위한 365일 온라인 사전 문진·트리아지 및 수의 처방 지사제 몬스멕타(Monsmecta) 임상 솔루션</strong>을 지원합니다.
         </p>
 
         <div class="hero-features-strip">
@@ -1137,9 +961,9 @@
           <button class="btn-hero-lg btn-hero-primary" onclick="focusTriageInput()">
             <span>✨</span> 지금 바로 AI 사전 문진하기
           </button>
-          <button class="btn-hero-lg btn-hero-secondary" onclick="openModal('b2bModal')">
-            <span>🤝</span> 수의 파트너십 & 진료 문의
-          </button>
+          <a href="tel:031-321-6562" class="btn-hero-lg btn-hero-secondary">
+            <span>📞</span> 전문 진료센터 상담 (031-321-6562)
+          </a>
         </div>
       </div>
 
@@ -1178,7 +1002,7 @@
             반복 구토 및 탈수 위험에 대한 조기 수의사 진찰이 필요합니다.
           </h4>
           <p id="resultActionGuide" style="font-size: 13.5px; color: #475569; line-height: 1.6; margin-bottom: 14px;">
-            자견의 경우 짧은 시간의 구토와 설사로도 저혈당 및 급성 탈수가 올 수 있습니다. 파보/코로나 키트 검사를 병행하시고 억지로 사료를 먹이지 마세요.
+            자견의 경우 짧은 시간의 구토와 설사로도 저혈당 및 급성 탈수가 올 수 있습니다. 신속 진단키트 검사를 병행하시고 억지로 사료를 먹이지 마세요.
           </p>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
             <button class="btn-call" style="font-size: 12px; padding: 6px 12px;" onclick="openModal('summaryModal')">
@@ -1196,7 +1020,7 @@
   <!-- 4대 핵심 케어 모듈 & 온라인병원 사이트 알림판 -->
   <section class="section-module" id="services">
 
-    <!-- 에스앤제이 동물병원 온라인병원 공식 알림판 (B2B 파트너십 & 정기 조제 픽업) -->
+    <!-- 에스앤제이 동물병원 온라인병원 공식 알림판 -->
     <div class="notice-board-card">
       <div>
         <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 800; margin-bottom: 14px;">
@@ -1206,16 +1030,16 @@
           에스앤제이 동물병원 <span style="color:#6ee7b7;">스마트 수의 포털</span> 오픈 안내
         </h2>
         <p style="font-size: 14.5px; color: #cbd5e1; line-height: 1.7; margin-bottom: 20px;">
-          에스앤제이 동물병원은 <strong>몬스멕타(Monsmecta) 소화기 전문 처방, 신속 진단키트(파보·코로나·브루셀라), 수의사 처방 전문약</strong>을 원내에서 안전하게 공급하며, 협약 파트너사를 위한 <strong>온라인 사전 문진 &amp; 예약 수령 시스템</strong>을 365일 지원합니다.
+          에스앤제이 동물병원은 <strong>몬스멕타(Monsmecta) 소화기 전문 처방, 신속 진단키트, 수의사 처방 전문약</strong>을 원내에서 안전하게 공급하며, 보호자를 위한 <strong>온라인 사전 문진 &amp; 진료 연계 시스템</strong>을 365일 지원합니다.
         </p>
 
         <div style="background: rgba(255, 255, 255, 0.08); padding: 14px 18px; border-radius: 12px; margin-bottom: 22px; font-size: 13.5px;">
           <div style="color: #fcd34d; font-weight: 800; margin-bottom: 4px;">⚡ 주요 진료 및 처방 혜택:</div>
           <p style="color: #e2e8f0; line-height: 1.6;">
             · 수의사 처방 1위 <strong>'몬스멕타(Monsmecta)'</strong> 소화기 점막 보호 전문 처방<br />
-            · <strong>신속 진단키트(파보·코로나·브루셀라)</strong> 10분 현장 판독 및 수의 임상 상담<br />
+            · <strong>신속 진단키트 검사</strong> 10분 현장 판독 및 수의 임상 상담<br />
             · <strong>수의사 처방약(구충제, 항생제, 소염진통제, 점안액, 연고 등)</strong> 사전 예약 후 내원 수령<br />
-            · B2B 파트너사 전용 <strong>파보겔(Parvogel) 정기 공급 라운지</strong> 별도 운영
+            · <strong>365일 실시간 비대면 사전 문진표</strong> 연계 진료 지원
           </p>
         </div>
 
@@ -1223,8 +1047,8 @@
           <button class="btn-primary" style="padding: 12px 22px;" onclick="openNoticeModal()">
             <span>🖨️</span> 에스앤제이 A4 알림판 인쇄 & 출력
           </button>
-          <button class="btn-call" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 12px 18px;" onclick="openOrderModal()">
-            <span>📦</span> 수요일 현장 수령 사전 발주
+          <button class="btn-call" style="background: rgba(255,255,255,0.15); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 12px 18px;" onclick="openModal('summaryModal')">
+            <span>📋</span> 모바일 문진표 작성
           </button>
           <a href="./snj-notice-A4.html" target="_blank" class="btn-call" style="background: #ffffff; color: #132e47; border: none; padding: 12px 18px;">
             <span>👁️</span> A4 알림판 새 창 원본 보기
@@ -1262,7 +1086,7 @@
       <!-- 1. 병원 갈까 말까 -->
       <div class="service-card" onclick="focusTriageInput()">
         <div class="service-icon-wrap" style="background: #e0f2fe; color: #0284c7;">🚦</div>
-        <h3 class="service-card-title">병원 갈까 말까? (트리아지)</h3>
+        <h3 class="service-card-title">4단계 응급도 트리아지</h3>
         <p class="service-card-desc">
           집에서 지켜봐도 되는지(Green), 온라인 상담인지(Yellow), 오늘 내원해야 하는지(Orange), 24시 응급실인지(Red) 4단계로 명쾌하게 분류합니다.
         </p>
@@ -1284,7 +1108,7 @@
         <div class="service-icon-wrap" style="background: #dcfce7; color: #16a34a;">🔬</div>
         <h3 class="service-card-title">진단키트 & 검사 판독</h3>
         <p class="service-card-desc">
-          파보·코로나·지알디아 신속 진단키트의 미세한 밴드 판독부터 혈액 검사표, 엑스레이 소견서의 임상적 의미를 짚어드립니다.
+          신속 진단키트의 미세한 밴드 판독부터 혈액 검사표, 엑스레이 소견서의 임상적 의미를 짚어드립니다.
         </p>
         <div class="service-card-action">키트 판독 가이드 <span>→</span></div>
       </div>
@@ -1294,219 +1118,76 @@
         <div class="service-icon-wrap" style="background: #f3e8ff; color: #9333ea;">📋</div>
         <h3 class="service-card-title">진료실 한 장 요약서</h3>
         <p class="service-card-desc">
-          언제부터 아팠는지, 체온/배변 상태는 어떠했는지 모바일로 작성하여 내원 당일 수의사에게 바로 보여줄 수 있는 전자 문진표입니다.
+          언제부터 아팠는지, 체온/배변 상태는 어떠했는지 모바일로 작성하여 내원 당일 수의사에게 바로 보여줄 수의사 전문 문진표입니다.
         </p>
         <div class="service-card-action">모바일 요약서 발급 <span>→</span></div>
       </div>
     </div>
   </section>
 
-  <!-- B2B 파트너 전용 허브: 번식농장 50곳 & 펫샵 50곳 특별 모듈 (파트너 인증 시에만 노출) -->
-  <section class="b2b-hub-section partner-only-block" id="b2b">
-    <div class="b2b-container">
-      <div style="max-width: 800px;">
-        <span class="b2b-badge">B2B PARTNERSHIP PROGRAM</span>
-        <h2 style="font-size: 38px; font-weight: 900; line-height: 1.25; margin-bottom: 16px;">
-          100여 개 전문 브리더·펫샵 파트너사를 위한<br />
-          <strong>365일 상시 수의 지원 & 정기 의약품 공급망</strong>
-        </h2>
-        <p style="font-size: 16px; color: #cbd5e1; line-height: 1.7;">
-          바쁜 매장 운영과 축사 관리 중 번거롭던 진단키트와 동물약품 구매 및 질병 상담의 한계를 허물었습니다.<br />
-          온라인 파트너 전용 포털을 통해 <strong>정기 방문 시 즉시 수령 예약 및 긴급 직송 배송</strong>을 지원합니다.
-        </p>
-      </div>
-
-      <div class="b2b-grid">
-        <!-- 번식농장 (브리더) 전용관 -->
-        <div class="b2b-box">
-          <div class="b2b-box-icon">🏡</div>
-          <h3 class="b2b-box-title">번식농장(브리더) 원스톱 케어</h3>
-          <p class="b2b-box-desc">
-            대규모 자견·모견 시설의 집단 폐사 방지 및 전염성 질환 사전 차단을 위한 전문 프로토콜을 공급합니다.
-          </p>
-          <ul class="b2b-list">
-            <li><strong>신속 진단키트 정기 번들</strong> (파보 CPV / 코로나 CCV / 지알디아) 도매 공급</li>
-            <li><strong>자견 설사·장염 입소문 1위 '파보겔(Parvogel)'</strong> 상시 비축용 대량 공급</li>
-            <li>자견 급성 설사·탈수 발생 시 <strong>전해질 수액제 & 생균제 긴급 지원</strong></li>
-            <li>축사 소독제 및 외부 기생충 방제 프로그램 자문</li>
-          </ul>
-          <button class="btn-b2b" onclick="openB2BForm('번식농장(브리더)')">
-            <span>📝</span> 번식농장 대량 공급 & 상담 신청
-          </button>
-        </div>
-
-        <!-- 펫샵 대표 전용관 -->
-        <div class="b2b-box">
-          <div class="b2b-box-icon">🏬</div>
-          <h3 class="b2b-box-title">펫샵 대표 전용 안심 분양 패키지</h3>
-          <p class="b2b-box-desc">
-            분양 고객과의 분쟁을 원천 예방하고, 분양 초기 7일 골든타임을 안전하게 지키는 수의 연계 시스템입니다.
-          </p>
-          <ul class="b2b-list">
-            <li><strong>분양 당일 건강검진 인증</strong> 및 모바일 사전 문진표 연동</li>
-            <li>펫샵 사이에서 효과로 입소문 난 <strong>'파보겔(Parvogel)' 현장 구매 & 상비약 세트</strong> 제휴</li>
-            <li>신규 입식 자견 <strong>현장 픽업 전 기본 검진 및 예방 케어</strong></li>
-            <li>분양 후 15일 이내 전염성 질환 분쟁 대응을 위한 임상 자문</li>
-          </ul>
-          <button class="btn-b2b" style="background: #f59e0b;" onclick="openB2BForm('펫샵(구매자)')">
-            <span>🤝</span> 펫샵 파트너십 & 현장 픽업 예약
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 소화기 전문 처방 및 케어 솔루션 섹션 (듀얼 모드) -->
+  <!-- 소화기 전문 처방 및 케어 솔루션 섹션: 몬스멕타(Monsmecta) 임상 소화기 솔루션 -->
   <section class="products-section" id="digestive-care">
     <div class="products-container">
 
-      <!-- [공개 모드]: 전국 동물병원 원장님 및 일반 보호자용 몬스멕타(Monsmecta) 임상 소화기 솔루션 -->
-      <div class="public-only-block">
-        <div class="products-grid">
-          <div class="product-details">
-            <div class="product-badges">
-              <span class="p-badge" style="background:#dbeafe; color:#1e40af; font-weight:800;">🏥 동물병원 전문 처방 의약품</span>
-              <span class="p-badge p-badge-teal">에스앤제이 동물병원 공식 처방처</span>
-              <span class="p-badge p-badge-blue">한국아그로 수의 R&D</span>
-            </div>
-            <h3>소화기 점막 보호 및 장독소 흡착 처방, <strong>몬스멕타 (Monsmecta)</strong></h3>
-            <p style="font-size: 15.5px; color: #475569; line-height: 1.7; margin-bottom: 18px;">
-              에스앤제이 동물병원은 자견·성견의 급성 설사, 장염, 장점막 손상 시 <strong>가장 안전하고 신속하게 장내 유해 독소를 물리적으로 흡착·배출</strong>시키는 수의사 처방용 전문 지사제 <strong>'몬스멕타'</strong> 공식 처방 임상 센터입니다.<br />
-              약물 부작용 및 항생제 내성 우려 없이 장 점막에 도포되어 신속한 장벽 재건을 돕습니다.
-            </p>
-            <p style="font-size: 13px; color: #64748b; margin-bottom: 24px;">
-              * 전국 수의과대학 교수진 6인 자문단 연구 및 임상 검증을 거친 고순도 천연 알루미늄 마그네슘 실리케이트 제제입니다.
-            </p>
+      <div class="products-grid">
+        <div class="product-details">
+          <div class="product-badges">
+            <span class="p-badge" style="background:#dbeafe; color:#1e40af; font-weight:800;">🏥 동물병원 전문 처방 의약품</span>
+            <span class="p-badge p-badge-teal">에스앤제이 동물병원 공식 처방처</span>
+            <span class="p-badge p-badge-blue">한국아그로 수의 R&D</span>
+          </div>
+          <h3>소화기 점막 보호 및 장독소 흡착 처방, <strong>몬스멕타 (Monsmecta)</strong></h3>
+          <p style="font-size: 15.5px; color: #475569; line-height: 1.7; margin-bottom: 18px;">
+            에스앤제이 동물병원은 자견·성견의 급성 설사, 장염, 장점막 손상 시 <strong>가장 안전하고 신속하게 장내 유해 독소를 물리적으로 흡착·배출</strong>시키는 수의사 처방용 전문 지사제 <strong>'몬스멕타'</strong> 공식 처방 임상 센터입니다.<br />
+            약물 부작용 및 항생제 내성 우려 없이 장 점막에 도포되어 신속한 장벽 재건을 돕습니다.
+          </p>
+          <p style="font-size: 13px; color: #64748b; margin-bottom: 24px;">
+            * 전국 수의과대학 교수진 6인 자문단 연구 및 임상 검증을 거친 고순도 천연 알루미늄 마그네슘 실리케이트 제제입니다.
+          </p>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px;">
-              <div style="background: #ffffff; padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0;">
-                <strong style="color: var(--primary-800); font-size: 14px;">🛡️ 장 점막 3중 코팅 보호막</strong>
-                <p style="font-size: 12.5px; color: #64748b; margin-top: 4px;">장내 점액질과 결합하여 장 상피세포 즉각 보호</p>
-              </div>
-              <div style="background: #ffffff; padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0;">
-                <strong style="color: var(--primary-800); font-size: 14px;">🧲 세균·바이러스 독소 물리적 흡착</strong>
-                <p style="font-size: 12.5px; color: #64748b; margin-top: 4px;">체내 흡수되지 않고 변과 함께 안전하게 배출</p>
-              </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px;">
+            <div style="background: #ffffff; padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0;">
+              <strong style="color: var(--primary-800); font-size: 14px;">🛡️ 장 점막 3중 코팅 보호막</strong>
+              <p style="font-size: 12.5px; color: #64748b; margin-top: 4px;">장내 점액질과 결합하여 장 상피세포 즉각 보호</p>
             </div>
-
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-              <button class="btn-primary" onclick="openModal('rxModal')">
-                <span>💊</span> 몬스멕타 처방 프로토콜 상담
-              </button>
-              <a href="tel:031-321-6562" class="btn-call">
-                <span>📞</span> 수의사 원내 처방 문의 (031-321-6562)
-              </a>
+            <div style="background: #ffffff; padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0;">
+              <strong style="color: var(--primary-800); font-size: 14px;">🧲 세균·바이러스 독소 물리적 흡착</strong>
+              <p style="font-size: 12.5px; color: #64748b; margin-top: 4px;">체내 흡수되지 않고 변과 함께 안전하게 배출</p>
             </div>
           </div>
 
-          <!-- 소화기 처방 가이드 카드 -->
-          <div class="dosage-calculator-box">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-              <div class="calc-title" style="margin-bottom: 0;">
-                <span>🩺</span> 수의사 소화기 처방 가이드
-              </div>
-              <span style="font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-weight: 700;">임상 가이드</span>
-            </div>
-            <p style="font-size: 12.5px; color: #64748b; line-height: 1.6; margin-bottom: 16px;">
-              급성 위장염, 식이성 설사, 바이러스성 장염 회복기 등 장 점막이 손상된 환견에게 수의사의 정확한 진단 하에 투약됩니다.
-            </p>
-            <div style="background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 14px;">
-              <div style="font-size: 12px; font-weight: 700; color: var(--primary-800); margin-bottom: 6px;">
-                💡 타 경구제와의 병용 복약 지도:
-              </div>
-              <p style="font-size: 11.5px; color: #64748b; line-height: 1.5; margin: 0;">
-                몬스멕타의 뛰어난 흡착 특성으로 인해 다른 경구용 약물(항생제 등)과 병용 시 <strong>최소 1~2시간 간격을 두고 투약</strong>하는 것을 권장합니다.
-              </p>
-            </div>
-            <button class="btn-call" style="width: 100%; justify-content: center;" onclick="applyChip('몬스멕타 소화기 처방 상담을 요청합니다.')">
-              <span>💬</span> 몬스멕타 처방 및 임상 상담 신청
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn-primary" onclick="openModal('rxModal')">
+              <span>💊</span> 몬스멕타 처방 프로토콜 상담
             </button>
+            <a href="tel:031-321-6562" class="btn-call">
+              <span>📞</span> 수의사 원내 처방 문의 (031-321-6562)
+            </a>
           </div>
         </div>
-      </div>
 
-      <!-- [파트너 전용 모드]: 번식농장·펫샵 대표 전용 파보겔(Parvogel) 발주 & 투약 계산기 -->
-      <div class="partner-only-block" id="partnerLoungeBlock">
-        <div style="background: #fefce8; border: 1.5px solid #fde047; border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 22px;">🔑</span>
-            <div>
-              <strong style="color: #854d0e; font-size: 14px;">B2B 인증 파트너 라운지 접속 중</strong>
-              <div style="font-size: 12px; color: #a16207;">번식농장·펫샵 대표님 전용 특별 공급 및 사전 예약 포털입니다.</div>
+        <!-- 소화기 처방 가이드 카드 -->
+        <div class="dosage-calculator-box">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+            <div class="calc-title" style="margin-bottom: 0;">
+              <span>🩺</span> 수의사 소화기 처방 가이드
             </div>
+            <span style="font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-weight: 700;">임상 가이드</span>
           </div>
-          <button class="btn-exit-partner" onclick="togglePartnerMode(false)">모드 종료</button>
-        </div>
-
-        <div class="products-grid" style="border-color: #fde047; background: #fffbeb;">
-          <div class="product-details">
-            <div class="product-badges">
-              <span class="p-badge" style="background:#fee2e2; color:#b91c1c; font-weight:800;">🔥 펫샵 현장 완판 입소문 돌풍</span>
-              <span class="p-badge" style="background:#fef3c7; color:#92400e;">B2B 전용 라운지</span>
-              <span class="p-badge p-badge-blue">한국아그로 수의 R&D</span>
+          <p style="font-size: 12.5px; color: #64748b; line-height: 1.6; margin-bottom: 16px;">
+            급성 위장염, 식이성 설사, 바이러스성 장염 회복기 등 장 점막이 손상된 환견에게 수의사의 정확한 진단 하에 투약됩니다.
+          </p>
+          <div style="background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 14px;">
+            <div style="font-size: 12px; font-weight: 700; color: var(--primary-800); margin-bottom: 6px;">
+              💡 타 경구제와의 병용 복약 지도:
             </div>
-            <h3>펫샵 대표님들이 효과로 먼저 알아본, <strong>파보겔 (Parvogel)</strong></h3>
-            <p style="font-size: 15.5px; color: #475569; line-height: 1.7; margin-bottom: 18px;">
-              전문 펫샵 대표님들 사이에서 <strong>"먹이면 설사가 빠르게 잡힌다"</strong>는 입소문이 퍼지며 매주 현장에서 조기 완판되는 바로 그 제품입니다.<br />
-              고순도 초미세 나노 몬모릴로나이트 기반의 경구용 겔(Gel) 제제로, 어린 자견이 거부감 없이 잘 받아먹는 탁월한 기호성과 빠른 장내 흡착력을 자랑합니다.
+            <p style="font-size: 11.5px; color: #64748b; line-height: 1.5; margin: 0;">
+              몬스멕타의 뛰어난 흡착 특성으로 인해 다른 경구용 약물(항생제 등)과 병용 시 <strong>최소 1~2시간 간격을 두고 투약</strong>하는 것을 권장합니다.
             </p>
-            <p style="font-size: 13px; color: #64748b; margin-bottom: 24px;">
-              * 병원 전문 처방약인 '몬스멕타'의 핵심 작용 기전을 일반 펫샵 및 브리더 현장에서 즉시 투약하기 가장 쉬운 겔 타입으로 특화한 현장 상비 필수 솔루션입니다.
-            </p>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px;">
-              <div style="background: #ffffff; padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0;">
-                <strong style="color: var(--primary-800); font-size: 14px;">⚡ 뛰어난 기호성의 경구 겔(Gel)</strong>
-                <p style="font-size: 12.5px; color: #64748b; margin-top: 4px;">가루약 거부 없이 자견 입안에 부드럽게 급여</p>
-              </div>
-              <div style="background: #ffffff; padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0;">
-                <strong style="color: var(--primary-800); font-size: 14px;">🛡️ 장독소 물리적 초미세 흡착</strong>
-                <p style="font-size: 12.5px; color: #64748b; margin-top: 4px;">유해 바이러스·독소 배출 및 점막 급속 코팅</p>
-              </div>
-            </div>
-
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-              <button class="btn-primary" onclick="openOrderModal()">
-                <span>📦</span> 파보겔 & 키트 사전 주문하기
-              </button>
-              <button class="btn-call" onclick="openModal('parvogelModal')">
-                <span>📖</span> 파보겔 상세 설명
-              </button>
-            </div>
           </div>
-
-          <!-- 체중별 투약 계산기 -->
-          <div class="dosage-calculator-box">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-              <div class="calc-title" style="margin-bottom: 0;">
-                <span>⚖️</span> 자견 체중별 파보겔 1회 권장량 계산기
-              </div>
-              <span style="font-size: 11px; background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 700;">간편 급여</span>
-            </div>
-            <p style="font-size: 12px; color: #64748b; margin-bottom: 16px;">
-              아이의 체중을 입력하시면 자견 설사/장염 대응을 위한 1회 권장 급여량이 자동 계산됩니다.
-            </p>
-            <div style="margin-bottom: 14px;">
-              <label for="petWeight" style="display:block; font-size: 13px; font-weight: 700; margin-bottom: 6px;">
-                체중 (kg)
-              </label>
-              <input type="number" id="petWeight" placeholder="예: 1.5" value="1.5" step="0.1" min="0.3" max="50" 
-                     style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 15px;" 
-                     oninput="calculateDosage()" />
-            </div>
-            <div style="background: var(--surface-light); padding: 16px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 16px;">
-              <div style="font-size: 12px; color: #64748b;">1회 권장 급여 용량 (1일 2~3회 경구 투여)</div>
-              <div id="calcResult" style="font-size: 22px; font-weight: 900; color: var(--accent-teal); margin-top: 4px;">
-                약 1.5 ~ 2.2 ml (눈금 주사기 또는 펌핑)
-              </div>
-              <div style="font-size: 11px; color: #94a3b8; margin-top: 6px;">
-                * 겔 타입이라 입 옆쪽으로 부드럽게 주입하시면 흘리지 않고 삼킵니다.
-              </div>
-            </div>
-            <button class="btn-call" style="width: 100%; justify-content: center;" onclick="applyChip('파보겔 급여 후 경과 관찰 중입니다.')">
-              💬 급여 후 이상 여부 수의사 상담
-            </button>
-          </div>
+          <button class="btn-call" style="width: 100%; justify-content: center;" onclick="applyChip('몬스멕타 소화기 처방 상담을 요청합니다.')">
+            <span>💬</span> 몬스멕타 처방 및 임상 상담 신청
+          </button>
         </div>
       </div>
 
@@ -1543,7 +1224,7 @@
         </div>
         <div class="info-item">
           <span class="info-label">주요 진료과목</span>
-          <span class="info-value">자견 장염·호흡기 질환, 전염병 신속 진단키트 검사, 몬스멕타 처방, B2B 집단 방역 컨설팅</span>
+          <span class="info-value">자견 장염·호흡기 질환, 전염병 신속 진단키트 검사, 몬스멕타 처방, 원내 전문 조제</span>
         </div>
       </div>
 
@@ -1588,21 +1269,20 @@
       </div>
 
       <div>
-        <h4 style="color:#fff; margin-bottom: 12px; font-size: 15px;">수의 &amp; 파트너십</h4>
+        <h4 style="color:#fff; margin-bottom: 12px; font-size: 15px;">전문 진료 &amp; 처방</h4>
         <p style="line-height: 1.9; font-size: 13px;">
           <a href="#digestive-care">· 몬스멕타(Monsmecta) 임상 처방</a><br />
-          <a href="#b2b" onclick="openB2BForm('번식농장')">· 번식농장 맞춤 수의 케어</a><br />
-          <a href="#b2b" onclick="openB2BForm('펫샵')">· 펫샵 안심 분양 제휴</a><br />
-          <a href="#b2b" onclick="openB2BForm('진단키트')">· 파보/코로나/브루셀라 키트</a><br />
-          <a href="javascript:void(0)" onclick="openPartnerGateModal()">· <strong>🔒 B2B 파트너 전용 라운지</strong></a>
+          <a href="#services">· 신속 진단키트 전문 판독</a><br />
+          <a href="#services">· 처방전 & 복약 상담</a><br />
+          <a href="tel:031-321-6562">· 원내 처방 문의 (031-321-6562)</a>
         </p>
       </div>
 
       <div>
         <h4 style="color:#fff; margin-bottom: 12px; font-size: 15px;">진료 및 예약</h4>
         <p style="line-height: 1.9; font-size: 13px;">
-          · 수요일 현장 진료 예약<br />
-          · 온라인 비대면 사전 문진<br />
+          · 수요일 현장 집중 진료<br />
+          · 365일 온라인 사전 문진<br />
           · 진료실 한 장 요약서 발급<br />
           · 긴급 유선 상담: 031-321-6562
         </p>
@@ -1619,19 +1299,24 @@
           우리 동물병원도 25만 원에 'AI 스마트 문진 & 온라인 포털'을 도입하세요!
         </h5>
         <p style="color: #cbd5e1; font-size: 13px; line-height: 1.5; margin: 0;">
-          일반 제작비 50만 원 상당의 동물병원 전문 포털(AI 스마트 트리아지, 투약 계산기, A4 카운터 알림판 & QR 생성기)을 
+          일반 제작비 50만 원 상당의 동물병원 전문 포털(AI 스마트 트리아지, A4 카운터 알림판 & QR 생성기)을 
           <strong>(주)한국아그로 '몬스멕타' 파트너 동물병원에는 50% 지원 혜택(25만 원)</strong>으로 풀세팅해 드립니다.
         </p>
       </div>
-      <div style="display: flex; gap: 10px; align-items: center;">
-        <a href="tel:010-5407-5708" class="btn-primary" style="font-size: 13px; padding: 10px 18px; text-decoration: none; white-space: nowrap;">
-          📞 포털 제작 제휴 문의 (010-5407-5708)
+      <div>
+        <a href="tel:010-5407-5708" class="btn-primary" style="font-size: 13.5px; padding: 10px 20px;">
+          <span>📞</span> 홈페이지 도입 문의 (010-5407-5708)
         </a>
       </div>
     </div>
 
-    <div style="text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #1e293b; padding-top: 20px;">
-      &copy; 2026 Dr. S & J Animal Hospital. All Rights Reserved. Powered by Korea Agro VetLink Medical Systems.
+    <div class="footer-bottom">
+      <div>&copy; 2026 에스앤제이 동물병원 (Dr. S & J Animal Hospital). All Rights Reserved.</div>
+      <div style="display: flex; gap: 16px;">
+        <a href="#">개인정보처리방침</a>
+        <a href="#">이용약관</a>
+        <a href="#info">오시는 길</a>
+      </div>
     </div>
   </footer>
 
@@ -1641,7 +1326,7 @@
       <button class="modal-close" onclick="closeModal('summaryModal')">&times;</button>
       <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
         <span style="font-size: 26px;">📋</span>
-        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">진료실 한 장 모바일 요약서</h3>
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">진료실 한 장 요약서 발급</h3>
       </div>
       <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">
         내원 시 수의사에게 보여주면 진료 대기 시간과 불필요한 재질문을 크게 줄여줍니다.
@@ -1665,7 +1350,7 @@
 
       <div style="margin-bottom: 18px;">
         <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">수의사에게 물어보고 싶은 핵심 질문</label>
-        <input type="text" id="summaryQuestion" value="파보/코로나 키트 검사가 필요한지, 파보겔 급여가 가능한지 궁금합니다." style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" />
+        <input type="text" id="summaryQuestion" value="신속 진단키트 검사 및 몬스멕타 처방 상담을 받고 싶습니다." style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" />
       </div>
 
       <div style="display: flex; gap: 10px;">
@@ -1679,87 +1364,18 @@
     </div>
   </div>
 
-  <!-- 모달 2: B2B 파트너 상담 신청서 -->
-  <div id="b2bModal" class="modal-backdrop">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal('b2bModal')">&times;</button>
-      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
-        <span style="font-size: 26px;">🤝</span>
-        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">B2B 파트너 전용 상담 & 발주</h3>
-      </div>
-      <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">
-        번식농장(약 50곳) 및 펫샵(약 50곳) 대표님들을 위한 도매 상담 및 수요일 현장 수령 예약 창구입니다.
-      </p>
-
-      <form onsubmit="handleB2BSubmit(event)">
-        <div style="margin-bottom: 12px;">
-          <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">업체 구분</label>
-          <select id="b2bType" style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit;">
-            <option value="번식농장(브리더)">번식농장 (브리더)</option>
-            <option value="펫샵(분양업체)">펫샵 (구매 및 분양업체)</option>
-            <option value="기타 동물관련업체">기타 동물관련업체</option>
-          </select>
-        </div>
-
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
-          <div>
-            <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">업체명/상호</label>
-            <input type="text" id="b2bCompany" required placeholder="예: 해피켄넬 / 행복펫샵" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;" />
-          </div>
-          <div>
-            <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">대표자/담당자 연락처</label>
-            <input type="tel" id="b2bPhone" required placeholder="예: 010-0000-0000" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;" />
-          </div>
-        </div>
-
-        <div style="margin-bottom: 14px;">
-          <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">필요 품목 및 상담 내용</label>
-          <textarea id="b2bContent" required placeholder="예: 입소문 난 파보겔 10개 및 파보/코로나 콤보 키트 도매 단가 문의, 매주 수요일 현장 진료센터 수령 희망합니다." style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px; min-height:80px; font-family:inherit; font-size:13px;"></textarea>
-        </div>
-
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:14px; font-size:15px;">
-          📨 상담 및 견적 요청 접수하기
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- 모달 3: 파보겔 상세 정보 -->
-  <div id="parvogelModal" class="modal-backdrop">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal('parvogelModal')">&times;</button>
-      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
-        <span style="font-size: 26px;">✨</span>
-        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">파보겔(Parvogel) 제품 & 급여 안내</h3>
-      </div>
-      <div style="font-size: 13.5px; color: #334155; line-height: 1.7; margin-bottom: 16px;">
-        <p><strong>제품 분류:</strong> 자견·가축 경구용 장내 환경 안정화 겔(Gel)</p>
-        <p><strong>핵심 성분:</strong> 고순도 초미세 나노 몬모릴로나이트 (Nano-Montmorillonite) 제제</p>
-        <p><strong>연구·자문:</strong> 서울대 수의대 출신 및 수의과대학 교수진 6인 자문단 검증</p>
-        <p><strong>주요 특징:</strong> 어린 자견의 뛰어난 기호성, 급여 편의성, 유해 세균·독소 신속 물리적 흡착 및 배출, 장 점막 손상 방어</p>
-        <p><strong>현장 반응:</strong> 펫샵 대표님들 사이에서 "먹이면 설사가 잡힌다"는 입소문 돌풍 (진료센터 현장 매주 10개 이상 완판)</p>
-      </div>
-      <div style="background:#f1f5f9; padding:14px; border-radius:8px; font-size:12.5px; color:#64748b; margin-bottom:16px;">
-        💡 <strong>급여 팁:</strong> 주사기 형태 또는 입 주변에 소량씩 짜 넣어주시면 자견이 핥아먹으며 자연스럽게 삼킵니다. (가루약과 달리 흘림 없음)
-      </div>
-      <button class="btn-primary" style="width:100%; justify-content:center;" onclick="closeModal('parvogelModal')">
-        확인 완료
-      </button>
-    </div>
-  </div>
-
   <!-- 모달 4: 키트 & 검사 판독 가이드 -->
   <div id="labModal" class="modal-backdrop">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('labModal')">&times;</button>
       <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
         <span style="font-size: 26px;">🔬</span>
-        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">파보·코로나 신속 진단키트 판독 가이드</h3>
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">신속 진단키트 판독 가이드</h3>
       </div>
       <div style="font-size: 13.5px; color: #334155; line-height: 1.7; margin-bottom: 16px;">
         <p><strong>1. C라인(대조선)과 T라인(검사선):</strong> C라인은 키트의 유효성을 증명하며, C와 T에 모두 밴드가 형성되면 <strong>양성(감염)</strong> 판정입니다.</p>
         <p><strong>2. 희미한 밴드(Faint Band):</strong> 잠복기 말기 또는 바이러스 배출 초기일 수 있습니다. 24시간 뒤 재검사를 강력 권고합니다.</p>
-        <p><strong>3. 자견 군집 격리:</strong> 양성 판정 즉시 동일 견사의 모든 자견을 1견 1실 격리하고 소독제 방역을 실시해야 합니다.</p>
+        <p><strong>3. 자견 격리 및 위생:</strong> 양성 판정 즉시 격리 조치 후 담당 수의사와 수액 및 항체 처치 프로토콜을 진행해야 합니다.</p>
       </div>
       <a href="tel:031-321-6562" class="btn-primary" style="width:100%; justify-content:center;">
         📞 에스앤제이 판독 및 처방 핫라인 연결
@@ -1773,210 +1389,6 @@
       <button class="modal-close" onclick="closeModal('rxModal')">&times;</button>
       <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
         <span style="font-size: 26px;">💊</span>
-        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">처방전 & 약품 번역 상담</h3>
-      </div>
-      <p style="font-size: 13.5px; color: #475569; margin-bottom: 16px; line-height: 1.6;">
-        처방받으신 가루약이나 시럽의 성분이 궁금하시거나 복약 후 이상 반응이 의심되시나요?
-        처방전 사진을 찍어 에스앤제이 동물병원에 보내주시면 성분별 작용 기전과 유의점을 보호자의 언어로 해설해 드립니다.
-      </p>
-      <div style="background:#f8fafc; padding:16px; border-radius:10px; border:1px solid #e2e8f0; margin-bottom:16px;">
-        <strong style="color:var(--primary-800); font-size:14px; display:block; margin-bottom:6px;">주요 확인 항목</strong>
-        <p style="font-size:13px; color:#64748b;">· 항생제/소염진통제 위장장애 유발 여부<br />· 장독소 흡착제(몬스멕타) 병용 간격<br />· 간/신장 기저 질환 안전성 체크</p>
-      </div>
-      <a href="tel:031-321-6562" class="btn-primary" style="width:100%; justify-content:center;">
-        📞 처방전 유선/카톡 상담 접수
-      </a>
-    </div>
-  </div>
-
-
-  <!-- 모달: 공식 A4 알림판 실시간 커스텀 & 출력 센터 -->
-  <div id="noticeModal" class="modal-backdrop">
-    <div class="modal-content notice-modal-content">
-      <button class="modal-close" onclick="closeModal('noticeModal')">&times;</button>
-      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:12px;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size: 26px;">🖨️</span>
-          <div>
-            <h3 style="font-size: 19px; font-weight: 800; color: var(--primary-900);">에스앤제이 동물병원 공식 안내판 인쇄 센터</h3>
-            <p style="font-size: 12px; color: #64748b; margin: 0;">A4(210x297mm) 단 1장 완벽 인쇄 지원 및 병원 정보 실시간 편집</p>
-          </div>
-        </div>
-        <div style="display:flex; gap:8px;">
-          <a href="./snj-notice-A4.html" target="_blank" class="btn-call" style="font-size:12px; padding:6px 14px;">
-            새 창에서 전체화면
-          </a>
-          <button class="btn-primary" style="font-size:13px; padding:8px 18px;" onclick="printNoticeIframe()">
-            🖨️ A4 칼인쇄 / PDF 저장
-          </button>
-        </div>
-      </div>
-
-      <div class="notice-modal-body">
-        <!-- 좌측: 실시간 정보 커스텀 폼 -->
-        <div class="notice-modal-form">
-          <div style="font-size:13px; font-weight:800; color:var(--primary-800); border-bottom:1px solid #cbd5e1; padding-bottom:6px;">
-            ✏️ 알림판 실시간 정보 편집
-          </div>
-
-          <div>
-            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">병원/진료실 명칭</label>
-            <input type="text" id="n_name" value="에스앤제이 동물병원" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" oninput="updateNoticeIframe()" />
-          </div>
-
-          <div>
-            <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">진료실 위치</label>
-            <input type="text" id="n_addr" value="경기도 용인시 처인구 포곡읍 선장1로 98-8" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" oninput="updateNoticeIframe()" />
-          </div>
-
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
-            <div>
-              <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">상단 핫라인</label>
-              <input type="text" id="n_top_tel" value="010-5407-5708" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px;" oninput="updateNoticeIframe()" />
-            </div>
-            <div>
-              <label style="font-size: 11.5px; font-weight: 700; display:block; margin-bottom: 3px;">하단 유선전화</label>
-              <input type="text" id="n_bot_tel" value="031-321-6562 / 010-5407-5708" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px;" oninput="updateNoticeIframe()" />
-            </div>
-          </div>
-
-          <div style="background:#f0fdfa; padding:11px; border-radius:8px; font-size:11.5px; color:#0f766e; line-height:1.55; border:1px solid #99f6e4;">
-            📋 <strong>포털 안내판 활용 안내:</strong><br />
-            · 원내 카운터, 안내 데스크, 켄넬에 부착하여 파트너 대표님과 보호자들이 <strong>QR로 접속해 사전 문진 및 필수 약품 사전 주문</strong>을 하도록 안내하는 공식 포스터입니다.<br />
-            · 인쇄 설정에서 여백을 <strong>'없음(None)'</strong>으로 설정하시면 깔끔하게 1장으로 출력됩니다.
-          </div>
-
-          <button class="btn-primary" style="width:100%; justify-content:center; padding:11px; margin-top:auto;" onclick="printNoticeIframe()">
-            🖨️ 바로 인쇄하기 (출력창 열기)
-          </button>
-        </div>
-
-        <!-- 우측: A4 실시간 프리뷰 캔버스 -->
-        <div class="notice-modal-preview">
-          <iframe id="noticeIframe" src="./snj-notice-A4.html" title="에스앤제이 A4 알림판 실시간 미리보기"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 모달 6: 수요일 정기 방문 현장 수령 사전 주문 폼 -->
-  <div id="orderModal" class="modal-backdrop">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal('orderModal')">&times;</button>
-      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
-        <span style="font-size: 26px;">📦</span>
-        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">수요일 현장 수령 · 사전 발주</h3>
-      </div>
-      <p style="font-size: 13px; color: #64748b; margin-bottom: 18px;">
-        품절 걱정 없이, 사전에 신청하시면 <strong>매주 수요일 에스앤제이 동물병원 진료실에서 즉시 픽업</strong>하실 수 있도록 준비해 드립니다.
-      </p>
-
-      <form onsubmit="handlePreOrderSubmit(event)">
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-          <div>
-            <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">상호명 (펫샵/농장)</label>
-            <input type="text" id="orderCompany" required placeholder="예: 힐링펫 / 스타켄넬" style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:8px; font-size:13px;" />
-          </div>
-          <div>
-            <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">담당자 연락처</label>
-            <input type="tel" id="orderPhone" required placeholder="010-0000-0000" style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:8px; font-size:13px;" />
-          </div>
-        </div>
-
-        <div style="background: #f8fafc; padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 14px;">
-          <strong style="display:block; font-size: 13px; color: var(--primary-800); margin-bottom: 8px;">필요 품목 및 수량 체크:</strong>
-          
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
-            <label><input type="checkbox" id="itemParvogel" checked /> 🔥 <strong>파보겔 (Parvogel)</strong></label>
-            <input type="number" id="qtyParvogel" value="5" min="1" max="100" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 개
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
-            <label><input type="checkbox" id="itemParvoKit" /> 🔬 파보(CPV) 신속 진단키트 (10T/box)</label>
-            <input type="number" id="qtyParvoKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
-            <label><input type="checkbox" id="itemCoronaKit" /> 🔬 코로나(CCV 단독) 신속 진단키트 (10T/box)</label>
-            <input type="number" id="qtyCoronaKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
-            <label><input type="checkbox" id="itemComboKit" /> 🔬 파보+코로나 콤보 키트 (10T/box)</label>
-            <input type="number" id="qtyComboKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
-            <label><input type="checkbox" id="itemBrucellaKit" /> 🔬 브루셀라 신속 진단키트 (10T/box)</label>
-            <input type="number" id="qtyBrucellaKit" value="1" min="1" max="50" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 박스
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center; font-size: 13px;">
-            <label><input type="checkbox" id="itemRxMeds" /> 💊 수의사 처방약 (구충제·항생제·소염진통제·점안액·연고 등)</label>
-            <span style="font-size:11.5px; color:#0d9488; font-weight:700;">내원 시 수령</span>
-          </div>
-        </div>
-
-        <div style="margin-bottom: 14px;">
-          <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">수령 희망 일자 / 추가 메모</label>
-          <input type="text" id="orderMemo" value="이번 주 수요일 오전 11시 현장 픽업 희망합니다." style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:8px; font-size:13px;" />
-        </div>
-
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:13px; font-size:15px;">
-          📝 수요일 현장 픽업 예약 완료하기
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- 모달 7: B2B 인증 파트너 라운지 게이트 (인증 코드 / 파트너 확인) -->
-  <div id="partnerGateModal" class="modal-backdrop">
-    <div class="modal-content" style="max-width: 460px;">
-      <button class="modal-close" onclick="closeModal('partnerGateModal')">&times;</button>
-      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
-        <span style="font-size: 26px;">🔒</span>
-        <h3 style="font-size: 20px; font-weight: 800; color: var(--primary-900);">B2B 파트너 전용 라운지</h3>
-      </div>
-      <p style="font-size: 13.5px; color: #475569; margin-bottom: 18px; line-height: 1.6;">
-        본 라운지는 에스앤제이 동물병원과 정기 협약을 맺은 <strong>번식농장(브리더) 및 펫샵 대표님 전용 특별 공급 공간</strong>입니다.
-      </p>
-
-      <form onsubmit="handlePartnerGateAuth(event)">
-        <div style="margin-bottom: 14px;">
-          <label style="font-size: 12.5px; font-weight: 700; display:block; margin-bottom: 6px; color: var(--primary-800);">
-            파트너 인증 코드 또는 대표 번호 뒤 4자리
-          </label>
-          <input type="password" id="partnerGateInput" required placeholder="파트너 전용 핀코드 (기본: 7788)" style="width:100%; padding:11px; border:1.5px solid #cbd5e1; border-radius:8px; font-size:15px; letter-spacing: 2px;" />
-          <span style="font-size: 11px; color: #94a3b8; margin-top: 4px; display:block;">
-            * 안내판 QR코드로 접속하신 파트너 대표님은 자동 인증됩니다.
-          </span>
-        </div>
-
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:12px; font-size:15px; margin-bottom: 12px;">
-          🔑 파트너 라운지 입장하기
-        </button>
-      </form>
-
-      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; font-size: 12px; color: #64748b; line-height: 1.5;">
-        신규 파트너십 제휴 문의: <strong>031-321-6562 / 010-5407-5708</strong>
-      </div>
-    </div>
-  </div>
-
-  <!-- 모바일 전용 하단 고정 액션 바 -->
-  <nav class="mobile-bottom-bar" aria-label="모바일 빠른 메뉴">
-    <a href="tel:031-321-6562" class="btn-m-bar" style="background:#f1f5f9; color:#1e293b; border:1px solid #cbd5e1;">
-      <span>📞</span> 전화걸기
-    </a>
-    <button class="btn-m-bar" style="background:linear-gradient(135deg, #0d9488, #10b981); color:#fff;" onclick="openOrderModal()">
-      <span>📦</span> 수요일 사전주문
-    </button>
-    <button class="btn-m-bar" style="background:#132e47; color:#fff;" onclick="focusTriageInput()">
-      <span>🚦</span> AI 트리아지
-    </button>
-  </nav>
-
-  <script src="./hospital-config.js"></script>
   <script>
     // 1. 스마트 트리아지 빠른 칩 적용
     function applyChip(text) {
@@ -2015,8 +1427,8 @@
       } else if (text.includes('구토') || text.includes('토') || text.includes('설사') || text.includes('처져') || text.includes('무기력')) {
         pill.className = 'triage-status-pill status-orange';
         pill.innerHTML = '<span>🟠 ORANGE : 오늘 중 동물병원 방문 권고</span>';
-        heading.innerText = '급성 탈수 및 잠복기 전염병(파보/코로나) 검진이 시급합니다.';
-        guide.innerHTML = '어린 자견의 경우 2~3회의 구토만으로도 저혈당 및 쇼크가 올 수 있습니다. 파보겔을 상비 투여하시고 금식 상태를 유지하며 신속히 내원하세요.';
+        heading.innerText = '급성 탈수 및 잠복기 전염병(바이러스성 장염) 검진이 시급합니다.';
+        guide.innerHTML = '어린 자견의 경우 2~3회의 구토만으로도 저혈당 및 쇼크가 올 수 있습니다. 금식 상태를 유지하시고 신속히 원내로 내원하시기 바랍니다.';
       } else if (text.includes('안 먹') || text.includes('식욕') || text.includes('기운')) {
         pill.className = 'triage-status-pill status-yellow';
         pill.innerHTML = '<span>🟡 YELLOW : 수의사 유선 상담 및 12시간 경과 관찰</span>';
@@ -2033,29 +1445,12 @@
       document.getElementById('summarySymptoms').value = text;
     }
 
-    // 3. 투약량 계산기
-    function calculateDosage() {
-      const weight = parseFloat(document.getElementById('petWeight').value);
-      const res = document.getElementById('calcResult');
-      if (isNaN(weight) || weight <= 0) {
-        res.innerText = '올바른 체중을 입력하세요';
-        return;
-      }
-      // 통상 파보겔 체중 kg당 1.0~1.5ml 기준
-      const minDose = (weight * 1.0).toFixed(1);
-      const maxDose = (weight * 1.5).toFixed(1);
-      res.innerText = `약 ${minDose} ~ ${maxDose} ml (눈금 주사기 또는 펌핑)`;
-    }
-
-    // 4. 모달 제어
+    // 3. 모달 제어
     function openModal(modalId) {
       document.getElementById(modalId).style.display = 'flex';
     }
     function closeModal(modalId) {
       document.getElementById(modalId).style.display = 'none';
-    }
-    function openOrderModal() {
-      openModal('orderModal');
     }
     window.onclick = function(event) {
       if (event.target.classList.contains('modal-backdrop')) {
@@ -2063,43 +1458,7 @@
       }
     };
 
-    function openB2BForm(type) {
-      const sel = document.getElementById('b2bType');
-      if (type.includes('번식농장')) sel.value = '번식농장(브리더)';
-      else if (type.includes('펫샵')) sel.value = '펫샵(분양업체)';
-      openModal('b2bModal');
-    }
-
-    function handleB2BSubmit(e) {
-      e.preventDefault();
-      const type = document.getElementById('b2bType').value;
-      const comp = document.getElementById('b2bCompany').value;
-      const phone = document.getElementById('b2bPhone').value;
-      const content = document.getElementById('b2bContent').value;
-
-      alert(`[B2B 접수 완료]\n- 구분: ${type}\n- 업체: ${comp}\n- 연락처: ${phone}\n\n에스앤제이 동물병원 담당 수의사가 내용 검토 후 즉시 연락드리겠습니다.`);
-      closeModal('b2bModal');
-    }
-
-    function handlePreOrderSubmit(e) {
-      e.preventDefault();
-      const comp = document.getElementById('orderCompany').value;
-      const phone = document.getElementById('orderPhone').value;
-      const memo = document.getElementById('orderMemo').value;
-      
-      let items = [];
-      if (document.getElementById('itemParvogel').checked) items.push(`파보겔 ${document.getElementById('qtyParvogel').value}개`);
-      if (document.getElementById('itemParvoKit').checked) items.push(`파보키트 ${document.getElementById('qtyParvoKit').value}박스`);
-      if (document.getElementById('itemCoronaKit') && document.getElementById('itemCoronaKit').checked) items.push(`코로나(단독)키트 ${document.getElementById('qtyCoronaKit').value}박스`);
-      if (document.getElementById('itemComboKit').checked) items.push(`파보+코로나콤보 ${document.getElementById('qtyComboKit').value}박스`);
-      if (document.getElementById('itemBrucellaKit').checked) items.push(`브루셀라키트 ${document.getElementById('qtyBrucellaKit').value}박스`);
-      if (document.getElementById('itemRxMeds').checked) items.push(`수의사 처방약(구충제/항생제/소염진통제/점안액/연고 등) 사전조제 신청`);
-
-      alert(`[수요일 현장 수령 사전 예약 접수 완료]\n- 상호: ${comp}\n- 연락처: ${phone}\n- 주문 품목: ${items.join(', ')}\n- 요청사항: ${memo}\n\n매주 수요일 에스앤제이 동물병원 진료센터에 준비해 두겠습니다. 감사합니다!`);
-      closeModal('orderModal');
-    }
-
-    // 5. 진료실 요약서 인쇄 및 복사 (전체 사이트 9페이지 인쇄 방지 -> 깔끔한 A4 1장 전용 인쇄창)
+    // 4. 진료실 요약서 인쇄 및 복사 (전체 사이트 9페이지 인쇄 방지 -> 깔끔한 A4 1장 전용 인쇄창)
     function printSummary() {
       const pet = document.getElementById('summaryPetName').value || '미입력';
       const info = document.getElementById('summaryPetInfo').value || '미입력';
@@ -2186,12 +1545,6 @@
 </html>
       `;
 
-      const printWin = window.open('', '_blank', 'width=750,height=850');
-      if (printWin) {
-        printWin.document.open();
-        printWin.document.write(printHtml);
-        printWin.document.close();
-      } else {
         window.print();
       }
     }
@@ -2248,77 +1601,6 @@
       }
     }
 
-    // 7. 듀얼 모드 B2B 파트너 게이트키퍼 시스템
-    function togglePartnerMode(enable) {
-      const banner = document.getElementById('partnerBanner');
-      const gateBtn = document.getElementById('partnerGateBtn');
-      const navLink = document.getElementById('navDigestiveLink');
-
-      if (enable) {
-        document.body.classList.add('is-partner-mode');
-        if (banner) banner.classList.add('active');
-        if (gateBtn) {
-          gateBtn.innerHTML = '<span>🔓</span> 파트너 라운지 ON';
-          gateBtn.style.background = '#0d9488';
-          gateBtn.style.color = '#ffffff';
-        }
-        if (navLink) {
-          navLink.innerText = '파보겔(Parvogel) 발주';
-        }
-        localStorage.setItem('snj_partner_auth', 'true');
-      } else {
-        document.body.classList.remove('is-partner-mode');
-        if (banner) banner.classList.remove('active');
-        if (gateBtn) {
-          gateBtn.innerHTML = '<span>🔒</span> 파트너 라운지';
-          gateBtn.style.background = 'rgba(13, 148, 136, 0.1)';
-          gateBtn.style.color = 'var(--accent-teal)';
-        }
-        if (navLink) {
-          navLink.innerText = '몬스멕타(Monsmecta) 처방';
-        }
-        localStorage.removeItem('snj_partner_auth');
-      }
-    }
-
-    function openPartnerGateModal() {
-      if (document.body.classList.contains('is-partner-mode')) {
-        const lounge = document.getElementById('digestive-care');
-        if (lounge) lounge.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
-      openModal('partnerGateModal');
-      setTimeout(() => {
-        const input = document.getElementById('partnerGateInput');
-        if (input) input.focus();
-      }, 100);
-    }
-
-    function handlePartnerGateAuth(e) {
-      e.preventDefault();
-      const code = document.getElementById('partnerGateInput').value.trim();
-      // 지정 핀코드: 7788, 5708, 1234, snj, b2b
-      if (code === '7788' || code === '5708' || code === '1234' || code.toLowerCase() === 'snj' || code.toLowerCase() === 'b2b') {
-        togglePartnerMode(true);
-        closeModal('partnerGateModal');
-        alert('🎉 B2B 파트너 인증이 완료되었습니다!\n번식농장·펫샵 대표님 전용 파보겔 발주 포털이 활성화되었습니다.');
-        const target = document.getElementById('digestive-care');
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert('올바른 파트너 인증 코드를 입력해 주세요.\n(문의: 031-321-6562 / 기본 코드: 7788)');
-      }
-    }
-
-    // 초기 로딩 시 URL 파라미터 또는 이전 세션 감지
-    window.addEventListener('DOMContentLoaded', function() {
-      const params = new URLSearchParams(window.location.search);
-      const isPartnerParam = params.get('partner') === 'true' || params.get('b2b') === 'true' || params.get('mode') === 'partner';
-      const isPartnerSaved = localStorage.getItem('snj_partner_auth') === 'true';
-
-      if (isPartnerParam || isPartnerSaved) {
-        togglePartnerMode(true);
-      }
-    });
   </script>
 </body>
 </html>
