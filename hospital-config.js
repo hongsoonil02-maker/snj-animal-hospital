@@ -7,7 +7,7 @@
  * 
  * [공급 정책]
  * - 일반 동물병원 공식 세팅비: 50만 원
- * - (주)한국아그로 '몬스멕타' 파트너 동물병원: 25만 원 (50% 특별 지원)
+ * - 몬스멕타 공식 공급원 에스앤제이 제휴 동물병원: 25만 원 (50% 특별 지원)
  */
 
 const HOSPITAL_CONFIG = {
@@ -30,18 +30,17 @@ const HOSPITAL_CONFIG = {
   hours: {
     regular: "월~금 09:30 ~ 19:00",
     saturday: "토요일 09:30 ~ 16:00",
-    specialCare: "매주 수요일 전문 B2B 파트너 정기 진료 및 사전 예약 조제",
+    specialCare: "매주 수요일 소화기 특화 집중 진료 및 사전 예약 조제",
     closed: "일요일 및 공휴일 휴진 (온라인 AI 문진 24시간 연중무휴)"
   },
 
-  // 4. (주)한국아그로 파트너스 공식 인증
-  agroPartnership: {
-    isPartner: true,
-    partnerTier: "MONSMECTA CERTIFIED CLINIC",
-    partnerBadgeText: "한국아그로 몬스멕타 공식 인증 동물병원",
+  // 4. 몬스멕타 공식 공급원 인증
+  monsmectaPartnership: {
+    isDistributor: true,
+    partnerTier: "MONSMECTA OFFICIAL DISTRIBUTOR CLINIC",
+    partnerBadgeText: "몬스멕타 공식 공급원 에스앤제이 동물병원",
     prescribedMeds: [
       "몬스멕타 (수의사 처방 장 점막 보호제)",
-      "파보겔 (신생아 설사 케어 보조제)",
       "신속 진단키트 (파보·코로나·브루셀라)",
       "원내 처방약 (구충제, 항생제, 소염진통제, 점안액, 연고)"
     ]
@@ -51,9 +50,9 @@ const HOSPITAL_CONFIG = {
   builderInfo: {
     engine: "VetLink AI Smart Hospital Engine v1.0",
     regularPrice: "500,000원",
-    partnerPrice: "250,000원 (몬스멕타 가맹 50% DC)",
-    inquiryTel: "02-6949-5708 / 010-5407-5708",
-    poweredBy: "(주)한국아그로 디지털 헬스케어 사업본부"
+    partnerPrice: "250,000원 (몬스멕타 제휴 50% DC)",
+    inquiryTel: "031-321-6562 / 010-5407-5708",
+    poweredBy: "에스앤제이 동물병원 디지털 헬스케어 사업부"
   }
 };
 
