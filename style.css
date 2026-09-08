@@ -464,17 +464,117 @@
     /* 트리아지 4단계 결과 뷰어 */
     .triage-result-card {
       display: none;
-      background: #f8fafc;
+      background: #ffffff;
       border-radius: var(--radius-md);
-      padding: 18px;
-      border: 1px solid #e2e8f0;
+      padding: 20px;
+      border: 1.5px solid #0d9488;
       margin-top: 16px;
+      box-shadow: 0 8px 24px rgba(13, 148, 136, 0.12);
       animation: fadeIn 0.3s ease;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .triage-loader {
+      display: none;
+      background: #f0fdfa;
+      border: 1.5px dashed #0d9488;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-top: 14px;
+      text-align: center;
+      animation: fadeIn 0.2s ease;
+    }
+    .triage-loader.active { display: block; }
+    .triage-spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid #ccfbf1;
+      border-top-color: #0d9488;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 10px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .triage-loader-text {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--primary-800);
+    }
+    .triage-loader-steps {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #0d9488;
+      font-weight: 600;
+    }
+
+    /* 4단계 트리아지 시각 게이지 바 */
+    .triage-meter-wrap {
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+    }
+    .triage-meter-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .triage-meter-bar {
+      position: relative;
+      height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #22c55e 0%, #eab308 33%, #f97316 66%, #ef4444 100%);
+      margin-bottom: 6px;
+    }
+    .triage-meter-pin {
+      position: absolute;
+      top: -4px;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: #0f172a;
+      border: 2.5px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+      transform: translateX(-50%);
+      transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .triage-meter-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10.5px;
+      font-weight: 750;
+      color: #64748b;
+    }
+
+    /* 임상 처치 추천 뱃지들 */
+    .triage-action-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .t-pill {
+      font-size: 11px;
+      font-weight: 750;
+      padding: 3px 8px;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .t-pill-kit { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+    .t-pill-med { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+    .t-pill-care { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+
     .triage-status-pill {
       display: inline-flex;
       align-items: center;
@@ -765,16 +865,17 @@
 
     /* 파보겔 섹션 & 인터랙티브 계산기 */
     .parvogel-highlight-section {
-      background: #fffbeb;
+      background: linear-gradient(145deg, #ffffff 0%, #fefce8 100%);
       border: 2px solid #fef08a;
       border-radius: var(--radius-lg);
-      padding: 36px;
+      padding: 38px;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.15fr 0.95fr;
       gap: 36px;
       align-items: center;
       margin-top: 10px;
       color: #1e293b;
+      box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.15);
     }
     @media (max-width: 960px) {
       .parvogel-highlight-section {
@@ -782,6 +883,69 @@
         padding: 24px 18px;
       }
     }
+    .parvogel-visual-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid #fed7aa;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.08);
+    }
+    .parvogel-showcase-img {
+      width: 105px;
+      height: 120px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.12));
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .parvogel-showcase-img:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+    .parvogel-badges-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .parvogel-hologram-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: linear-gradient(135deg, #0d9488, #10b981);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+    .weight-chips-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .weight-chip-btn {
+      font-size: 11.5px;
+      font-weight: 750;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #334155;
+      transition: all 0.15s;
+    }
+    .weight-chip-btn:hover, .weight-chip-btn.active {
+      background: #0d9488;
+      color: #ffffff;
+      border-color: #0d9488;
+    }
+
     .parvogel-calc-box {
       background: #ffffff;
       border-radius: var(--radius-md);
@@ -903,6 +1067,164 @@
       color: #1e293b;
     }
 
+    /* 요약서 모달 듀얼 패널 (좌측 입력폼 / 우측 라이브 차트 프리뷰) */
+    #summaryModal .modal-content {
+      max-width: 960px;
+      width: 95%;
+      padding: 28px;
+    }
+    .summary-dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 22px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 840px) {
+      .summary-dual-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .chart-preview-card {
+      background: #ffffff;
+      border: 2px solid #0d9488;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 18px rgba(13, 148, 136, 0.1);
+      position: relative;
+      overflow: hidden;
+      font-size: 13px;
+    }
+    .chart-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-25deg);
+      font-size: 34px;
+      font-weight: 900;
+      color: rgba(13, 148, 136, 0.05);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .chart-head-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #0d9488;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .chart-title-box h4 {
+      font-size: 15px;
+      font-weight: 900;
+      color: #0f172a;
+    }
+    .chart-title-box span {
+      font-size: 10.5px;
+      color: #0d9488;
+      font-weight: 700;
+    }
+    .chart-meta-box {
+      text-align: right;
+      font-size: 10.5px;
+      color: #64748b;
+    }
+    .chart-meta-box strong {
+      color: #0f172a;
+    }
+    .chart-fields-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+    .chart-fields-table th {
+      width: 28%;
+      background: #f1f5f9;
+      padding: 6px 8px;
+      text-align: left;
+      font-size: 11px;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+    }
+    .chart-fields-table td {
+      background: #ffffff;
+      padding: 6px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+      border: 1px solid #e2e8f0;
+    }
+    .chart-symptom-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+      min-height: 52px;
+    }
+    .chart-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      border-top: 1px dashed #cbd5e1;
+      font-size: 10.5px;
+      color: #64748b;
+    }
+
+    /* 진단키트 판독 시각 다이어그램 */
+    .kit-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (max-width: 540px) {
+      .kit-visual-grid { grid-template-columns: 1fr; }
+    }
+    .kit-cassette-item {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cassette-sim {
+      width: 68px;
+      height: 48px;
+      background: #f1f5f9;
+      border: 1.5px solid #94a3b8;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .cassette-window {
+      width: 44px;
+      height: 24px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 4px;
+    }
+    .band-line {
+      width: 3px;
+      height: 16px;
+      border-radius: 1px;
+      background: #e2e8f0;
+    }
+    .band-c.active { background: #dc2626; }
+    .band-t.active { background: #dc2626; }
+    .band-t.faint { background: #fca5a5; }
+
     /* 모바일 전용 하단 고정 액션 바 */
     .mobile-bottom-bar {
       display: none;
@@ -948,11 +1270,6 @@
       }
       .footer-container {
         grid-template-columns: 1fr;
-      }
-      .notice-board-card {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 24px;
       }
       .nav-menu {
         display: none;
@@ -1071,9 +1388,11 @@
       }
     }
 
-    /* 모바일 전역 좌우폭 10% 축소 (갤럭시 울트라 등 넓은 모바일 잘림 방지) */
+    /* 모바일 전역 여백 최적화 (가로 스크롤 방지 및 안정적인 뷰포트 패딩) */
     @media (max-width: 960px) {
-      html, body { overflow-x: hidden; }
+      html, body {
+        overflow-x: hidden;
+      }
       .nav-container,
       .hero-container,
       .section-module,
@@ -1081,31 +1400,34 @@
       .info-container,
       .b2b-hub-container,
       .footer-container {
-        max-width: 90% !important;
-        width: 90% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        max-width: 100%;
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
         box-sizing: border-box;
       }
       .hero-section,
       .b2b-hub-section,
       .products-section,
       .hospital-info-section {
-        padding-left: 5% !important;
-        padding-right: 5% !important;
+        padding-left: 0;
+        padding-right: 0;
       }
-      .top-banner { padding-left: 5% !important; padding-right: 5% !important; }
-      .mobile-nav { padding-left: 5% !important; padding-right: 5% !important; }
+      .top-banner {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
     }
     @media (max-width: 768px) {
-      .hero-section,
-      .b2b-hub-section,
-      .products-section,
-      .hospital-info-section {
-        padding-left: 5% !important;
-        padding-right: 5% !important;
+      .nav-container,
+      .hero-container,
+      .section-module,
+      .products-container,
+      .info-container,
+      .b2b-hub-container,
+      .footer-container {
+        padding-left: 16px;
+        padding-right: 16px;
       }
     }
 

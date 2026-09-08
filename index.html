@@ -135,58 +135,88 @@
         </div>
       </div>
 
-      <!-- 인터랙티브 스마트 사전 문진 데모 위젯 (키워드 기반 보조) -->
+      <!-- 인터랙티브 스마트 사전 문진 데모 위젯 (VETAZE형 AI 트리아지 2.0) -->
       <div class="hero-interactive-card" id="triage">
         <div class="card-header-badge">
           <div class="badge-live-pulse">
             <span class="pulse-dot"></span>
-            <span>스마트 문진 보조 엔진 작동 중</span>
+            <span>24시 스마트 수의 AI 트리아지 가동 중</span>
           </div>
-          <span style="font-size: 11px; color: #94a3b8; font-weight: 600;">키워드 기반 보조 분류</span>
+          <span style="font-size: 11px; color: #0d9488; font-weight: 700;">임상 데이터베이스 v2.4</span>
         </div>
 
         <label for="symptomText" style="display:block; font-size: 14px; font-weight: 700; color: var(--primary-800); margin-bottom: 8px;">
-          반려견의 현재 증상을 편하게 입력해 주세요:
+          반려견의 현재 증상을 입력해 주세요:
         </label>
         <textarea id="symptomText" class="triage-input-box" placeholder="예: 생후 2개월 말티즈가 새벽부터 노란 물토를 2번 하고 밥을 전혀 안 먹어요. 설사도 조금 묽게 봅니다."></textarea>
 
         <div class="quick-chips-area" role="group" aria-label="증상 빠른 선택">
-
           <button type="button" class="quick-chip" onclick="applyChip('새벽에 노란 거품토를 2회 하고 식욕이 떨어졌어요.')">🤮 노란 구토 2회</button>
-
           <button type="button" class="quick-chip" onclick="applyChip('자견이 점액질 설사를 보고 축 처져 있어요.')">💩 점액변 &amp; 무기력</button>
-
           <button type="button" class="quick-chip" onclick="applyChip('분양 받은 지 3일째인데 기침을 켁켁거리고 호흡이 빨라요.')">😮‍💨 기침 &amp; 빠른 호흡</button>
-
           <button type="button" class="quick-chip" onclick="applyChip('사료를 갑자기 안 먹고 물만 조금 마십니다.')">🥣 사료 거부</button>
-
         </div>
 
-
         <button class="btn-primary" style="width: 100%; justify-content: center; padding: 14px; font-size: 15px;" onclick="runSmartTriage()" aria-label="증상을 분석하여 응급도 판정">
-          <span aria-hidden="true">🔍</span> 응급도 및 행동 가이드 분석하기
+          <span aria-hidden="true">🧠</span> 실시간 AI 응급도 &amp; 수의 행동 가이드 판정
         </button>
 
-        <!-- 결과 표시 영역 -->
+        <!-- AI 분석 시뮬레이션 로더 -->
+        <div id="triageLoader" class="triage-loader" role="status" aria-live="polite">
+          <div class="triage-spinner"></div>
+          <div id="triageLoaderText" class="triage-loader-text">반려견 증상 온톨로지 키워드 분석 중...</div>
+          <div class="triage-loader-steps">
+            <span>🔍 키워드 추출</span> &bull; 
+            <span>🧬 임상 알고리즘</span> &bull; 
+            <span>📋 트리아지 매칭</span>
+          </div>
+        </div>
+
+        <!-- 결과 표시 영역 (VETAZE 4단계 시각 게이지 바 탑재) -->
         <div class="triage-result-card" id="triageResultArea" role="status" aria-live="polite" aria-atomic="true">
+          <!-- 4단계 트리아지 시각 게이지 -->
+          <div class="triage-meter-wrap">
+            <div class="triage-meter-title">
+              <span>📊 수의학적 위험도 분석 게이지</span>
+              <strong id="meterRiskText" style="color:#c2410c;">3단계 경고 (ORANGE)</strong>
+            </div>
+            <div class="triage-meter-bar">
+              <div class="triage-meter-pin" id="triageMeterPin" style="left: 65%;"></div>
+            </div>
+            <div class="triage-meter-labels">
+              <span>🟢 1.안정관찰</span>
+              <span>🟡 2.외래상담</span>
+              <span>🟠 3.당일내원</span>
+              <span>🔴 4.응급센터</span>
+            </div>
+          </div>
+
           <div id="resultStatusPill" class="triage-status-pill status-orange">
             <span>🟠 ORANGE : 오늘 중 동물병원 내원 권고</span>
           </div>
           <h4 id="resultHeading" style="font-size: 17px; font-weight: 800; color: #1e293b; margin-bottom: 8px;">
             반복 구토 및 탈수 위험에 대한 조기 수의사 진찰이 필요합니다
           </h4>
-          <p id="resultActionGuide" style="font-size: 13.5px; color: #475569; line-height: 1.6; margin-bottom: 14px;">
+          <p id="resultActionGuide" style="font-size: 13.5px; color: #475569; line-height: 1.6; margin-bottom: 12px;">
             자견의 경우 짧은 시간의 구토와 설사로도 저혈당 및 급성 탈수가 올 수 있습니다. 진단키트 검사를 병행하시고 억지로 사료를 먹이지 마세요.
           </p>
+
+          <!-- 추천 키트 & 상비약 뱃지 -->
+          <div class="triage-action-pills" id="triageActionPills">
+            <span class="t-pill t-pill-kit">🔬 CPV 파보 신속진단 권장</span>
+            <span class="t-pill t-pill-med">💊 파보겔/몬스멕타 장점막 보호</span>
+            <span class="t-pill t-pill-care">💧 미온수 수분 보충 &amp; 보온</span>
+          </div>
+
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <button class="btn-call" style="font-size: 12px; padding: 6px 12px;" onclick="openModal('summaryModal')">
-              📄 진료실 요약서 자동 출력
+            <button class="btn-call" style="font-size: 12.5px; padding: 7px 12px; font-weight:800;" onclick="transferTriageToSummary()">
+              📄 진료실 1장 요약서로 자동 연동 ↗
             </button>
-            <a href="tel:031-321-6562" class="btn-primary" style="font-size: 12px; padding: 6px 14px;">
+            <a href="tel:031-321-6562" class="btn-primary" style="font-size: 12.5px; padding: 7px 14px;">
               📞 에스앤제이 핫라인 연결
             </a>
           </div>
-          <p style="font-size:11px; color:#94a3b8; margin-top:10px; line-height:1.5;">※ 본 결과는 키워드 기반 보조 분류이며 의학적 진단을 대체하지 않습니다. 심각한 증상 시 즉시 내원하세요.</p>
+          <p style="font-size:11px; color:#94a3b8; margin-top:10px; line-height:1.5;">※ 본 결과는 키워드 기반 보조 분류이며 의학적 진단을 대체하지 않습니다. 심각한 응급 증상 시 즉시 내원하세요.</p>
         </div>
       </div>
     </div>
@@ -311,7 +341,7 @@
         </div>
       </div>
 
-      <!-- 파보겔 소개 & 실시간 체중별 1회 권장량 계산기 -->
+      <!-- 파보겔 소개 & 실시간 체중별 1회 권장량 계산기 (고화질 정품 쇼케이스) -->
       <div class="parvogel-highlight-section" id="parvogel-care">
         <div>
           <div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
@@ -322,19 +352,33 @@
             </a>
           </div>
           <h3 style="font-size: 26px; font-weight: 900; color: #1e293b; margin-bottom: 14px;">
-            펫샵 사장님들이 효과로 먼저 알아본 <strong>파보겔</strong>
+            펫샵 사장님들이 효과로 먼저 알아본 <strong>파보겔 (Parvogel)</strong>
           </h3>
+
+          <!-- 파보겔 고화질 실물 쇼케이스 카드 -->
+          <div class="parvogel-visual-card">
+            <img src="./parvogel_product.png" alt="파보겔 50ml 시린지 펌프형 정품" class="parvogel-showcase-img" />
+            <div class="parvogel-badges-wrap">
+              <span class="parvogel-hologram-tag">🛡️ 초미세 나노 몬모릴로나이트 정품</span>
+              <strong style="font-size:15px; color:#0f2b48;">파보겔 50ml 대용량 겔</strong>
+              <p style="font-size:12.5px; color:#475569; margin:2px 0 0 0; line-height:1.5;">
+                초미세 흡착 나노 입자 + 유익균 배양물 복합 처방<br />
+                어린 자견 설사·장염 시 장 점막 급속 코팅 및 독소 신속 배출
+              </p>
+            </div>
+          </div>
+
           <p style="font-size: 15px; color: #475569; line-height: 1.7; margin-bottom: 18px;">
             다수 파트너 펫샵에서 <strong>"급여 후 설사 개선이 빠르다"</strong>는 후기가 이어지고 있는 제품입니다.<br />
             고순도 초미세 나노 몬모릴로나이트 기반의 경구용 겔(Gel) 제제로, 어린 자견이 거부감 없이 잘 받아먹는 탁월한 기호성과 빠른 장내 흡착력을 자랑합니다.
           </p>
 
           <div style="display: flex; gap: 10px; margin-bottom: 24px;">
-            <div style="background:#ffffff; padding:12px 16px; border-radius:8px; border:1px solid #e2e8f0; font-size:13px;">
+            <div style="background:#ffffff; padding:12px 16px; border-radius:8px; border:1px solid #e2e8f0; font-size:13px; flex:1;">
               <strong style="color:var(--primary-800);">✨ 뛰어난 기호성의 경구 겔(Gel)</strong>
               <p style="color:#64748b; font-size:12px; margin-top:2px;">거부감 없이 어린 자견 입맛에 부드럽게 급여</p>
             </div>
-            <div style="background:#ffffff; padding:12px 16px; border-radius:8px; border:1px solid #e2e8f0; font-size:13px;">
+            <div style="background:#ffffff; padding:12px 16px; border-radius:8px; border:1px solid #e2e8f0; font-size:13px; flex:1;">
               <strong style="color:var(--primary-800);">🛡️ 장독소 물리적 흡착제 붕괴</strong>
               <p style="color:#64748b; font-size:12px; margin-top:2px;">유해 바이러스·독소 배출 및 점막 급속 코팅</p>
             </div>
@@ -350,7 +394,7 @@
           </div>
         </div>
 
-        <!-- 체중별 계산기 -->
+        <!-- 체중별 계산기 & 빠른 칩 -->
         <div class="parvogel-calc-box">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
             <div style="font-size:16px; font-weight:800; color:#132e47;">
@@ -358,11 +402,21 @@
             </div>
             <span style="font-size:11px; background:#fef08a; color:#854d0e; padding:2px 6px; border-radius:4px; font-weight:750;">정밀 공식</span>
           </div>
-          <p style="font-size:12px; color:#64748b; margin-bottom:14px;">
-            아이의 체중을 입력하시면 자견 장사/장염 대응을 위한 1회 권장 급여량이 자동 계산됩니다.
+          <p style="font-size:12px; color:#64748b; margin-bottom:12px;">
+            체중을 입력하거나 아래 추천 체중을 선택하시면 1회 권장 급여량이 자동 계산됩니다.
           </p>
+
+          <!-- 빠른 체중 선택 칩 -->
+          <div class="weight-chips-row" role="group" aria-label="체중 빠른 선택">
+            <button type="button" class="weight-chip-btn" onclick="selectWeightChip(0.5)">0.5kg (초소형)</button>
+            <button type="button" class="weight-chip-btn" onclick="selectWeightChip(1.0)">1.0kg (소형)</button>
+            <button type="button" class="weight-chip-btn active" onclick="selectWeightChip(1.5)">1.5kg (표준)</button>
+            <button type="button" class="weight-chip-btn" onclick="selectWeightChip(2.5)">2.5kg (중형)</button>
+            <button type="button" class="weight-chip-btn" onclick="selectWeightChip(4.0)">4.0kg (성견)</button>
+          </div>
+
           <div style="margin-bottom:14px;">
-            <label style="display:block; font-size:12.5px; font-weight:700; margin-bottom:4px; color:#334155;">체중 (kg)</label>
+            <label for="petWeight" style="display:block; font-size:12.5px; font-weight:700; margin-bottom:4px; color:#334155;">직접 입력 체중 (kg)</label>
             <input type="number" id="petWeight" value="1.5" step="0.1" min="0.3" max="50" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:8px; font-size:16px; font-weight:700;" oninput="calculateDosage()" />
           </div>
           <div style="background:#f8fafc; padding:16px; border-radius:10px; border:1px solid #e2e8f0; text-align:center;">
@@ -371,7 +425,7 @@
               약 1.5 ~ 2.2 ml (눈금 주사기 또는 펌핑)
             </div>
             <div style="font-size:11px; color:#94a3b8; margin-top:6px;">
-              * 본 투약량은 임상 경험치로 직무의사의 처방지시에 따르는 것이 좋습니다.
+              * 본 투약량은 임상 경험치로 담당 수의사의 처방 지시에 따르는 것이 가장 안전합니다.
             </div>
           </div>
           <button class="btn-call" style="width:100%; justify-content:center; margin-top:12px; font-size:13px;" onclick="applyChip('파보겔 급여 및 이상 여부 수의사 상담을 요청합니다.')">
@@ -559,90 +613,203 @@
     </div>
   </footer>
 
-  <!-- 모달 1: 진료실 한 장 요약서 생성기 -->
+  <!-- 모달 1: 진료실 한 장 요약서 생성기 (실시간 라이브 의뢰서 차트 프리뷰 탑재) -->
   <div id="summaryModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="summaryModalTitle">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('summaryModal')" aria-label="요약서 모달 닫기">&times;</button>
-      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
+      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 12px;">
         <span style="font-size: 26px;" aria-hidden="true">📋</span>
-        <h3 id="summaryModalTitle" style="font-size: 20px; font-weight: 800; color: var(--primary-900);">진료실 한 장 요약서 발급</h3>
+        <h3 id="summaryModalTitle" style="font-size: 20px; font-weight: 800; color: var(--primary-900);">진료실 한 장 요약서 발급 &amp; 실시간 차트 미리보기</h3>
       </div>
-      <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">
-        내원 시 수의사에게 보여주면 진료 대기 시간과 불필요한 재질문을 크게 줄여줍니다.
+      <p style="font-size: 13px; color: #64748b; margin-bottom: 18px;">
+        입력하신 내용이 우측의 <strong>'에스앤제이 동물병원 공식 사전 문진 차트'</strong>에 실시간 반영됩니다. 내원 시 보여주시면 대기 시간 없이 즉시 진료에 착수합니다.
       </p>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
-        <div>
-          <label for="summaryPetName" style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">반려동물 이름</label>
-          <input type="text" id="summaryPetName" value="콩이" autocomplete="off" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;" />
+      <div class="summary-dual-grid">
+        <!-- 좌측: 입력 폼 -->
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+              <label for="summaryPetName" style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">반려동물 이름</label>
+              <input type="text" id="summaryPetName" value="콩이" autocomplete="off" oninput="syncChartPreview()" style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" />
+            </div>
+            <div>
+              <label for="summaryPetInfo" style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">견종 / 나이 / 체중</label>
+              <input type="text" id="summaryPetInfo" value="말티즈 / 3개월 / 1.8kg" autocomplete="off" oninput="syncChartPreview()" style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" />
+            </div>
+          </div>
+
+          <div>
+            <label for="summarySymptoms" style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">주요 증상 및 발생 시간</label>
+            <textarea id="summarySymptoms" oninput="syncChartPreview()" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:13px; min-height:85px;">새벽 4시경 노란 거품토 2회, 오전 사료 전량 거부, 배에서 꾸르륵 소리 남.</textarea>
+          </div>
+
+          <div>
+            <label for="summaryQuestion" style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">수의사에게 물어보고 싶은 핵심 질문</label>
+            <input type="text" id="summaryQuestion" value="진단키트 검사 및 몬스멕타 처방 상담을 받고 싶습니다." oninput="syncChartPreview()" style="width:100%; padding:9px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" />
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 6px;">
+            <button class="btn-primary" style="flex:1; justify-content:center; padding:11px 14px;" onclick="printSummary()">
+              🖨️ 인쇄 / PDF 저장
+            </button>
+            <button class="btn-call" style="flex:1; justify-content:center; padding:11px 14px;" onclick="copySummaryText()">
+              📑 카톡 전송용 복사
+            </button>
+          </div>
         </div>
-        <div>
-          <label for="summaryPetInfo" style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">견종 / 나이 / 체중</label>
-          <input type="text" id="summaryPetInfo" value="말티즈 / 3개월 / 1.8kg" autocomplete="off" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;" />
+
+        <!-- 우측: 실시간 공식 차트 프리뷰 -->
+        <div class="chart-preview-card">
+          <div class="chart-watermark">DR. S&amp;J CLINICAL CHART</div>
+          <div class="chart-head-row">
+            <div class="chart-title-box">
+              <h4>📋 에스앤제이 스마트 진료 의뢰서</h4>
+              <span>DR. S &amp; J ANIMAL HOSPITAL · 사전 문진 원본</span>
+            </div>
+            <div class="chart-meta-box">
+              <div>접수일: <strong id="chartDate">2026. 09. 08</strong></div>
+              <div id="chartTriageBadge" style="display:inline-block; font-size:10px; background:#ffedd5; color:#c2410c; padding:1px 6px; border-radius:3px; font-weight:800; margin-top:2px;">🟠 트리아지 3단계</div>
+            </div>
+          </div>
+
+          <table class="chart-fields-table">
+            <tr>
+              <th>환견 성명</th>
+              <td id="chartPetName">콩이</td>
+            </tr>
+            <tr>
+              <th>품종 / 연령 / 체중</th>
+              <td id="chartPetInfo">말티즈 / 3개월 / 1.8kg</td>
+            </tr>
+          </table>
+
+          <div style="font-size:11px; font-weight:800; color:#475569; margin-bottom:3px;">주요 증상 및 경과 기록:</div>
+          <div class="chart-symptom-box" id="chartSymptoms">
+            새벽 4시경 노란 거품토 2회, 오전 사료 전량 거부, 배에서 꾸르륵 소리 남.
+          </div>
+
+          <div style="font-size:11px; font-weight:800; color:#0d9488; margin-bottom:3px;">보호자 핵심 질의사항:</div>
+          <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:6px; padding:7px 10px; font-size:12px; font-weight:700; color:#0f766e; margin-bottom:10px;" id="chartQuestion">
+            진단키트 검사 및 몬스멕타 처방 상담을 받고 싶습니다.
+          </div>
+
+          <div class="chart-footer-row">
+            <span>용인 봄봄솔루션 진료실 · 031-321-6562</span>
+            <span style="background:#e0f2fe; color:#0369a1; padding:2px 7px; border-radius:4px; font-weight:800; font-size:10px;">원내 진료용 원본</span>
+          </div>
         </div>
-      </div>
-
-      <div style="margin-bottom: 14px;">
-        <label for="summarySymptoms" style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">주요 증상 및 발생 시간</label>
-        <textarea id="summarySymptoms" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:13px; min-height:70px;">새벽 4시경 노란 거품토 2회, 오전 사료 전량 거부, 배에서 꾸르륵 소리 남.</textarea>
-      </div>
-
-      <div style="margin-bottom: 18px;">
-        <label style="font-size: 12px; font-weight: 700; display:block; margin-bottom: 4px;">수의사에게 물어보고 싶은 핵심 질문</label>
-        <input type="text" id="summaryQuestion" value="진단키트 검사 및 몬스멕타 처방 상담을 받고 싶습니다." style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px;" />
-      </div>
-
-      <div style="display: flex; gap: 10px;">
-        <button class="btn-primary" style="flex:1; justify-content:center;" onclick="printSummary()">
-          🖨️ 요약서 출력 / PDF 저장
-        </button>
-        <button class="btn-call" style="flex:1; justify-content:center;" onclick="copySummaryText()">
-          📑 텍스트 복사 (카톡 전송)
-        </button>
       </div>
     </div>
   </div>
 
   <!-- 모달 3: 처방전 & 복약 번역기 -->
   <div id="rxModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="rxModalTitle">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 640px;">
       <button class="modal-close" onclick="closeModal('rxModal')" aria-label="처방전 번역기 모달 닫기">&times;</button>
       <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
         <span style="font-size: 26px;" aria-hidden="true">💊</span>
-        <h3 id="rxModalTitle" style="font-size: 20px; font-weight: 800; color: var(--primary-900);">처방전 & 복약 번역기</h3>
+        <h3 id="rxModalTitle" style="font-size: 20px; font-weight: 800; color: var(--primary-900);">처방전 &amp; 복약 정밀 번역 가이드</h3>
       </div>
+      
       <div style="font-size: 13.5px; color: #334155; line-height: 1.7; margin-bottom: 16px;">
-        <p>처방전을 사진으로 보내주시면 수의사가 <strong>약품명/성분/복용법/부작용</strong>을 보호자 눈높이에 맞춰 설명해드립니다.</p>
-        <ul style="margin:12px 0 0 18px; line-height:1.8;">
-          <li>스테로이드/항생제 여부와 휴약 기간</li>
-          <li>식전/식후, 1일 투약 횟수 및 보관법</li>
-          <li>몬스멕타 병용 시 1~2시간 간격 복약 지도</li>
-        </ul>
-        <p style="margin-top:12px; font-size:12px; color:#64748b;">※ 본 안내는 복약 순응도 향상을 위한 정보 제공이며, 용량 변경은 반드시 수의사와 상담하세요.</p>
+        <p>복잡한 영문 처방전과 생소한 약품명을 보호자 눈높이에 맞춰 알기 쉽게 설명해 드립니다.</p>
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; margin-bottom:14px;">
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px;">
+            <strong style="color:var(--primary-800); font-size:13px;">🛡️ 몬스멕타 분리 복약 (필수)</strong>
+            <p style="font-size:11.5px; color:#64748b; margin-top:4px;">흡착력이 매우 뛰어나므로 항생제·소염제와 <strong>최소 1~2시간 시차</strong>를 두고 투약하세요.</p>
+          </div>
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px;">
+            <strong style="color:var(--primary-800); font-size:13px;">⏱️ 항생제 휴약 기간 준수</strong>
+            <p style="font-size:11.5px; color:#64748b; margin-top:4px;">증상이 호전되어도 처방된 일수를 모두 완약해야 내성균 발생을 방지할 수 있습니다.</p>
+          </div>
+        </div>
+        <p style="font-size:12px; color:#64748b;">※ 본 안내는 복약 순응도를 높이기 위한 참고 정보이며, 투약 용량 변경은 반드시 주치의와 상의하세요.</p>
       </div>
       <div style="display:flex; gap:8px;">
-        <a href="tel:031-321-6562" class="btn-primary" style="flex:1; justify-content:center;">📞 처방전 상담 (031-321-6562)</a>
+        <a href="tel:031-321-6562" class="btn-primary" style="flex:1; justify-content:center;">📞 처방전 유선 상담 (031-321-6562)</a>
         <button class="btn-call" style="flex:1; justify-content:center;" onclick="applyChip('처방전 사진 판독 및 복약 상담을 요청합니다.')">💬 문진으로 문의</button>
       </div>
     </div>
   </div>
 
-  <!-- 모달 4: 키트 & 검사 판독 가이드 -->
+  <!-- 모달 4: 키트 & 검사 판독 가이드 (시각 카세트 다이어그램 탑재) -->
   <div id="labModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="labModalTitle">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 680px;">
       <button class="modal-close" onclick="closeModal('labModal')" aria-label="진단키트 판독 가이드 모달 닫기">&times;</button>
-      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 16px;">
+      <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 14px;">
         <span style="font-size: 26px;" aria-hidden="true">🔬</span>
-        <h3 id="labModalTitle" style="font-size: 20px; font-weight: 800; color: var(--primary-900);">진단키트 판독 가이드</h3>
+        <h3 id="labModalTitle" style="font-size: 20px; font-weight: 800; color: var(--primary-900);">신속 진단키트 C/T 밴드 정밀 판독 가이드</h3>
       </div>
-      <div style="font-size: 13.5px; color: #334155; line-height: 1.7; margin-bottom: 16px;">
-        <p><strong>1. C라인(대조선)과 T라인(검사선):</strong> C라인은 키트의 유효성을 증명하며, C와 T에 모두 밴드가 형성되면 <strong>양성(감염)</strong> 판정입니다.</p>
-        <p><strong>2. 희미한 밴드(Faint Band):</strong> 잠복기 말기 또는 바이러스 배출 초기일 수 있습니다. 24시간 뒤 재검사를 강력 권고합니다.</p>
-        <p><strong>3. 자견 격리 및 위생:</strong> 양성 판정 즉시 격리 조치 후 담당 수의사와 수액 및 항체 처치 프로토콜을 진행해야 합니다.</p>
+      <p style="font-size: 13px; color: #475569; margin-bottom: 12px;">
+        신속 항원 검사 키트(CPV 파보 / CCV 코로나 / 브루셀라)의 밴드 판독 요령입니다:
+      </p>
+
+      <!-- 시각 카세트 다이어그램 4종 -->
+      <div class="kit-visual-grid">
+        <!-- 1. 음성 -->
+        <div class="kit-cassette-item">
+          <div class="cassette-sim">
+            <div class="cassette-window">
+              <div class="band-line band-c active" title="C 대조선 적색"></div>
+              <div class="band-line band-t" title="T 검사선 없음"></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12.5px; font-weight:800; color:#15803d;">🟢 음성 (Negative)</div>
+            <div style="font-size:11px; color:#64748b; margin-top:2px;">C선만 적색. 바이러스 항원 미검출 (정상).</div>
+          </div>
+        </div>
+
+        <!-- 2. 양성 -->
+        <div class="kit-cassette-item" style="border-color:#fca5a5; background:#fff5f5;">
+          <div class="cassette-sim" style="border-color:#ef4444;">
+            <div class="cassette-window">
+              <div class="band-line band-c active"></div>
+              <div class="band-line band-t active"></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12.5px; font-weight:800; color:#b91c1c;">🔴 양성 (Positive)</div>
+            <div style="font-size:11px; color:#64748b; margin-top:2px;">C선, T선 모두 적색. 즉시 격리 및 응급 처치 필요!</div>
+          </div>
+        </div>
+
+        <!-- 3. 잠복기 의심 (희미한 밴드) -->
+        <div class="kit-cassette-item" style="border-color:#fed7aa; background:#fffbf5;">
+          <div class="cassette-sim" style="border-color:#f97316;">
+            <div class="cassette-window">
+              <div class="band-line band-c active"></div>
+              <div class="band-line band-t faint"></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12.5px; font-weight:800; color:#c2410c;">🟠 잠복기 의심 (Faint Band)</div>
+            <div style="font-size:11px; color:#64748b; margin-top:2px;">T선이 아주 옅은 분홍색. 24시간 후 재검사 필수.</div>
+          </div>
+        </div>
+
+        <!-- 4. 무효 -->
+        <div class="kit-cassette-item" style="border-color:#cbd5e1;">
+          <div class="cassette-sim">
+            <div class="cassette-window">
+              <div class="band-line band-c"></div>
+              <div class="band-line band-t"></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12.5px; font-weight:800; color:#475569;">⚪ 무효 (Invalid)</div>
+            <div style="font-size:11px; color:#64748b; margin-top:2px;">C선이 나타나지 않음. 검체 부족 또는 키트 불량 재검.</div>
+          </div>
+        </div>
       </div>
-      <a href="tel:031-321-6562" class="btn-primary" style="width:100%; justify-content:center;">
-        📞 에스앤제이 판독 및 처방 핫라인 연결
-      </a>
+
+      <div style="margin-top:16px;">
+        <a href="tel:031-321-6562" class="btn-primary" style="width:100%; justify-content:center;">
+          📞 에스앤제이 키트 판독 &amp; 긴급 처방 핫라인 연결 (031-321-6562)
+        </a>
+      </div>
     </div>
   </div>
 

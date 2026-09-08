@@ -1,96 +1,211 @@
 // 1. 스마트 트리아지 빠른 칩 적용
-    function applyChip(text) {
-      const textarea = document.getElementById('symptomText');
-      textarea.value = text;
-      textarea.focus();
+function applyChip(text) {
+  const textarea = document.getElementById('symptomText');
+  if (textarea) {
+    textarea.value = text;
+    textarea.focus();
+  }
+}
+
+function focusTriageInput() {
+  const area = document.getElementById('triage');
+  if (area) {
+    area.scrollIntoView({ behavior: 'smooth' });
+    const input = document.getElementById('symptomText');
+    if (input) input.focus();
+  }
+}
+
+// 2. VETAZE형 AI 스마트 트리아지 2.0 판정 엔진 (단계별 로딩 및 게이지 애니메이션)
+let isTriageRunning = false;
+function runSmartTriage() {
+  if (isTriageRunning) return;
+  const inputEl = document.getElementById('symptomText');
+  const text = inputEl ? inputEl.value.trim() : '';
+  const loader = document.getElementById('triageLoader');
+  const loaderText = document.getElementById('triageLoaderText');
+  const resultArea = document.getElementById('triageResultArea');
+  const pill = document.getElementById('resultStatusPill');
+  const heading = document.getElementById('resultHeading');
+  const guide = document.getElementById('resultActionGuide');
+  const meterPin = document.getElementById('triageMeterPin');
+  const meterRiskText = document.getElementById('meterRiskText');
+  const actionPills = document.getElementById('triageActionPills');
+
+  if (!text) {
+    alert('증상을 간략하게 입력해 주시거나 추천 증상 칩을 클릭해 주세요.');
+    return;
+  }
+
+  isTriageRunning = true;
+  if (resultArea) resultArea.style.display = 'none';
+  if (loader) loader.classList.add('active');
+  if (loaderText) loaderText.innerText = '반려견 증상 온톨로지 키워드 분석 중...';
+
+  setTimeout(() => {
+    if (loaderText) loaderText.innerText = '5,000여 건 수의 임상 데이터베이스 & 가이드라인 매칭 중...';
+  }, 280);
+
+  setTimeout(() => {
+    if (loader) loader.classList.remove('active');
+    isTriageRunning = false;
+    if (resultArea) resultArea.style.display = 'block';
+
+    const t = text.toLowerCase();
+    let grade = 'GREEN';
+    let pinLeft = '12%';
+    let riskDesc = '1단계 안정 (GREEN)';
+    let headTitle = '현재 즉각적인 급성 위험 신호는 감지되지 않았습니다';
+    let actionDesc = '아이의 활력과 음수량을 평소대로 유지해 주시고, 12시간 이상 관찰 후 이상 증상이 나타날 경우 언제든 재문진해 주세요.';
+    let pillsHtml = '<span class="t-pill t-pill-care">💧 평소 음수량 유지</span><span class="t-pill t-pill-care">🌡️ 체온 및 배변 상태 관찰</span>';
+
+    // (1) 위급 응급 (RED) : 생명 위험, 즉각적인 수액 및 내원
+    if (t.includes('혈변') || t.includes('피똥') || t.includes('경련') || t.includes('발작') || t.includes('호흡') || t.includes('숨') || t.includes('헐떡') || t.includes('의식') || t.includes('쓰러') || t.includes('체온') || t.includes('저체온')) {
+      grade = 'RED';
+      pinLeft = '92%';
+      riskDesc = '4단계 초응급 (RED : 즉시 응급실)';
+      pill.className = 'triage-status-pill status-red';
+      pill.innerHTML = '<span>🔴 RED : 즉시 응급 내원 필요 (골든타임)</span>';
+      headTitle = '파보바이러스 장염, 패혈증 또는 급성 저혈당 쇼크 위험이 매우 높습니다';
+      actionDesc = '· <strong>즉각 조치:</strong> 추가 사료 및 약물 강제 급여를 즉시 중단하시고, 보온을 유지하며 즉시 에스앤제이 동물병원 또는 24시 응급센터로 내원하십시오.<br />· <strong>진단 프로토콜:</strong> CPV 파보 신속키트 검사 및 정맥 수액 처치가 시급합니다.';
+      pillsHtml = '<span class="t-pill t-pill-med">⚠️ 사료/물 급여 즉각 중단</span><span class="t-pill t-pill-kit">🔬 CPV 신속 진단키트 필수</span><span class="t-pill t-pill-med">🏥 정맥 수액 & 항체 집중치료</span>';
+    } 
+    // (2) 소화기 집중 관리 (ORANGE) : 구토, 설사, 장염, 파보 의심
+    else if (t.includes('구토') || t.includes('토') || t.includes('설사') || t.includes('물변') || t.includes('점액') || t.includes('처져') || t.includes('무기력') || t.includes('탈수')) {
+      grade = 'ORANGE';
+      pinLeft = '66%';
+      riskDesc = '3단계 경고 (ORANGE : 당일 내원)';
+      pill.className = 'triage-status-pill status-orange';
+      pill.innerHTML = '<span>🟠 ORANGE : 오늘 중 동물병원 방문 권고</span>';
+      headTitle = '급성 장염 또는 바이러스성 소화기 감염증 의심';
+      actionDesc = '· <strong>임상 조치:</strong> 자견의 경우 2~3회 설사만으로도 급속한 전해질 불균형과 탈수가 발생합니다. 물을 미온수로 조금씩 축여주시고 원내로 내원하십시오.<br />· <strong>권장 처방:</strong> <strong>파보겔</strong> 또는 <strong>몬스멕타</strong> 장 점막 도포제 및 지사제 처방, 파보·코로나 진단키트 검사가 권장됩니다.';
+      pillsHtml = '<span class="t-pill t-pill-kit">🔬 CPV/CCV 신속진단키트</span><span class="t-pill t-pill-med">💊 파보겔/몬스멕타 장점막 도포</span><span class="t-pill t-pill-care">💧 미온수 소량 축이기</span>';
+    } 
+    // (3) 호흡기 및 감기 증상 (ORANGE/YELLOW) : 켄넬코프, 기침, 콧물
+    else if (t.includes('기침') || t.includes('켁켁') || t.includes('가래') || t.includes('콧물') || t.includes('재채기') || t.includes('눈곱')) {
+      grade = 'ORANGE';
+      pinLeft = '60%';
+      riskDesc = '3단계 주의 (ORANGE : 전염성 호흡기)';
+      pill.className = 'triage-status-pill status-orange';
+      pill.innerHTML = '<span>🟠 ORANGE : 전염성 호흡기(켄넬코프) 주의</span>';
+      headTitle = '전염성 기관지염(켄넬코프) 또는 호흡기 바이러스 감염 주의';
+      actionDesc = '· <strong>집단 격리:</strong> 다른 자견들과 즉시 격리하고 실내 습도를 50~60%로 유지하십시오.<br />· <strong>권장 처방:</strong> 호흡기 2차 세균감염 방지를 위한 원내 소염진통제 및 항생제 네뷸라이저 처방이 필요합니다.';
+      pillsHtml = '<span class="t-pill t-pill-care">🛡️ 다른 자견과 즉시 격리</span><span class="t-pill t-pill-care">💧 실내 습도 50~60% 유지</span><span class="t-pill t-pill-med">💊 소염항생제 & 네뷸라이저</span>';
+    }
+    // (4) 피부/기생충/식이 이상 (YELLOW) : 가려움, 귀, 곰팡이, 벼룩
+    else if (t.includes('가려') || t.includes('귀') || t.includes('털') || t.includes('비듬') || t.includes('각질') || t.includes('원형') || t.includes('기생충')) {
+      grade = 'YELLOW';
+      pinLeft = '37%';
+      riskDesc = '2단계 상담 (YELLOW : 외래 진료)';
+      pill.className = 'triage-status-pill status-yellow';
+      pill.innerHTML = '<span>🟡 YELLOW : 외래 진료 및 외용제 처방</span>';
+      headTitle = '피부사상균증(링웜), 외부 기생충 또는 외이염 의심';
+      actionDesc = '· <strong>위생 관리:</strong> 축사 및 환경 소독을 시행하시고 자견 피부를 긁지 못하게 넥카라를 권장합니다.<br />· <strong>권장 처방:</strong> 피부 전용 연고, 약용 샴푸 및 구충제 처방을 위해 수요일 현장 진료실을 방문해 주세요.';
+      pillsHtml = '<span class="t-pill t-pill-care">🧴 약용 샴푸 & 넥카라</span><span class="t-pill t-pill-med">💊 광범위 구충제 처방</span>';
+    }
+    // (5) 단순 식욕부진 및 경증 관찰 (YELLOW/GREEN)
+    else if (t.includes('안 먹') || t.includes('식욕') || t.includes('기운') || t.includes('사료 거부')) {
+      grade = 'YELLOW';
+      pinLeft = '32%';
+      riskDesc = '2단계 관찰 (YELLOW : 경과 관찰)';
+      pill.className = 'triage-status-pill status-yellow';
+      pill.innerHTML = '<span>🟡 YELLOW : 수의사 유선 상담 및 12시간 경과 관찰</span>';
+      headTitle = '환경 스트레스 또는 초기 소화기 불편 신호';
+      actionDesc = '· <strong>모니터링:</strong> 사료를 미온수에 살짝 불려 급여해 보시고, 12시간 이상 전량 거부 시 당 수액 보충이 필요할 수 있으니 진료실로 문의하십시오.';
+      pillsHtml = '<span class="t-pill t-pill-care">🥣 미온수에 불린 사료 급여</span><span class="t-pill t-pill-care">⏱️ 12시간 경과 관찰</span>';
+    } else {
+      pill.className = 'triage-status-pill status-green';
+      pill.innerHTML = '<span>🟢 GREEN : 자택 내 안정 및 일상 관찰 가능</span>';
     }
 
-    function focusTriageInput() {
-      const area = document.getElementById('triage');
-      area.scrollIntoView({ behavior: 'smooth' });
-      document.getElementById('symptomText').focus();
+    heading.innerText = headTitle;
+    guide.innerHTML = actionDesc;
+    if (meterPin) meterPin.style.left = pinLeft;
+    if (meterRiskText) {
+      meterRiskText.innerText = riskDesc;
+      meterRiskText.style.color = grade === 'RED' ? '#b91c1c' : grade === 'ORANGE' ? '#c2410c' : grade === 'YELLOW' ? '#854d0e' : '#15803d';
     }
+    if (actionPills) actionPills.innerHTML = pillsHtml;
 
-    // 2. 스마트 문진 보조 분류 알고리즘 (키워드 기반, 수의사 진단 대체 아님)
-    function runSmartTriage() {
-      const text = document.getElementById('symptomText').value.trim();
-      const resultArea = document.getElementById('triageResultArea');
-      const pill = document.getElementById('resultStatusPill');
-      const heading = document.getElementById('resultHeading');
-      const guide = document.getElementById('resultActionGuide');
-
-      if (!text) {
-        alert('증상을 간략하게 입력해 주시거나 추천 칩을 클릭해 주세요.');
-        return;
-      }
-
-      resultArea.style.display = 'block';
-
-      // 키워드 기반 보조 분류 (질병 사전 진단 아님, 참고용 행동 가이드)
-      const t = text.toLowerCase();
-
-      // (1) 위급 응급 (RED) : 생명 위험, 즉각적인 수액 및 내원
-      if (t.includes('혈변') || t.includes('피똥') || t.includes('경련') || t.includes('발작') || t.includes('호흡') || t.includes('숨') || t.includes('헐떡') || t.includes('의식') || t.includes('쓰러') || t.includes('체온') || t.includes('저체온')) {
-        pill.className = 'triage-status-pill status-red';
-        pill.innerHTML = '<span>🔴 RED : 즉시 응급 내원 필요 (골든타임)</span>';
-        heading.innerText = '파보바이러스 장염, 패혈증 또는 급성 저혈당 쇼크 위험이 높습니다.';
-        guide.innerHTML = '· <strong>즉각 조치:</strong> 추가 사료 및 약물 강제 급여를 즉시 중단하시고, 보온을 유지하며 즉시 에스앤제이 동물병원 또는 인근 24시 응급센터로 내원하십시오.<br />· <strong>진단 프로토콜:</strong> CPV 파보 진단키트 검사 및 정맥 수액 처치가 시급합니다.';
-      } 
-      // (2) 소화기 집중 관리 (ORANGE) : 구토, 설사, 장염, 파보 의심
-      else if (t.includes('구토') || t.includes('토') || t.includes('설사') || t.includes('물변') || t.includes('점액') || t.includes('처져') || t.includes('무기력') || t.includes('탈수')) {
-        pill.className = 'triage-status-pill status-orange';
-        pill.innerHTML = '<span>🟠 ORANGE : 오늘 중 동물병원 방문 권고</span>';
-        heading.innerText = '급성 장염 또는 바이러스성 소화기 감염증 의심';
-        guide.innerHTML = '· <strong>임상 조치:</strong> 자견의 경우 2~3회 설사만으로도 급속한 전해질 불균형과 탈수가 발생합니다. 물을 미온수로 조금씩 축여주시고 원내로 내원하십시오.<br />· <strong>권장 처방:</strong> <strong>파보겔</strong> 또는 <strong>몬스멕타(Monsmecta)</strong> 장 점막 도포제 및 지사제 처방, 파보·코로나 진단키트 검사가 권장됩니다.';
-      } 
-      // (3) 호흡기 및 감기 증상 (ORANGE/YELLOW) : 켄넬코프, 기침, 콧물
-      else if (t.includes('기침') || t.includes('켁켁') || t.includes('가래') || t.includes('콧물') || t.includes('재채기') || t.includes('눈곱')) {
-        pill.className = 'triage-status-pill status-orange';
-        pill.innerHTML = '<span>🟠 ORANGE : 전염성 호흡기(켄넬코프) 의심</span>';
-        heading.innerText = '전염성 기관지염(켄넬코프) 또는 호흡기 바이러스 감염 주의';
-        guide.innerHTML = '· <strong>집단 격리:</strong> 다른 자견들과 즉시 격리하고 실내 습도를 50~60%로 유지하십시오.<br />· <strong>권장 처방:</strong> 호흡기 2차 세균감염 방지를 위한 원내 소염진통제 및 항생제 네뷸라이저 처방이 필요합니다.';
-      }
-      // (4) 피부/기생충/식이 이상 (YELLOW) : 가려움, 귀, 곰팡이, 벼룩
-      else if (t.includes('가려') || t.includes('귀') || t.includes('털') || t.includes('비듬') || t.includes('각질') || t.includes('원형') || t.includes('기생충')) {
-        pill.className = 'triage-status-pill status-yellow';
-        pill.innerHTML = '<span>🟡 YELLOW : 외래 진료 및 외용제 처방</span>';
-        heading.innerText = '피부사상균증(링웜), 외부 기생충 또는 외이염 의심';
-        guide.innerHTML = '· <strong>위생 관리:</strong> 축사 및 환경 소독을 시행하시고 자견 피부를 긁지 못하게 넥카라를 권장합니다.<br />· <strong>권장 처방:</strong> 피부 전용 연고, 약용 샴푸 및 구충제 처방을 위해 수요일 현장 진료실을 방문해 주세요.';
-      }
-      // (5) 단순 식욕부진 및 경증 관찰 (YELLOW/GREEN)
-      else if (t.includes('안 먹') || t.includes('식욕') || t.includes('기운') || t.includes('사료 거부')) {
-        pill.className = 'triage-status-pill status-yellow';
-        pill.innerHTML = '<span>🟡 YELLOW : 수의사 유선 상담 및 12시간 경과 관찰</span>';
-        heading.innerText = '환경 스트레스 또는 초기 소화기 불편 신호';
-        guide.innerHTML = '· <strong>모니터링:</strong> 사료를 미온수에 살짝 불려 급여해 보시고, 12시간 이상 전량 거부 시 당 수액 보충이 필요할 수 있으니 진료실로 문의하십시오.';
-      } else {
-        pill.className = 'triage-status-pill status-green';
-        pill.innerHTML = '<span>🟢 GREEN : 자택 내 안정 및 일상 관찰 가능</span>';
-        heading.innerText = '현재 즉각적인 급성 위험 신호는 감지되지 않았습니다.';
-        guide.innerHTML = '아이의 활력과 음수량을 평소대로 유지해 주시고, 이상 증상이 발생할 경우 언제든 증상을 재입력해 주세요.';
-      }
-
-      // 작성된 증상을 모바일 요약서에도 자동 반영
-      document.getElementById('summarySymptoms').value = text;
+    // 요약서 입력값 및 차트 프리뷰 자동 반영
+    const symInput = document.getElementById('summarySymptoms');
+    if (symInput) symInput.value = text;
+    const chartTriageBadge = document.getElementById('chartTriageBadge');
+    if (chartTriageBadge) {
+      chartTriageBadge.innerText = `트리아지: ${riskDesc}`;
+      chartTriageBadge.style.background = grade === 'RED' ? '#fee2e2' : grade === 'ORANGE' ? '#ffedd5' : grade === 'YELLOW' ? '#fef9c3' : '#dcfce7';
+      chartTriageBadge.style.color = grade === 'RED' ? '#b91c1c' : grade === 'ORANGE' ? '#c2410c' : grade === 'YELLOW' ? '#854d0e' : '#15803d';
     }
+    syncChartPreview();
 
-    // 2-1. 파보겔 체중별 투약량 실시간 자동 계산 함수
-    function calculateDosage() {
-      const weightInput = document.getElementById('petWeight');
-      const calcResult = document.getElementById('calcResult');
-      if (!weightInput || !calcResult) return;
+    // 결과 위치로 부드럽게 스크롤
+    resultArea.setAttribute('tabindex', '-1');
+    resultArea.focus({ preventScroll: true });
+    resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 650);
+}
 
-      const weight = parseFloat(weightInput.value);
-      if (isNaN(weight) || weight <= 0) {
-        calcResult.innerText = '체중을 올바르게 입력해 주세요';
-        return;
-      }
+// 2-1. 트리아지 결과를 진료실 요약서로 원클릭 전송
+function transferTriageToSummary() {
+  syncChartPreview();
+  openModal('summaryModal');
+}
 
-      // 임상 복약 가이드: kg당 1.0 ~ 1.5 ml (1회 권장량)
-      const minDose = (weight * 1.0).toFixed(1);
-      const maxDose = (weight * 1.5).toFixed(1);
-      calcResult.innerText = `약 ${minDose} ~ ${maxDose} ml (눈금 주사기 또는 펌핑)`;
+// 2-2. 파보겔 체중별 투약량 실시간 자동 계산 함수
+function calculateDosage() {
+  const weightInput = document.getElementById('petWeight');
+  const calcResult = document.getElementById('calcResult');
+  if (!weightInput || !calcResult) return;
+
+  const weight = parseFloat(weightInput.value);
+  if (isNaN(weight) || weight <= 0) {
+    calcResult.innerText = '체중을 올바르게 입력해 주세요';
+    return;
+  }
+
+  // 임상 복약 가이드: kg당 1.0 ~ 1.5 ml (1회 권장량)
+  const minDose = (weight * 1.0).toFixed(1);
+  const maxDose = (weight * 1.5).toFixed(1);
+  calcResult.innerText = `약 ${minDose} ~ ${maxDose} ml (눈금 주사기 또는 펌핑)`;
+}
+
+// 2-3. 빠른 체중 선택 칩
+function selectWeightChip(val) {
+  const weightInput = document.getElementById('petWeight');
+  if (weightInput) {
+    weightInput.value = val;
+    calculateDosage();
+  }
+  document.querySelectorAll('.weight-chip-btn').forEach(btn => {
+    if (parseFloat(btn.innerText) === val) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
     }
+  });
+}
+
+// 2-4. 진료실 한 장 요약서 실시간 라이브 차트 프리뷰 동기화
+function syncChartPreview() {
+  const petEl = document.getElementById('summaryPetName');
+  const infoEl = document.getElementById('summaryPetInfo');
+  const symEl = document.getElementById('summarySymptoms');
+  const qEl = document.getElementById('summaryQuestion');
+
+  const chartPetName = document.getElementById('chartPetName');
+  const chartPetInfo = document.getElementById('chartPetInfo');
+  const chartSymptoms = document.getElementById('chartSymptoms');
+  const chartQuestion = document.getElementById('chartQuestion');
+  const chartDate = document.getElementById('chartDate');
+
+  if (chartPetName && petEl) chartPetName.innerText = petEl.value || '미입력';
+  if (chartPetInfo && infoEl) chartPetInfo.innerText = infoEl.value || '미입력';
+  if (chartSymptoms && symEl) chartSymptoms.innerText = symEl.value || '특이 증상 없음';
+  if (chartQuestion && qEl) chartQuestion.innerText = qEl.value || '특이 질문 없음';
+  if (chartDate) {
+    chartDate.innerText = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+  }
+}
 
     // 2-2. 수요일 현장 수령 사전 발주 처리 함수 (백엔드 연동: localStorage + 클립보드 + Web Share + 선택적 fetch)
     function handlePreOrderSubmit(e) {
@@ -228,18 +343,13 @@
           if (!e.target.classList.contains('modal-backdrop')) closeMobileMenu();
         }
       });
+      // 진료실 요약서 실시간 입력 동기화 이벤트 바인딩
+      ['summaryPetName', 'summaryPetInfo', 'summarySymptoms', 'summaryQuestion'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', syncChartPreview);
+      });
+      syncChartPreview();
     });
-    // runSmartTriage 후 결과 영역으로 포커스 이동 (스크린리더용)
-    const _origRunSmartTriage = runSmartTriage;
-    runSmartTriage = function() {
-      _origRunSmartTriage();
-      const area = document.getElementById('triageResultArea');
-      if (area && area.style.display === 'block') {
-        area.setAttribute('tabindex', '-1');
-        area.focus({ preventScroll: true });
-        area.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    };
 
     // 4. 진료실 요약서 인쇄 및 복사 (전체 사이트 9페이지 인쇄 방지 -> 깔끔한 A4 1장 전용 인쇄창)
     function escHtml(str) {

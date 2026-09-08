@@ -192,16 +192,199 @@
 
     /* 파보겔 & 투약 계산기 섹션 */
     .product-section {
-      background: #fffbeb;
-      border: 2px solid #fde047;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
       border-radius: var(--radius-lg);
       padding: 36px;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1fr 1fr;
       gap: 36px;
       align-items: center;
       margin-bottom: 40px;
+      box-shadow: var(--shadow-sm);
     }
+    .product-visual-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #f0fdfa 0%, #f8fafc 100%);
+      border: 1px solid #ccfbf1;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: relative;
+    }
+    .product-img {
+      max-width: 220px;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 20px rgba(13, 148, 136, 0.22));
+      transition: transform 0.3s ease;
+    }
+    .product-img:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+    .product-spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+      width: 100%;
+      text-align: left;
+    }
+    .product-spec-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+    }
+    .product-spec-item strong {
+      display: block;
+      color: #0f172a;
+      font-size: 12.5px;
+      margin-bottom: 2px;
+    }
+    .product-spec-item span {
+      color: #64748b;
+      font-size: 11.5px;
+    }
+
+    /* B2B 패키지 세트 섹션 */
+    .packages-section {
+      margin-bottom: 44px;
+    }
+    .section-head {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .section-head h2 {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--primary-900);
+      margin-bottom: 8px;
+    }
+    .section-head p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+    }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .package-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .package-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: #0d9488;
+    }
+    .package-card.highlight {
+      border: 2px solid #0d9488;
+      background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 40%);
+    }
+    .package-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0d9488;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 12px;
+      border-radius: 9999px;
+      letter-spacing: 0.5px;
+    }
+    .package-title {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--primary-900);
+      margin-bottom: 6px;
+    }
+    .package-target {
+      font-size: 12.5px;
+      color: #0d9488;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .package-items {
+      list-style: none;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+    .package-items li {
+      font-size: 13px;
+      color: #334155;
+      padding: 7px 0;
+      border-bottom: 1px dashed #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .package-items li:last-child {
+      border-bottom: none;
+    }
+    .package-items li strong {
+      color: #0f172a;
+    }
+    .btn-package-select {
+      width: 100%;
+      padding: 12px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 800;
+      background: #f1f5f9;
+      color: var(--primary-900);
+      border: 1px solid #cbd5e1;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .package-card.highlight .btn-package-select,
+    .btn-package-select:hover {
+      background: linear-gradient(135deg, #0d9488, #10b981);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+    }
+
+    /* 체중 선택 칩 */
+    .weight-chip-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .weight-chip-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .weight-chip-btn:hover,
+    .weight-chip-btn.active {
+      background: #0d9488;
+      border-color: #0d9488;
+      color: #ffffff;
+    }
+
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -233,10 +416,10 @@
 
     /* 투약 계산기 박스 */
     .calc-box {
-      background: #ffffff;
+      background: #f8fafc;
       border-radius: var(--radius-md);
       padding: 24px;
-      border: 1px solid #fef08a;
+      border: 1px solid #e2e8f0;
       box-shadow: var(--shadow-sm);
     }
 
@@ -271,28 +454,28 @@
       cursor: pointer;
     }
 
-    @media (max-width: 860px) {
-      .b2b-grid, .product-section { grid-template-columns: 1fr; }
-      .partner-hero { padding: 28px 20px; }
-      .partner-hero h1 { font-size: 24px; }
-    }
-    /* 모바일 전역 좌우폭 10% 축소 (갤럭시 울트라 대응) */
+    /* 모바일 반응형 최적화 (90% 축소 버그 제거) */
     @media (max-width: 960px) {
-      html, body { overflow-x: hidden; }
-      .nav-container,
-      .partner-wrap,
-      .partner-hero,
-      .b2b-grid,
-      .product-section {
-        max-width: 90% !important;
-        width: 90% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        box-sizing: border-box;
+      .partner-wrap {
+        padding: 24px 16px 60px;
       }
-      header { padding-left: 5% !important; padding-right: 5% !important; }
-      .partner-hero,
-      .product-section,
-      .b2b-grid { padding-left: 5% !important; padding-right: 5% !important; }
-      .partner-banner { padding-left: 5% !important; padding-right: 5% !important; }
+      .packages-grid {
+        grid-template-columns: 1fr;
+      }
+      .b2b-grid, .product-section {
+        grid-template-columns: 1fr;
+      }
+      .partner-hero {
+        padding: 28px 20px;
+      }
+      .partner-hero h1 {
+        font-size: 24px;
+      }
+      .product-section {
+        padding: 24px 18px;
+        gap: 24px;
+      }
+      .modal-content {
+        padding: 24px 18px;
+      }
     }
