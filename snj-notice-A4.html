@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>에스앤제이 동물병원 공식 안내판 - 용인 전문 진료센터 & 365일 스마트 수의 포털</title>
+  <title>에스앤제이 동물병원 공식 안내판 - 24시 스마트 수의 포털 & 용인 특화 진료센터</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Outfit:wght@700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #132e47;
-      --primary-dark: #0a1b2b;
+      --primary: #0f2b48;
+      --primary-dark: #091a2c;
+      --primary-light: #1e3e60;
       --secondary: #0d9488;
+      --secondary-dark: #0f766e;
+      --secondary-light: #14b8a6;
       --accent: #0284c7;
       --highlight: #f59e0b;
-      --bg-cream: #f8fafc;
+      --bg-light: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #475569;
+      --text-sub: #64748b;
       --border-color: #cbd5e1;
+      --border-light: #e2e8f0;
     }
 
     * {
@@ -37,21 +42,22 @@
       align-items: center;
       min-height: 100vh;
       padding: 24px;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* 상단 웹 제어 바 (웹 브라우저 단독 열람 시만 표시) */
     .web-control-bar {
       width: 100%;
       max-width: 800px;
-      background: linear-gradient(135deg, #132e47 0%, #0d9488 100%);
+      background: linear-gradient(135deg, #0f2b48 0%, #0d9488 100%);
       color: #ffffff;
       border-radius: 14px;
-      padding: 14px 22px;
-      margin-bottom: 20px;
+      padding: 12px 20px;
+      margin-bottom: 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 10px 25px -5px rgba(19, 46, 71, 0.4);
+      box-shadow: 0 10px 25px -5px rgba(15, 43, 72, 0.35);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
@@ -62,7 +68,7 @@
     }
 
     .web-control-bar .title-box h1 {
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       font-weight: 850;
       letter-spacing: -0.5px;
     }
@@ -70,7 +76,7 @@
     .web-control-bar .title-box .badge {
       background: #f59e0b;
       color: #0f172a;
-      font-size: 0.72rem;
+      font-size: 0.70rem;
       font-weight: 900;
       padding: 2px 8px;
       border-radius: 4px;
@@ -83,10 +89,10 @@
     }
 
     .btn {
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-radius: 8px;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s;
@@ -98,7 +104,7 @@
 
     .btn-print {
       background: #ffffff;
-      color: #132e47;
+      color: var(--primary);
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
     .btn-print:hover {
@@ -106,23 +112,22 @@
       transform: translateY(-1px);
     }
 
-    /* A4 실제 인쇄 시트 (210mm x 297mm 정밀 비율: 800px x 1131px) */
-    /* A4 실제 인쇄 시트 (210mm x 297mm 정밀 비율: 800px x 1131px) */
+    /* A4 실제 인쇄 시트 (210mm x 297mm 정밀 규격 대응: 800px x 1131px) */
     .a4-sheet {
       width: 800px;
       height: 1131px;
       max-width: 800px;
       max-height: 1131px;
       background: #ffffff;
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.16);
       border-radius: 12px;
       position: relative;
       overflow: hidden;
-      padding: 24px 30px 22px;
+      padding: 24px 28px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 16px;
+      gap: 13px;
       border-top: 8px solid var(--primary);
       border-bottom: 8px solid var(--secondary);
     }
@@ -132,8 +137,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 12px;
+      border-bottom: 2px solid #edf2f7;
+      padding-bottom: 11px;
     }
 
     .hospital-brand {
@@ -143,23 +148,24 @@
     }
 
     .hospital-brand img {
-      height: 48px;
+      height: 46px;
       width: auto;
       object-fit: contain;
     }
 
     .hospital-text .name-en {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.70rem;
       font-weight: 800;
       color: var(--secondary);
       letter-spacing: 0.8px;
       text-transform: uppercase;
       display: block;
+      margin-bottom: 1px;
     }
 
     .hospital-text .name-ko {
-      font-size: 1.35rem;
+      font-size: 1.34rem;
       font-weight: 900;
       color: var(--primary);
       letter-spacing: -0.8px;
@@ -168,34 +174,59 @@
 
     .header-right {
       text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
     }
 
-    .header-right .badge-loc {
+    .header-badges {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .badge-loc {
       background: #e0f2fe;
       color: #0369a1;
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 800;
-      padding: 3px 10px;
-      border-radius: 6px;
+      padding: 2.5px 8px;
+      border-radius: 5px;
       border: 1px solid #bae6fd;
-      display: inline-block;
-      margin-bottom: 3px;
+    }
+
+    .badge-24h {
+      background: #ecfdf5;
+      color: #059669;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 2.5px 8px;
+      border-radius: 5px;
+      border: 1px solid #a7f3d0;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
     }
 
     .header-right .contact-num {
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       font-weight: 850;
       color: var(--primary);
       letter-spacing: -0.3px;
     }
 
-    /* 2. 히어로 배너: 온라인 포털 개설 안내 */
+    .header-right .contact-num strong {
+      color: #0d9488;
+    }
+
+    /* 2. 히어로 배너: 24시 온라인 포털 개설 안내 */
     .hero-banner {
-      background: linear-gradient(135deg, #0f273d 0%, #132e47 60%, #0d9488 100%);
-      border-radius: 14px;
-      padding: 18px 22px;
+      background: linear-gradient(135deg, #091a2c 0%, #0f2b48 55%, #0d9488 100%);
+      border-radius: 13px;
+      padding: 16px 22px 17px;
       color: #ffffff;
-      box-shadow: 0 8px 20px rgba(19, 46, 71, 0.25);
+      box-shadow: 0 8px 20px rgba(15, 43, 72, 0.22);
       position: relative;
     }
 
@@ -204,55 +235,63 @@
       align-items: center;
       gap: 6px;
       background: #f59e0b;
-      color: #0f172a;
-      font-size: 0.78rem;
+      color: #091a2c;
+      font-size: 0.76rem;
       font-weight: 900;
-      padding: 3px 11px;
+      padding: 3px 10px;
       border-radius: 999px;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
       letter-spacing: -0.3px;
     }
 
     .hero-headline {
-      font-size: 1.50rem;
+      font-size: 1.44rem;
       font-weight: 900;
-      line-height: 1.32;
+      line-height: 1.33;
       letter-spacing: -0.8px;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
     }
 
     .hero-headline span.highlight {
-      color: #6ee7b7;
+      color: #5eead4;
       text-decoration: underline;
       text-underline-offset: 4px;
     }
 
     .hero-subdesc {
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       color: #cbd5e1;
       line-height: 1.5;
       font-weight: 500;
+    }
+
+    .hero-subdesc strong {
+      color: #ffffff;
+      font-weight: 700;
     }
 
     /* 3. 핵심 포털 4대 활용 가이드 & 서비스 */
     .features-section {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 11px;
     }
 
     .feature-card {
       background: #ffffff;
       border: 1.5px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 13px 16px;
+      border-radius: 11px;
+      padding: 12px 15px;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     .feature-card.card-accent {
       border-color: #0d9488;
-      background: #f0fdfa;
+      background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%);
     }
 
     .card-head {
@@ -262,29 +301,33 @@
       margin-bottom: 7px;
     }
 
-    .card-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
-      background: #e0f2fe;
-      color: #0369a1;
+    .card-num-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: #0f2b48;
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.0rem;
+      font-size: 0.78rem;
+      font-weight: 900;
+      font-family: 'Outfit', sans-serif;
       flex-shrink: 0;
     }
 
-    .card-accent .card-icon {
-      background: #ccfbf1;
-      color: #0f766e;
+    .card-accent .card-num-badge {
+      background: #0d9488;
     }
 
     .card-head h3 {
-      font-size: 0.96rem;
+      font-size: 0.93rem;
       font-weight: 850;
       color: var(--primary);
       letter-spacing: -0.4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .feature-card ul {
@@ -292,35 +335,42 @@
       padding-left: 0;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 4.5px;
     }
 
     .feature-card li {
-      font-size: 0.79rem;
+      font-size: 0.77rem;
       color: #334155;
-      line-height: 1.4;
+      line-height: 1.38;
       display: flex;
       align-items: flex-start;
       gap: 6px;
+    }
+
+    .feature-card li strong {
+      color: #0f172a;
+      font-weight: 800;
     }
 
     .feature-card li::before {
       content: '✓';
       color: #0d9488;
       font-weight: 900;
+      font-size: 0.82rem;
       flex-shrink: 0;
+      line-height: 1.35;
     }
 
     /* 4. 핵심 비치 품목 & 현장 원스톱 */
     .products-strip {
-      background: #f1f5f9;
-      border-radius: 12px;
-      padding: 12px 16px;
+      background: #f8fafc;
+      border-radius: 11px;
+      padding: 11px 15px;
       border: 1px solid #cbd5e1;
     }
 
     .strip-title {
-      font-size: 0.82rem;
+      font-size: 0.80rem;
       font-weight: 900;
       color: var(--primary);
       margin-bottom: 8px;
@@ -334,7 +384,7 @@
       font-weight: 800;
       background: #ffffff;
       color: #0d9488;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
       border: 1px solid #99f6e4;
     }
@@ -352,32 +402,52 @@
       border: 1px solid #e2e8f0;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
 
     .p-item img {
-      width: 36px;
-      height: 48px;
+      width: 34px;
+      height: 46px;
       object-fit: contain;
       flex-shrink: 0;
+    }
+
+    .p-icon-box {
+      width: 34px;
+      height: 46px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      border: 1px solid #e2e8f0;
     }
 
     .p-item-info {
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 1.5px;
+      min-width: 0;
     }
 
     .p-item-info strong {
-      font-size: 0.82rem;
+      font-size: 0.81rem;
       color: #0f172a;
       letter-spacing: -0.3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .p-item-info span {
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       color: #64748b;
       line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .p-item-tag {
@@ -388,67 +458,84 @@
       padding: 1px 5px;
       border-radius: 3px;
       width: fit-content;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     /* 5. QR 접속 및 병원 이용 가이드 (하단 CTA 블록) */
     .portal-access-box {
       background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
       border: 2px solid #0d9488;
-      border-radius: 14px;
-      padding: 12px 18px;
+      border-radius: 13px;
+      padding: 11px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.12);
+      gap: 14px;
+      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.10);
     }
 
     .access-left {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .access-left .tag-open {
-      font-size: 0.72rem;
+      font-size: 0.70rem;
       font-weight: 900;
       background: #0d9488;
       color: #ffffff;
-      padding: 2px 9px;
+      padding: 2px 8px;
       border-radius: 4px;
       width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .access-left h3 {
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       font-weight: 900;
       color: var(--primary);
       letter-spacing: -0.5px;
     }
 
     .access-left p {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: #334155;
-      line-height: 1.4;
+      line-height: 1.38;
       font-weight: 600;
     }
 
     .access-steps {
       display: flex;
-      gap: 6px;
-      margin-top: 4px;
+      align-items: center;
+      gap: 5px;
+      margin-top: 3px;
     }
 
     .step-pill {
-      font-size: 0.70rem;
+      font-size: 0.69rem;
       font-weight: 750;
       background: #ffffff;
       border: 1px solid #cbd5e1;
-      padding: 3px 8px;
-      border-radius: 6px;
+      padding: 2.5px 7px;
+      border-radius: 5px;
       color: #1e293b;
+      white-space: nowrap;
+    }
+
+    .step-arrow {
+      color: #0d9488;
+      font-weight: 900;
+      font-size: 0.72rem;
+    }
+
+    .step-pill.active {
+      background: #0d9488;
+      color: #ffffff;
+      border-color: #0d9488;
     }
 
     .access-right-qr {
@@ -456,7 +543,7 @@
       flex-direction: column;
       align-items: center;
       background: #ffffff;
-      padding: 8px 10px;
+      padding: 7px 9px;
       border-radius: 10px;
       border: 1.5px solid #0d9488;
       box-shadow: 0 2px 6px rgba(0,0,0,0.06);
@@ -465,51 +552,76 @@
     }
 
     .access-right-qr img {
-      width: 82px;
-      height: 82px;
+      width: 78px;
+      height: 78px;
       object-fit: contain;
     }
 
     .access-right-qr span {
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       font-weight: 850;
       color: #0f172a;
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
-    /* 6. 최하단 위치 및 연락처 풋바 (깔끔한 한글 줄맞춤 & 여백) */
+    /* 6. 최하단 위치 및 연락처 풋바 (오른쪽 잘림 방지 2단 정렬 & 정밀 법적 고지) */
     .footer-bar {
       border-top: 1px solid #cbd5e1;
-      padding-top: 10px;
+      padding-top: 9px;
       padding-bottom: 2px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      align-items: center;
-      font-size: 0.76rem;
-      color: #64748b;
-      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
       line-height: 1.35;
     }
 
-    .footer-bar .footer-left {
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .footer-row-top {
+      color: #334155;
+      font-size: 0.75rem;
+    }
+
+    .footer-row-bottom {
+      color: #64748b;
+      font-size: 0.71rem;
+    }
+
+    .footer-meta-group {
       display: flex;
       align-items: center;
       gap: 6px;
-      white-space: nowrap;
+      flex-wrap: wrap;
     }
 
-    .footer-bar .footer-right {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      text-align: right;
-    }
-
-    .footer-bar strong {
+    .footer-meta-group strong {
       color: var(--primary);
       font-weight: 800;
+    }
+
+    .footer-divider {
+      color: #cbd5e1;
+      font-weight: 300;
+      user-select: none;
+    }
+
+    .footer-director-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: #f1f5f9;
+      color: #0f2b48;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      border: 1px solid #e2e8f0;
     }
 
     /* iframe 내장 모드 및 인쇄 전용 제어 */
@@ -554,8 +666,8 @@
         max-width: 210mm !important;
         max-height: 297mm !important;
         margin: 0 !important;
-        padding: 14mm 16mm 12mm !important;
-        gap: 12px !important;
+        padding: 12mm 15mm 10mm !important;
+        gap: 10px !important;
         box-shadow: none !important;
         border: none !important;
         border-top: 8px solid var(--primary) !important;
@@ -575,6 +687,7 @@
       .portal-access-box,
       .access-right-qr,
       .badge-loc,
+      .badge-24h,
       .hero-badge-tag {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
@@ -599,6 +712,11 @@
       .product-cards-row {
         grid-template-columns: 1fr;
       }
+      .footer-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
     }
   </style>
 </head>
@@ -607,16 +725,16 @@
   <!-- 웹 제어 바 (단독 브라우저 탭 열람 시 표시) -->
   <div class="web-control-bar">
     <div class="title-box">
-      <div class="badge">A4 알림판 인쇄용</div>
-      <h1 id="ctrl-title">에스앤제이 동물병원 포털 공식 안내판</h1>
+      <div class="badge">A4 공식 알림판 · 포스터 규격</div>
+      <h1 id="ctrl-title">에스앤제이 동물병원 24시 스마트 포털 공식 안내판</h1>
     </div>
     <div class="btn-group">
-      <a href="./partner.html" class="btn" style="background:#0d9488; color:#fff;" target="_blank">🌐 모바일 포털(파트너 전용) 열기</a>
+      <a href="./partner.html" class="btn" style="background:#0d9488; color:#fff;" target="_blank">🌐 모바일 포털(파트너 전용)</a>
       <button onclick="window.print()" class="btn btn-print">🖨️ A4 용지 인쇄하기</button>
     </div>
   </div>
 
-  <!-- A4 실제 출력 시트 (210mm x 297mm 대응 800x1131px) -->
+  <!-- A4 실제 출력 시트 (210mm x 297mm 정밀 비율 800x1131px) -->
   <div class="a4-sheet">
 
     <!-- 1. 상단 병원 헤더 -->
@@ -629,19 +747,22 @@
         </div>
       </div>
       <div class="header-right">
-        <div class="badge-loc">용인 신생아·소화기 특화 진료센터</div>
-        <div class="contact-num" id="dyn-tel">📞 상담/사전주문: 010-5407-5708</div>
+        <div class="header-badges">
+          <div class="badge-loc">용인 신생아·소화기 특화 진료센터</div>
+          <div class="badge-24h">⚡ 365일 24시 온라인 접수</div>
+        </div>
+        <div class="contact-num" id="dyn-tel">📞 상담/사전주문: <strong>010-5407-5708</strong></div>
       </div>
     </header>
 
     <!-- 2. 히어로 배너: 온라인 포털 개설 안내 -->
     <section class="hero-banner">
       <div class="hero-badge-tag">
-        📢 전문 브리더·펫샵 파트너 대표님을 위한 특별 안내
+        📢 전문 브리더 · 펫샵 파트너 대표님을 위한 24시 모바일 수의 서비스
       </div>
       <h2 class="hero-headline">
         물리적 대기 시간과 거리의 한계를 넘어<br />
-        <span class="highlight">365일 에스앤제이 스마트 동물병원 포털</span>이 열렸습니다!
+        <span class="highlight">365일 24시 에스앤제이 스마트 동물병원 포털</span>이 열렸습니다!
       </h2>
       <p class="hero-subdesc">
         바쁜 현장 일정 중 번거롭던 <strong>필수 의약품·진단키트 구매와 질병 상담</strong>을<br />
@@ -649,58 +770,62 @@
       </p>
     </section>
 
-    <!-- 4. 에스앤제이 온라인 포털 4대 핵심 기능 -->
+    <!-- 3. 에스앤제이 온라인 포털 4대 핵심 기능 -->
     <section class="features-section">
+      <!-- 01 사전 발주 -->
       <div class="feature-card card-accent">
         <div class="card-head">
-          <div class="card-icon">📦</div>
-          <h3>1 수요일 현장 수령 '사전 발주'</h3>
+          <div class="card-num-badge">01</div>
+          <h3>수요일 현장 수령 '사전 발주'</h3>
         </div>
         <ul>
-          <li><strong>파보겔</strong> 정기 공급분 사전 수량 100% 확보</li>
-          <li>파보·코로나·브루셀라 진단키트 도매 박스 사전 신청</li>
-          <li>구충제, 항생제, 소염진통제, 점안액, 연고 등 수의사 처방약 사전 준비</li>
+          <li><strong>파보겔</strong> 정기 공급분 사전 수량 100% 확보 보장</li>
+          <li>파보·코로나·브루셀라 신속 진단키트 박스 단위 사전 신청</li>
+          <li>구충제, 항생제, 소염진통제, 안과/피부약 등 수의사 처방약 사전 조제</li>
         </ul>
       </div>
 
+      <!-- 02 AI 사전 문진 -->
       <div class="feature-card">
         <div class="card-head">
-          <div class="card-icon">🚦</div>
-          <h3>2 실시간 AI 사전 문진 &amp; 트리아지(Triage)</h3>
+          <div class="card-num-badge">02</div>
+          <h3>실시간 AI 사전 문진 &amp; 트리아지 (Triage)</h3>
         </div>
         <ul>
-          <li>자견 구토, 점액변, 기침 증상 입력 시 <strong>위험도 판정 (Green~Red)</strong></li>
-          <li>신생아 탈수 예방 및 금식/수액 공급 수의사 행동 지침 안내</li>
-          <li>증상 요약표가 자동 작성되어 카톡 전송 및 인쇄 가능</li>
+          <li>자견 구토, 점액변, 기침 증상 입력 시 <strong>위험도 자동 판정 (Green~Red)</strong></li>
+          <li>신생아 탈수 예방 및 금식/수액 공급 등 수의사 응급 행동 지침 안내</li>
+          <li>증상 요약 보고서가 자동 작성되어 카카오톡 전송 및 내원 시 진료 연계</li>
         </ul>
       </div>
 
+      <!-- 03 정밀 투약 계산기 -->
       <div class="feature-card">
         <div class="card-head">
-          <div class="card-icon">⚖️</div>
-          <h3>3 자견 체중별 파보겔 정밀 투약 계산기</h3>
+          <div class="card-num-badge">03</div>
+          <h3>자견 체중별 파보겔 정밀 투약 계산기</h3>
         </div>
         <ul>
           <li>0.3kg ~ 3kg 초소형 자견별 <strong>정확한 1회 권장 용량(ml) 자동 계산</strong></li>
-          <li>과다 투약 염려 없이 안전한 정장·지사 관리 가이드라인 제시</li>
-          <li>동물병원 내방 전 가정 및 샵 내 초기 응급 프로토콜 탑재</li>
+          <li>과다 투약 염려 없이 안전한 정장·지사 관리 체계적 가이드라인 제시</li>
+          <li>동물병원 내방 전 견사 및 샵 현장에서 즉각 대처 가능한 초기 프로토콜</li>
         </ul>
       </div>
 
+      <!-- 04 맞춤형 B2B 파트너십 -->
       <div class="feature-card">
         <div class="card-head">
-          <div class="card-icon">🤝</div>
-          <h3>4 번식농장·펫샵 맞춤형 B2B 케어 파트너십</h3>
+          <div class="card-num-badge">04</div>
+          <h3>번식농장 · 켄넬 · 펫샵 맞춤형 B2B 케어</h3>
         </div>
         <ul>
-          <li>분양 후 15일 이내 발생하는 자견 소화기 질환 전문 자문</li>
-          <li>켄넬 및 샵 단체 방역 상담 &amp; 동물용 의료약품 정기 공급</li>
-          <li>전문 진료실 대면 진료 및 비대면 상담 병행 운영</li>
+          <li>분양 후 15일 이내 발생하는 자견 소화기 감염성 질환 전문 수의 자문</li>
+          <li>켄넬 및 샵 단체 방역 상담 &amp; 동물용 전문 의약품 정기 공급 제휴</li>
+          <li>전문 진료실 대면 진료 및 비대면 사전 상담의 유기적 병행 시스템</li>
         </ul>
       </div>
     </section>
 
-    <!-- 5. 현장 연계 핵심 상비 품목 -->
+    <!-- 4. 현장 연계 핵심 상비 품목 -->
     <section class="products-strip">
       <div class="strip-title">
         <span>💊 에스앤제이 동물병원 현장 상비 및 사전 예약 품목</span>
@@ -710,64 +835,83 @@
         <div class="p-item">
           <img src="./parvogel-bottle-crop.png" alt="파보겔 보틀" />
           <div class="p-item-info">
-            <strong>파보겔</strong>
+            <strong>파보겔 (구 몬스멕타)</strong>
             <span>나노 몬모릴로나이트 + 바실러스</span>
             <span class="p-item-tag">파트너 호평 상비품</span>
           </div>
         </div>
 
         <div class="p-item">
-          <div style="font-size:24px; line-height:1; width:32px; text-align:center;">🔬</div>
+          <div class="p-icon-box">🔬</div>
           <div class="p-item-info">
-            <strong>진단키트 (10분 판정)</strong>
+            <strong>신속 진단키트 (10분 판정)</strong>
             <span>파보 · 코로나(단독/콤보) · <b>브루셀라</b></span>
             <span class="p-item-tag" style="background:#eff6ff; color:#1d4ed8;">번식농장·펫샵 필수</span>
           </div>
         </div>
 
         <div class="p-item">
-          <div style="font-size:24px; line-height:1; width:32px; text-align:center;">🏥</div>
+          <div class="p-icon-box">🏥</div>
           <div class="p-item-info">
             <strong>동물병원 처방 전문약</strong>
-            <span>구충제·항생제·소염진통제·점안액·연고 등</span>
+            <span>구충제·항생제·소염진통제·점안/연고 등</span>
             <span class="p-item-tag" style="background:#fef2f2; color:#b91c1c;">사전주문 후 내원수령</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. QR코드 스캔 및 스마트폰 접속 가이드 -->
+    <!-- 5. QR코드 스캔 및 스마트폰 접속 가이드 -->
     <section class="portal-access-box">
       <div class="access-left">
-        <span class="tag-open">스마트폰으로 바로 이용하기</span>
+        <div style="display:flex; align-items:center; gap:7px;">
+          <span class="tag-open">📱 스마트폰으로 24시간 바로 이용하기</span>
+          <span style="font-size:0.74rem; font-weight:900; color:#0f2b48; background:#ffffff; padding:2px 8px; border-radius:4px; border:1px solid #a7f3d0; font-family:'Outfit', sans-serif; letter-spacing:0.3px;">🌐 snj-vet.com</span>
+        </div>
         <h3>오른쪽 QR코드를 카메라로 스캔하세요!</h3>
-        <p>별도 앱 설치 없이 스마트폰 기본 카메라로 비추면 에스앤제이 모바일 포털로 즉시 연결됩니다.</p>
+        <p>별도 앱 설치 없이 스마트폰 카메라로 비추거나, 웹 브라우저 주소창에 <strong>snj-vet.com</strong>을 입력하세요.</p>
         <div class="access-steps">
           <span class="step-pill">1. 카메라 켜기</span>
+          <span class="step-arrow">→</span>
           <span class="step-pill">2. QR 비추기</span>
+          <span class="step-arrow">→</span>
           <span class="step-pill">3. 노란 링크 터치</span>
-          <span class="step-pill" style="background:#0d9488; color:#fff; border-color:#0d9488;">4. 사전주문 &amp; 문진</span>
+          <span class="step-arrow">→</span>
+          <span class="step-pill active">4. 사전주문 &amp; AI 문진</span>
         </div>
       </div>
       <div class="access-right-qr">
         <img src="./snj_qr_branded.png" alt="에스앤제이 온라인병원 QR코드" />
+        <span style="font-family:'Outfit', sans-serif; font-size:0.72rem; color:#0d9488; font-weight:900; margin-top:2px;">snj-vet.com</span>
         <span>에스앤제이 포털 접속</span>
       </div>
     </section>
 
-    <!-- 6. 최하단 위치 및 인허가/연락처 풋바 -->
+    <!-- 6. 최하단 위치 및 인허가/연락처 풋바 (오른쪽 잘림 방지 2단 구조 & 정밀 법적 고지) -->
     <footer class="footer-bar">
-      <div class="footer-left">
-        <strong>에스앤제이 동물병원</strong>
-        <span>|</span>
-        <span id="dyn-addr">경기도 용인시 처인구 포곡읍 선장1로 98-8</span>
-        <span>|</span>
-        <span style="color:#64748b; font-size:0.70rem;">사업자등록: <strong>792-66-00615</strong> (개설신고 제2025-0002호)</span>
+      <!-- 1행: 병원 공식 인허가 및 원장 정보 -->
+      <div class="footer-row footer-row-top">
+        <div class="footer-meta-group">
+          <strong>에스앤제이 동물병원</strong>
+          <span class="footer-divider">|</span>
+          <span class="footer-director-badge">대표원장: <strong>홍순일 수의사</strong> (면허 제5374호)</span>
+          <span class="footer-divider">|</span>
+          <span>사업자등록번호: <strong>792-66-00615</strong></span>
+          <span class="footer-divider">|</span>
+          <span>개설신고: <strong>제2025-0002호</strong></span>
+        </div>
       </div>
-      <div class="footer-right">
-        <strong>원장 홍순일 수의사</strong>
-        <span>|</span>
-        <span id="dyn-bottom-tel">031-321-6562 · 010-5407-5708</span>
+      <!-- 2행: 주소 및 연락처 / 포털 운영 안내 -->
+      <div class="footer-row footer-row-bottom">
+        <div class="footer-meta-group">
+          <span>📍 <span id="dyn-addr">경기도 용인시 처인구 포곡읍 선장1로 98-8</span></span>
+          <span class="footer-divider">|</span>
+          <span>☎ 유선전화: <strong id="dyn-bottom-tel">031-321-6562</strong></span>
+          <span class="footer-divider">|</span>
+          <span>📱 긴급/사전예약: <strong>010-5407-5708</strong></span>
+          <span class="footer-divider">|</span>
+          <span style="color:#0d9488; font-weight:700;">🕒 온라인 포털: 24시간 365일 연중무휴 접수</span>
+        </div>
       </div>
     </footer>
 
@@ -778,10 +922,12 @@
     // 1. hospital-config.js 기본값 자동 주입
     if (typeof HOSPITAL_CONFIG !== 'undefined') {
       if (document.getElementById('dyn-name')) document.getElementById('dyn-name').innerText = HOSPITAL_CONFIG.hospitalNameKo;
-      if (document.getElementById('dyn-tel')) document.getElementById('dyn-tel').innerText = '📞 상담/사전주문: ' + HOSPITAL_CONFIG.hotline;
+      if (document.getElementById('dyn-tel')) {
+        document.getElementById('dyn-tel').innerHTML = '📞 상담/사전주문: <strong>' + HOSPITAL_CONFIG.hotline + '</strong>';
+      }
       if (document.getElementById('dyn-addr')) document.getElementById('dyn-addr').innerText = HOSPITAL_CONFIG.address;
-      if (document.getElementById('dyn-bottom-tel')) document.getElementById('dyn-bottom-tel').innerText = `${HOSPITAL_CONFIG.phone} · ${HOSPITAL_CONFIG.hotline}`;
-      if (document.getElementById('ctrl-title')) document.getElementById('ctrl-title').innerText = `${HOSPITAL_CONFIG.hospitalNameKo} 공식 안내판`;
+      if (document.getElementById('dyn-bottom-tel')) document.getElementById('dyn-bottom-tel').innerText = HOSPITAL_CONFIG.phone;
+      if (document.getElementById('ctrl-title')) document.getElementById('ctrl-title').innerText = `${HOSPITAL_CONFIG.hospitalNameKo} 24시 스마트 포털 공식 안내판`;
     }
 
     // 2. iframe 내장 모드 감지 (모달 미리보기 창에서 여백 제거 및 제어바 숨김)
@@ -796,7 +942,7 @@
 
       if (data.type === 'UPDATE_POSTER') {
         if (data.name) document.getElementById('dyn-name').innerText = data.name;
-        if (data.vetTel) document.getElementById('dyn-tel').innerText = '📞 상담/사전주문: ' + data.vetTel;
+        if (data.vetTel) document.getElementById('dyn-tel').innerHTML = '📞 상담/사전주문: <strong>' + data.vetTel + '</strong>';
         if (data.address) document.getElementById('dyn-addr').innerText = data.address;
         if (data.tel) document.getElementById('dyn-bottom-tel').innerText = data.tel;
       } else if (data.type === 'PRINT_POSTER') {

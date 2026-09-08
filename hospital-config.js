@@ -25,7 +25,7 @@ const HOSPITAL_CONFIG = {
   // 2. 브랜딩 & 로고 이미지
   logoImage: "./sj_logo.png",
   qrImage: "./snj_qr_branded.png",
-  portalUrl: "https://hongsoonil02-maker.github.io/snj-animal-hospital/",
+  portalUrl: "https://snj-vet.com",
   // 주문 전송 엔드포인트 (선택): Google Apps Script / Formspree / Cloudflare Worker URL 입력 시 자동 POST
   // 예: "https://script.google.com/macros/s/XXXX/exec"  빈 문자열이면 로컬 저장+클립보드+SNS 공유만 수행
   orderEndpoint: "",

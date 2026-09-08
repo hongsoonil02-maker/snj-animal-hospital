@@ -19,4 +19,4 @@ User-agent: Google-Extended
 Disallow: /partner.html
 
 Allow: /
-Sitemap: https://hongsoonil02-maker.github.io/snj-animal-hospital/sitemap.xml
+Sitemap: https://snj-vet.com/sitemap.xml
