@@ -81,26 +81,32 @@ function openOrderModal() { openModal('orderModal'); }
 
 function handlePreOrderSubmit(e) {
   e.preventDefault();
-  const comp = document.getElementById('orderCompany').value.trim();
-  const phone = document.getElementById('orderPhone').value.trim();
-  const memo = document.getElementById('orderMemo').value.trim();
+  const compEl=document.getElementById('orderCompany'), phoneEl=document.getElementById('orderPhone'), memoEl=document.getElementById('orderMemo');
+  const comp=compEl?compEl.value.trim():''; const phone=phoneEl?phoneEl.value.trim():''; const memo=memoEl?memoEl.value.trim():'';
   if (!comp || !phone) { alert('상호명과 연락처를 입력해주세요.'); return; }
-  let items = [];
-  if (document.getElementById('itemParvogel').checked) items.push(`파보겔 ${document.getElementById('qtyParvogel').value}개`);
-  if (document.getElementById('itemParvoKit').checked) items.push(`파보키트 ${document.getElementById('qtyParvoKit').value}박스`);
-  if (document.getElementById('itemCoronaKit').checked) items.push(`코로나(단독)키트 ${document.getElementById('qtyCoronaKit').value}박스`);
-  if (document.getElementById('itemComboKit').checked) items.push(`파보+코로나콤보 ${document.getElementById('qtyComboKit').value}박스`);
-  if (document.getElementById('itemBrucellaKit').checked) items.push(`브루셀라키트 ${document.getElementById('qtyBrucellaKit').value}박스`);
-  if (document.getElementById('itemRxMeds').checked) items.push(`수의사 처방약 사전조제`);
+  const phonePat=/^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$/; if(!phonePat.test(phone.replace(/\s/g,''))){ if(!confirm('연락처 형식이 올바르지 않을 수 있습니다. 그대로 접수할까요?\n입력값: '+phone)) return; }
+  let items=[];
+  if(document.getElementById('itemParvogel')&&document.getElementById('itemParvogel').checked) items.push(`파보겔 ${document.getElementById('qtyParvogel').value}개`);
+  if(document.getElementById('itemParvoKit')&&document.getElementById('itemParvoKit').checked) items.push(`파보키트 ${document.getElementById('qtyParvoKit').value}박스`);
+  if(document.getElementById('itemCoronaKit')&&document.getElementById('itemCoronaKit').checked) items.push(`코로나키트 ${document.getElementById('qtyCoronaKit').value}박스`);
+  if(document.getElementById('itemComboKit')&&document.getElementById('itemComboKit').checked) items.push(`파보+코로나콤보 ${document.getElementById('qtyComboKit').value}박스`);
+  if(document.getElementById('itemBrucellaKit')&&document.getElementById('itemBrucellaKit').checked) items.push(`브루셀라키트 ${document.getElementById('qtyBrucellaKit').value}박스`);
+  if(document.getElementById('itemRxMeds')&&document.getElementById('itemRxMeds').checked) items.push(`수의사 처방약 사전조제`);
   if (items.length === 0) { alert('주문할 품목을 1개 이상 선택해주세요.'); return; }
   const orderText = `[에스앤제이 수요일 현장수령 사전발주]\n· 상호명: ${comp}\n· 연락처: ${phone}\n· 신청품목: ${items.join(', ')}\n· 메모: ${memo}\n· 접수시간: ${new Date().toLocaleString('ko-KR')}`;
-  try { const hist = JSON.parse(localStorage.getItem('snj_orders')||'[]'); hist.push({comp, phone, items: items.join(', '), memo, at: new Date().toISOString()}); localStorage.setItem('snj_orders', JSON.stringify(hist.slice(-20))); } catch(err){}
-  navigator.clipboard.writeText(orderText).catch(()=>{});
-  try { const ep=(window.HOSPITAL_CONFIG&&window.HOSPITAL_CONFIG.orderEndpoint)||''; if(ep) fetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({comp,phone,items,memo,orderText})}).catch(()=>{}); } catch(err){}
+  try { const hist=JSON.parse(localStorage.getItem('snj_orders')||'[]'); hist.push({comp, phone, items:items.join(', '), memo, at:new Date().toISOString(), orderText}); localStorage.setItem('snj_orders', JSON.stringify(hist.slice(-20))); } catch(err){}
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(orderText).catch(()=>{});
+  const endpoint=(window.HOSPITAL_CONFIG&&window.HOSPITAL_CONFIG.orderEndpoint)||'';
+  let p=Promise.resolve('local');
+  if(endpoint) p=fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({comp, phone, items, memo, orderText})}).then(r=>r.ok?'server-ok':'server-fail').catch(()=>'server-fail');
   closeModal('orderModal');
-  const goCall = confirm(`사전 발주 내용이 클립보드에 복사되었습니다.\n\n${orderText}\n\n[확인] 전화 연결(031-321-6562), [취소] 문자 전송`);
-  if (goCall) location.href='tel:031-321-6562'; else { location.href=`sms:010-5407-5708?body=${encodeURIComponent(orderText)}`; setTimeout(()=>alert('문자 앱이 열리지 않으면 복사된 내용을 붙여넣어 전송해주세요. (010-5407-5708)'),1500); }
-  if (navigator.share) navigator.share({title:'에스앤제이 사전발주', text: orderText}).catch(()=>{});
+  p.then(status=>{
+    // 간단 폴백: partner 페이지는 성공 모달 없으므로 alert + 선택형
+    const badge = status==='server-ok'?'✅ 서버 전송 완료': status==='server-fail'?'⚠️ 서버 실패·로컬 저장됨':'📋 로컬 저장 + 복사 완료';
+    const msg = `${badge}\n\n${orderText}\n\n전화(031-321-6562) 또는 문자(010-5407-5708)로 전송해 주세요.`;
+    if(confirm(msg + '\n\n[확인] 전화 연결  [취소] 문자 전송')) location.href='tel:031-321-6562';
+    else location.href='sms:010-5407-5708?body='+encodeURIComponent(orderText);
+  });
 }
 
 window.onclick = function(e) {

@@ -4,21 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>에스앤제이 동물병원 | Dr S&J Animal Hospital - 스마트 수의 포털 & 사전 문진</title>
-  <meta name="description" content="에스앤제이 동물병원 용인 전문 진료센터. 반려동물 스마트 사전 문진(보조 분류), 신생아·소화기 집중 치료, 몬스멕타 전문 처방 동물병원." />
-  <link rel="canonical" href="https://hongsoonil02-maker.github.io/snj-animal-hospital/" />
+  <meta name="description" content="에스앤제이 동물병원 용인 봄봄솔루션 전문 진료센터. 반려동물 스마트 사전 문진(보조 분류), 신생아·소화기 집중 치료, 몬스멕타·파보겔 전문 처방 동물병원. 수요일 현장 진료 & 365일 온라인 상담 031-321-6562" />
+  <meta name="keywords" content="에스앤제이 동물병원, 용인 동물병원, 포곡 동물병원, 봄봄솔루션, 파보겔, 몬스멕타, 강아지 장염, 파보, 코로나 진단키트" />
+  <meta name="author" content="에스앤제이 동물병원" />
+  <meta name="theme-color" content="#132e47" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://snj-vet.com/" />
   <link rel="icon" type="image/png" href="./sj_logo.png" />
-  <!-- Open Graph / Twitter -->
+  <link rel="apple-touch-icon" href="./sj_logo.png" />
+  <!-- Open Graph / Twitter : QR(CTR 저하) → 1200x630 전용 OG 이미지로 교체 -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:title" content="에스앤제이 동물병원 | 용인 신생아·소화기 특화 & 스마트 문진 포털" />
   <meta property="og:description" content="검색으로 불안해지기 전에 수의사 기준 행동 가이드를 확인하세요. 4단계 트리아지, 파보겔 계산기, 진료실 한 장 요약서 제공." />
   <meta property="og:url" content="https://snj-vet.com/" />
-  <meta property="og:image" content="https://snj-vet.com/snj_qr_branded.png" />
+  <meta property="og:image" content="https://snj-vet.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="에스앤제이 동물병원 로고 - Dr. S&J Animal Hospital 용인 전문 진료센터" />
+  <meta property="og:image:type" content="image/png" />
   <meta property="og:site_name" content="에스앤제이 동물병원" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="에스앤제이 동물병원 | 스마트 문진 포털" />
   <meta name="twitter:description" content="용인 봄봄솔루션 내 전문 진료센터. 365일 온라인 사전 문진 & 수요일 현장 진료." />
-  <meta name="twitter:image" content="https://snj-vet.com/snj_qr_branded.png" />
+  <meta name="twitter:image" content="https://snj-vet.com/og-image.png" />
+  <meta name="twitter:image:alt" content="에스앤제이 동물병원 로고" />
   <meta name="format-detection" content="telephone=no" />
   <!-- JSON-LD LocalBusiness + VeterinaryCare -->
   <script type="application/ld+json">
@@ -29,23 +39,30 @@
     "alternateName": "Dr. S&J Animal Hospital",
     "url": "https://snj-vet.com/",
     "logo": "https://snj-vet.com/sj_logo.png",
-    "image": "https://snj-vet.com/snj_qr_branded.png",
+    "image": "https://snj-vet.com/og-image.png",
     "telephone": "+82-31-321-6562",
-    "address": { "@type": "PostalAddress", "streetAddress": "선장1로 98-8 포곡읍 처인구", "addressLocality": "용인시", "addressRegion": "경기도", "addressCountry": "KR" },
+    "email": "snj-vet@snj-vet.com",
+    "description": "용인 봄봄솔루션 내 신생아·소화기 특화 동물병원. 매주 수요일 현장 진료 집중 운영, 365일 온라인 사전 문진·파보겔/몬스멕타 처방·진단키트 공급.",
+    "address": { "@type": "PostalAddress", "streetAddress": "선장1로 98-8 포곡읍 처인구", "addressLocality": "용인시", "addressRegion": "경기도", "postalCode": "17080", "addressCountry": "KR" },
     "geo": { "@type": "GeoCoordinates", "latitude": 37.267, "longitude": 127.224 },
     "openingHoursSpecification": [
-      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:30","closes":"19:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:30","closes":"19:00", "description": "현장 대면 진료는 수요일 집중 운영, 평일 온라인/유선 365일 상담"},
       {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:30","closes":"16:00"}
     ],
     "priceRange": "$$",
-    "founder": { "@type":"Person", "name":"홍순일", "jobTitle":"수의사 면허 제5374호" }
+    "founder": { "@type":"Person", "name":"홍순일", "jobTitle":"수의사 면허 제5374호" },
+    "availableService": [
+      {"@type":"Service","name":"스마트 사전 문진 4단계 트리아지"},
+      {"@type":"Service","name":"파보겔/몬스멕타 소화기 처방"},
+      {"@type":"Service","name":"파보·코로나·브루셀라 진단키트 판독 상담"}
+    ]
   }
   </script>
   
-  <!-- 웹폰트: 프리미엄 Noto Sans KR -->
+  <!-- 웹폰트: Noto Sans KR (경량화: 400/700/800만 로드) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="./style.css" />
 </head>
@@ -148,7 +165,8 @@
         <label for="symptomText" style="display:block; font-size: 14px; font-weight: 700; color: var(--primary-800); margin-bottom: 8px;">
           반려견의 현재 증상을 입력해 주세요:
         </label>
-        <textarea id="symptomText" class="triage-input-box" placeholder="예: 생후 2개월 말티즈가 새벽부터 노란 물토를 2번 하고 밥을 전혀 안 먹어요. 설사도 조금 묽게 봅니다."></textarea>
+        <textarea id="symptomText" class="triage-input-box" placeholder="예: 생후 2개월 말티즈가 새벽부터 노란 물토를 2번 하고 밥을 전혀 안 먹어요. 설사도 조금 묽게 봅니다." maxlength="500" aria-describedby="triageHelp" rows="4"></textarea>
+        <div id="triageHelp" style="font-size:11px; color:#64748b; margin-top:6px;">500자 이내 · Enter(⌘+Enter)로 빠르게 판정 · 개인정보 미입력 권장</div>
 
         <div class="quick-chips-area" role="group" aria-label="증상 빠른 선택">
           <button type="button" class="quick-chip" onclick="applyChip('새벽에 노란 거품토를 2회 하고 식욕이 떨어졌어요.')">🤮 노란 구토 2회</button>
@@ -216,7 +234,7 @@
               📞 에스앤제이 핫라인 연결
             </a>
           </div>
-          <p style="font-size:11px; color:#94a3b8; margin-top:10px; line-height:1.5;">※ 본 결과는 키워드 기반 보조 분류이며 의학적 진단을 대체하지 않습니다. 심각한 응급 증상 시 즉시 내원하세요.</p>
+          <p style="font-size:11px; color:#94a3b8; margin-top:10px; line-height:1.5; background:#f8fafc; border:1px solid #e2e8f0; padding:8px 10px; border-radius:6px;">※ 본 결과는 키워드 기반 <strong>보조 분류</strong>이며 수의사 대면 진료를 대체하지 않습니다. 호흡곤란·경련·혈변·의식저하 등 응급 시 즉시 24시 응급실로 내원하세요. <a href="tel:031-321-6562" style="color:#0d9488; text-decoration:underline; font-weight:700;">031-321-6562</a></p>
         </div>
       </div>
     </div>
@@ -278,19 +296,20 @@
     </div>
   </section>
 
-  <!-- B2B 파트너십 섹션: 봄봄솔루션 경매장 100여 개 파트너사를 위한 수의 공급망 -->
+  <!-- B2B 파트너십 섹션: 봄봄솔루션 경매장 협력 네트워크를 위한 수의 공급망 -->
   <section class="b2b-hub-section" id="b2b-hub">
     <div class="b2b-hub-container">
       <div class="b2b-badge">
         <span>🤝</span> B2B PARTNERSHIP PROGRAM
       </div>
       <h2 class="b2b-hub-title">
-        봄봄솔루션 경매장 100여 개 파트너사를 위한<br />
+        봄봄솔루션 경매장 협력 네트워크를 위한<br />
         <span style="color:#6ee7b7;">365일 상시 수의 지원 &amp; 정기 의약품 공급망</span>
       </h2>
       <p class="b2b-hub-desc">
         매주 수요일 경매 당일에만 머무르지 않고, 번식농장과 펫샵 대표님들의 소중한 자견 건강과 전염병 관리를 위해 온라인 사전 발주와 수의 임상 지원을 365일 실시간 연계합니다.
       </p>
+      <p style="font-size:11px; color:#94a3b8; margin-top:-28px; margin-bottom:32px; letter-spacing:-0.2px;">* 협력 네트워크 규모는 경매장 운영 현황에 따라 변동될 수 있으며, 특정 수치를 보장하지 않습니다.</p>
 
       <!-- 2단 카드: 번식농장 원스톱 케어 & 펫샵 대표 전용 안심 분양 패키지 -->
       <div class="b2b-cards-grid">
@@ -357,7 +376,7 @@
 
           <!-- 파보겔 고화질 실물 쇼케이스 카드 -->
           <div class="parvogel-visual-card">
-            <img src="./parvogel_product.png" alt="파보겔 50ml 시린지 펌프형 정품" class="parvogel-showcase-img" />
+            <img src="./parvogel_product.png" alt="파보겔 50ml 시린지 펌프형 정품 - 초미세 나노 몬모릴로나이트 겔" class="parvogel-showcase-img" width="105" height="120" loading="lazy" decoding="async" />
             <div class="parvogel-badges-wrap">
               <span class="parvogel-hologram-tag">🛡️ 초미세 나노 몬모릴로나이트 정품</span>
               <strong style="font-size:15px; color:#0f2b48;">파보겔 50ml 대용량 겔</strong>
@@ -568,12 +587,12 @@
   <footer>
     <div class="footer-container">
       <div class="footer-brand">
-        <h4>에스앤제이 동물병원 (Dr S & J Animal Hospital)</h4>
+          <h4>에스앤제이 동물병원 (Dr S & J Animal Hospital)</h4>
         <p style="line-height: 1.7; color: #94a3b8; font-size: 13.5px;">
           대표자(원장): 홍순일 (수의사 면허 제5374호) | 진료수의사: 성하정 (수의사 면허 제5398호)<br />
-          사업자등록번호: <strong>792-66-00615</strong> | 동물병원 개설신고: <strong>제 5620000-010-2025-0002 호</strong><br />
-          사업장 소재지: 경기도 용인시 처인구 포곡읍 선장1로 98-8<br />
-          대표전화: 031-321-6562 | 긴급/상담: 010-5407-5708<br />
+          사업자등록번호: <strong>792-66-00615</strong> | 동물병원 개설신고: <strong>제 5620000-010-2025-0002 호 (용인시 처인구청)</strong><br />
+          사업장 소재지: 경기도 용인시 처인구 포곡읍 선장1로 98-8 (봄봄솔루션 경매장 내)<br />
+          대표전화: <a href="tel:031-321-6562" style="color:#e2e8f0; text-decoration:underline;">031-321-6562</a> | 긴급/상담: <a href="tel:010-5407-5708" style="color:#e2e8f0; text-decoration:underline;">010-5407-5708</a><br />
           공식 공급원: 몬스멕타(Monsmecta) 소화기 임상 공식 공급원 및 연구 협력망
         </p>
         <p class="footer-disclaimer">
@@ -883,6 +902,29 @@
     </div>
   </div>
 
+  <!-- 모달: 발주 접수 성공 (로컬+서버 폴백 확인) -->
+  <div id="orderSuccessModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="orderSuccessTitle">
+    <div class="modal-content" style="max-width: 560px;">
+      <button class="modal-close" onclick="closeModal('orderSuccessModal')" aria-label="발주 성공 모달 닫기">&times;</button>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+        <span style="font-size:26px;" aria-hidden="true">✅</span>
+        <h3 id="orderSuccessTitle" style="font-size:19px; font-weight:800; color:var(--primary-900);">사전 발주 접수 완료</h3>
+        <span id="orderSuccessBadge" style="font-size:11px; background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:999px; font-weight:800; margin-left:auto;">📋 로컬 저장 완료</span>
+      </div>
+      <p style="font-size:13px; color:#475569; margin-bottom:10px;">아래 내용이 클립보드에 복사되었습니다. 전화/문자 중 편한 방법으로 전송해 주시면 수요일 픽업이 확정됩니다. <span style="color:#64748b; font-size:12px;">(서버 미연결 시에도 정상 접수 — 로컬 저장됨)</span></p>
+      <pre id="orderSuccessText" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; font-size:12.5px; line-height:1.6; white-space:pre-wrap; word-break:keep-all; color:#0f172a; max-height:220px; overflow:auto;"></pre>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px;">
+        <a href="tel:031-321-6562" class="btn-primary" style="justify-content:center; padding:12px;">📞 전화로 전송 (031-321-6562)</a>
+        <a id="orderSmsLink" href="sms:010-5407-5708" class="btn-call" style="justify-content:center; padding:12px; background:#fff;" onclick="event.preventDefault(); const t=document.getElementById('orderSuccessText').textContent; location.href='sms:010-5407-5708?body='+encodeURIComponent(t);">💬 문자로 전송</a>
+      </div>
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <button class="btn-call" style="flex:1; justify-content:center; padding:10px;" onclick="shareOrderText()">📤 공유/복사</button>
+        <button class="btn-primary" style="flex:1; justify-content:center; padding:10px; background:#0f172a;" onclick="closeModal('orderSuccessModal')">확인</button>
+      </div>
+      <p style="font-size:11px; color:#94a3b8; margin-top:10px; text-align:center;">서버 연동 가이드: <code>hospital-config.js orderEndpoint</code> + <code>order-endpoint-example.gs</code> 참고</p>
+    </div>
+  </div>
+
   <!-- 모달: 개인정보처리방침 -->
   <div id="privacyModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
     <div class="modal-content" style="max-width: 680px; max-height: 85vh; overflow-y: auto;">
@@ -949,7 +991,14 @@
       </button>
     </div>
   </div>
-  <script src="./hospital-config.js"></script>
-  <script src="./app.js"></script>
+  <!-- 모바일 하단 고정 액션 바 (접근성·반응형 UX 핵심) -->
+  <nav class="mobile-bottom-bar" aria-label="빠른 실행">
+    <a href="tel:031-321-6562" class="btn-m-bar" style="background:#0f172a; color:#fff; border-radius:8px;" aria-label="전화 031-321-6562">📞 전화</a>
+    <button type="button" class="btn-m-bar" style="background:linear-gradient(135deg,#0d9488,#10b981); color:#fff; border-radius:8px;" onclick="focusTriageInput()" aria-label="스마트 문진 바로가기">🧠 문진</button>
+    <button type="button" class="btn-m-bar" style="background:#fff; color:#0f172a; border:1px solid #cbd5e1; border-radius:8px;" onclick="openOrderModal()" aria-label="수요일 픽업 사전 발주">📦 발주</button>
+  </nav>
+
+  <script src="./hospital-config.js" defer></script>
+  <script src="./app.js" defer></script>
 </body>
 </html>

@@ -26,8 +26,12 @@ const HOSPITAL_CONFIG = {
   logoImage: "./sj_logo.png",
   qrImage: "./snj_qr_branded.png",
   portalUrl: "https://snj-vet.com",
-  // 주문 전송 엔드포인트 (선택): Google Apps Script / Formspree / Cloudflare Worker URL 입력 시 자동 POST
-  // 예: "https://script.google.com/macros/s/XXXX/exec"  빈 문자열이면 로컬 저장+클립보드+SNS 공유만 수행
+  ogImage: "./og-image.png", // 1200x630 SNS 미리보기 전용 (216KB 최적화)
+  // 주문 전송 엔드포인트 (선택): 비워두면 로컬 저장 + 클립보드 + 전화/문자 폴백으로 완전 동작
+  // 설정 시: Google Apps Script / Formspree / Cloudflare Worker URL 입력 → 자동 POST + 성공 토스트
+  // 예: "https://script.google.com/macros/s/AKfyc.../exec"
+  // 가이드: https://github.com/hongsoonil02-maker/snj-animal-hospital#order-endpoint-설정
+  // Google Apps Script 예제 코드는 ./order-endpoint-example.gs 참고
   orderEndpoint: "",
 
   // 3. 연락처 및 진료 시간

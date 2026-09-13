@@ -207,72 +207,82 @@ function syncChartPreview() {
   }
 }
 
-    // 2-2. 수요일 현장 수령 사전 발주 처리 함수 (백엔드 연동: localStorage + 클립보드 + Web Share + 선택적 fetch)
+    // 2-2. 수요일 현장 수령 사전 발주 — 안정형 폴백 (localStorage + 클립보드 + 선택적 fetch + 성공 모달)
     function handlePreOrderSubmit(e) {
       e.preventDefault();
       const compEl = document.getElementById('orderCompany');
       const phoneEl = document.getElementById('orderPhone');
       const memoEl = document.getElementById('orderMemo');
-      const comp = compEl.value.trim();
-      const phone = phoneEl.value.trim();
-      const memo = memoEl.value.trim();
-      if (!comp || !phone) {
-        alert('상호명과 연락처를 입력해주세요.');
-        return;
-      }
+      const comp = compEl ? compEl.value.trim() : '';
+      const phone = phoneEl ? phoneEl.value.trim() : '';
+      const memo = memoEl ? memoEl.value.trim() : '';
+      if (!comp || !phone) { alert('상호명과 연락처를 입력해주세요.'); return; }
       const phonePat = /^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$/;
       if (!phonePat.test(phone.replace(/\s/g,''))) {
         if (!confirm('연락처 형식이 올바르지 않을 수 있습니다. 그대로 접수할까요?\n입력값: ' + phone)) return;
       }
-      
       let items = [];
-      if (document.getElementById('itemParvogel').checked) items.push(`파보겔 ${document.getElementById('qtyParvogel').value}개`);
-      if (document.getElementById('itemParvoKit').checked) items.push(`파보키트 ${document.getElementById('qtyParvoKit').value}박스`);
-      if (document.getElementById('itemCoronaKit').checked) items.push(`코로나키트 ${document.getElementById('qtyCoronaKit').value}박스`);
-      if (document.getElementById('itemComboKit').checked) items.push(`파보+코로나콤보 ${document.getElementById('qtyComboKit').value}박스`);
-      if (document.getElementById('itemBrucellaKit').checked) items.push(`브루셀라키트 ${document.getElementById('qtyBrucellaKit').value}박스`);
-      if (document.getElementById('itemRxMeds').checked) items.push(`원내 처방약(몬스멕타·소화기점막보호제·호흡기)`);
-      if (items.length === 0) {
-        alert('주문할 품목을 1개 이상 선택해주세요.');
-        return;
-      }
+      const checks = [
+        ['itemParvogel','qtyParvogel','파보겔 ','개'],
+        ['itemParvoKit','qtyParvoKit','파보키트 ','박스'],
+        ['itemCoronaKit','qtyCoronaKit','코로나키트 ','박스'],
+        ['itemComboKit','qtyComboKit','파보+코로나콤보 ','박스'],
+        ['itemBrucellaKit','qtyBrucellaKit','브루셀라키트 ','박스'],
+      ];
+      checks.forEach(([chkId, qtyId, pre, suf])=>{
+        const chk=document.getElementById(chkId); const qty=document.getElementById(qtyId);
+        if(chk && chk.checked) items.push(pre + (qty?qty.value:'1') + suf);
+      });
+      if (document.getElementById('itemRxMeds') && document.getElementById('itemRxMeds').checked) items.push('원내 처방약(몬스멕타·소화기점막보호제·호흡기)');
+      if (items.length === 0) { alert('주문할 품목을 1개 이상 선택해주세요.'); return; }
 
       const orderText = `[에스앤제이 수요일 현장수령 사전발주]\n· 상호명: ${comp}\n· 연락처: ${phone}\n· 신청품목: ${items.join(', ')}\n· 메모: ${memo}\n· 접수시간: ${new Date().toLocaleString('ko-KR')}`;
-      // 1) 로컬 저장 (주문 이력)
+      // 1) 로컬 저장 (최근 20건)
       try {
         const hist = JSON.parse(localStorage.getItem('snj_orders') || '[]');
         hist.push({ comp, phone, items: items.join(', '), memo, at: new Date().toISOString(), orderText });
         localStorage.setItem('snj_orders', JSON.stringify(hist.slice(-20)));
       } catch(err) {}
-      // 2) 클립보드 복사
-      navigator.clipboard.writeText(orderText).catch(()=>{});
-      // 3) 선택적 서버 전송 (hospital-config에 orderEndpoint 설정 시)
-      try {
-        const endpoint = (window.HOSPITAL_CONFIG && window.HOSPITAL_CONFIG.orderEndpoint) || '';
-        if (endpoint) {
-          fetch(endpoint, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ comp, phone, items, memo, orderText }) }).catch(()=>{});
-        }
-      } catch(err) {}
-      // 4) 사용자 피드백 - 복사 완료 + 전화/문자 액션 제공
+      // 2) 클립보드 복사 (실패해도 진행)
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(orderText).catch(()=>{});
+      // 3) 선택적 서버 전송
+      const endpoint = (window.HOSPITAL_CONFIG && window.HOSPITAL_CONFIG.orderEndpoint) || '';
+      let endpointPromise = Promise.resolve('local');
+      if (endpoint) {
+        endpointPromise = fetch(endpoint, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ comp, phone, items, memo, orderText }) })
+          .then(r=> r.ok ? 'server-ok' : 'server-fail').catch(()=> 'server-fail');
+      }
+      // 4) 성공 모달 표시 (전화/문자/공유 선택은 사용자 주도)
       closeModal('orderModal');
-      const goCall = confirm(`사전 발주 내용이 클립보드에 복사되었습니다.\n\n${orderText}\n\n[확인]을 누르면 병원(031-321-6562)으로 전화 연결합니다.\n[취소]를 누르면 문자 전송 화면으로 이동합니다.`);
-      if (goCall) {
-        location.href = 'tel:031-321-6562';
-      } else {
-        // SMS intent (안드로이드/iOS 호환)
-        const smsBody = encodeURIComponent(orderText);
-        location.href = `sms:010-5407-5708?body=${smsBody}`;
-        // Fallback: 1.5초 후 안내
-        setTimeout(()=> alert('문자 앱이 열리지 않으면, 복사된 내용을 카카오톡/문자로 붙여넣어 전송해주세요.\n병원: 010-5407-5708'), 1500);
+      endpointPromise.then(status=>{
+        showOrderSuccess(orderText, status);
+        if (navigator.share && status==='local') {
+          // Web Share는 사용자 액션 내에서만 안정적 → 성공 모달의 공유 버튼으로 유도, 자동 호출 제거
+        }
+      });
+    }
+    function showOrderSuccess(orderText, serverStatus){
+      const modal = document.getElementById('orderSuccessModal');
+      const pre = document.getElementById('orderSuccessText');
+      const badge = document.getElementById('orderSuccessBadge');
+      if(pre) pre.textContent = orderText;
+      if(badge){
+        if(serverStatus==='server-ok'){ badge.textContent='✅ 서버 전송 완료'; badge.style.background='#dcfce7'; badge.style.color='#15803d'; }
+        else if(serverStatus==='server-fail'){ badge.textContent='⚠️ 서버 전송 실패 · 로컬 저장됨'; badge.style.background='#fee2e2'; badge.style.color='#b91c1c'; }
+        else { badge.textContent='📋 로컬 저장 + 클립보드 복사 완료'; badge.style.background='#e0f2fe'; badge.style.color='#0369a1'; }
       }
-      // 추가: Web Share API 지원 시 공유 시트 제공 (비차단)
-      if (navigator.share) {
-        navigator.share({ title: '에스앤제이 사전발주', text: orderText }).catch(()=>{});
-      }
+      if(modal) openModal('orderSuccessModal');
+    }
+    function shareOrderText(){
+      const t = document.getElementById('orderSuccessText');
+      const txt = t ? t.textContent : '';
+      if(navigator.share) navigator.share({title:'에스앤제이 사전발주', text: txt}).catch(()=>{});
+      else if(navigator.clipboard) { navigator.clipboard.writeText(txt).then(()=> alert('클립보드에 복사되었습니다.')).catch(()=>{}); }
     }
 
-    // 3. 모달 제어 (접근성: 포커스 트랩 및 Escape 키 지원)
-    function openModal(modalId) {
+     function openOrderModal() { openModal('orderModal'); }
+     // 3. 모달 제어 (접근성: 포커스 트랩 및 Escape 키 지원)
+     function openModal(modalId) {
       const modal = document.getElementById(modalId);
       modal.style.display = 'flex';
       // 모달 내 첫 번째 포커스 가능 요소로 포커스 이동
@@ -329,11 +339,17 @@ function syncChartPreview() {
       document.body.style.overflow = '';
       btn.focus();
     }
-    // 햄버거 버튼 이벤트 바인딩 (DOMContentLoaded 후)
-    document.addEventListener('DOMContentLoaded', function() {
-      const btn = document.getElementById('mobileMenuBtn');
-      if (btn) btn.addEventListener('click', toggleMobileMenu);
-      // 모바일 nav 링크에서 포커스 아웃 시 자동 닫기 (선택)
+     // 증상 입력창: Ctrl/Cmd+Enter로 빠른 판정
+     document.addEventListener('DOMContentLoaded', function() {
+       const symptomEl = document.getElementById('symptomText');
+       if (symptomEl) {
+         symptomEl.addEventListener('keydown', function(e) {
+           if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); runSmartTriage(); }
+         });
+       }
+       const btn = document.getElementById('mobileMenuBtn');
+       if (btn) btn.addEventListener('click', toggleMobileMenu);
+       // 모바일 nav 링크에서 포커스 아웃 시 자동 닫기 (선택)
       document.addEventListener('click', function(e) {
         const nav = document.getElementById('mobileNav');
         const btnEl = document.getElementById('mobileMenuBtn');
