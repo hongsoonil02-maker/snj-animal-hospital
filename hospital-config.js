@@ -5,9 +5,10 @@
  * 이 파일 하나만 수정하면 웹사이트 전체(상호, 수의사, 진료과목, 연락처, 주소)와
  * 원내 비치용 A4 알림판/QR코드가 1초 만에 해당 동물병원 맞춤형으로 자동 완성됩니다.
  * 
- * [공급 정책]
+ * [현장 특화 정책] 에스앤제이는 봄봄솔루션 경매장 내 샵인샵 특성상
+ * 브리더·펫샵 상비 1순위인 파보겔(Parvogel) 단일 공급 체계로 운영
  * - 일반 동물병원 공식 세팅비: 50만 원
- * - 몬스멕타 공식 공급원 에스앤제이 제휴 동물병원: 25만 원 (50% 특별 지원)
+ * - 파보겔 공식 공급처 에스앤제이 제휴 동물병원: 25만 원 (50% 특별 지원)
  */
 
 const HOSPITAL_CONFIG = {
@@ -45,23 +46,25 @@ const HOSPITAL_CONFIG = {
     closed: "일요일 및 공휴일 휴진 (온라인 스마트 문진 24시간 연중무휴)"
   },
 
-  // 4. 몬스멕타 공식 공급원 인증
-  monsmectaPartnership: {
+  // 4. 파보겔 공식 공급처 인증 — 현장 샵인샵 특화 (브리더·펫샵 상비 1순위)
+  parvogelPartnership: {
     isDistributor: true,
-    partnerTier: "MONSMECTA OFFICIAL DISTRIBUTOR CLINIC",
-    partnerBadgeText: "몬스멕타 공식 공급원 에스앤제이 동물병원",
+    partnerTier: "PARVOGEL OFFICIAL SUPPLY CENTER",
+    partnerBadgeText: "파보겔(Parvogel) 공식 공급처 · 에스앤제이 동물병원",
     prescribedMeds: [
-      "몬스멕타 (수의사 처방 장 점막 보호제)",
+      "파보겔(Parvogel) 50ml 대용량 겔 (초미세 나노 몬모릴로나이트)",
       "진단키트 (파보·코로나·브루셀라)",
       "원내 처방약 (구충제, 항생제, 소염진통제, 점안액, 연고)"
     ]
   },
+  // 하위 호환: 기존 코드가 참조하던 monsmectaPartnership 별칭 유지
+  get monsmectaPartnership() { return this.parvogelPartnership; },
 
   // 5. 비즈니스 세팅 정보 (전국 동물병원 공급용)
   builderInfo: {
     engine: "VetLink AI Smart Hospital Engine v1.0",
     regularPrice: "500,000원",
-    partnerPrice: "250,000원 (몬스멕타 제휴 50% DC)",
+    partnerPrice: "250,000원 (파보겔 공급처 제휴 50% DC)",
     inquiryTel: "031-321-6562 / 010-5407-5708",
     poweredBy: "에스앤제이 동물병원 디지털 헬스케어 사업부"
   }

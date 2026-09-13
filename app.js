@@ -78,8 +78,8 @@ function runSmartTriage() {
       pill.className = 'triage-status-pill status-orange';
       pill.innerHTML = '<span>🟠 ORANGE : 오늘 중 동물병원 방문 권고</span>';
       headTitle = '급성 장염 또는 바이러스성 소화기 감염증 의심';
-      actionDesc = '· <strong>임상 조치:</strong> 자견의 경우 2~3회 설사만으로도 급속한 전해질 불균형과 탈수가 발생합니다. 물을 미온수로 조금씩 축여주시고 원내로 내원하십시오.<br />· <strong>권장 처방:</strong> <strong>파보겔</strong> 또는 <strong>몬스멕타</strong> 장 점막 도포제 및 지사제 처방, 파보·코로나 진단키트 검사가 권장됩니다.';
-      pillsHtml = '<span class="t-pill t-pill-kit">🔬 CPV/CCV 신속진단키트</span><span class="t-pill t-pill-med">💊 파보겔/몬스멕타 장점막 도포</span><span class="t-pill t-pill-care">💧 미온수 소량 축이기</span>';
+      actionDesc = '· <strong>임상 조치:</strong> 자견의 경우 2~3회 설사만으로도 급속한 전해질 불균형과 탈수가 발생합니다. 물을 미온수로 조금씩 축여주시고 원내로 내원하십시오.<br />· <strong>권장 처방:</strong> <strong>파보겔(Parvogel)</strong> 장 점막 흡착·코팅 겔 처방 및 파보·코로나 진단키트 검사가 권장됩니다.';
+      pillsHtml = '<span class="t-pill t-pill-kit">🔬 CPV/CCV 신속진단키트</span><span class="t-pill t-pill-med">💊 파보겔 장점막 흡착·코팅</span><span class="t-pill t-pill-care">💧 미온수 소량 축이기</span>';
     } 
     // (3) 호흡기 및 감기 증상 (ORANGE/YELLOW) : 켄넬코프, 기침, 콧물
     else if (t.includes('기침') || t.includes('켁켁') || t.includes('가래') || t.includes('콧물') || t.includes('재채기') || t.includes('눈곱')) {
@@ -233,7 +233,7 @@ function syncChartPreview() {
         const chk=document.getElementById(chkId); const qty=document.getElementById(qtyId);
         if(chk && chk.checked) items.push(pre + (qty?qty.value:'1') + suf);
       });
-      if (document.getElementById('itemRxMeds') && document.getElementById('itemRxMeds').checked) items.push('원내 처방약(몬스멕타·소화기점막보호제·호흡기)');
+      if (document.getElementById('itemRxMeds') && document.getElementById('itemRxMeds').checked) items.push('원내 처방약(파보겔 외 소화기·호흡기)');
       if (items.length === 0) { alert('주문할 품목을 1개 이상 선택해주세요.'); return; }
 
       const orderText = `[에스앤제이 수요일 현장수령 사전발주]\n· 상호명: ${comp}\n· 연락처: ${phone}\n· 신청품목: ${items.join(', ')}\n· 메모: ${memo}\n· 접수시간: ${new Date().toLocaleString('ko-KR')}`;
