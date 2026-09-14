@@ -52,7 +52,7 @@ const HOSPITAL_CONFIG = {
     partnerTier: "PARVOGEL OFFICIAL SUPPLY CENTER",
     partnerBadgeText: "파보겔(Parvogel) 공식 공급처 · 에스앤제이 동물병원",
     prescribedMeds: [
-      "파보겔(Parvogel) 50ml 대용량 겔 (초미세 나노 몬모릴로나이트)",
+      "파보겔(Parvogel) 500ml 대용량 겔 (초미세 나노 몬모릴로나이트)",
       "진단키트 (파보·코로나·브루셀라)",
       "원내 처방약 (구충제, 항생제, 소염진통제, 점안액, 연고)"
     ]
