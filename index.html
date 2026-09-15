@@ -118,6 +118,50 @@
     </nav>
   </header>
 
+  <!-- 공식 인허가 및 수의사 면허 실명 보증 바 (Trust Authority Bar) -->
+  <aside class="authority-bar" aria-label="병원 공식 인허가 정보">
+    <div class="authority-container">
+      <div class="authority-item">
+        <div class="authority-icon" aria-hidden="true">🏛️</div>
+        <div>
+          <span>용인시 처인구청 정식 인허가</span><br />
+          <strong>개설신고확인증 제 5620000-010-2025-0002 호</strong>
+        </div>
+      </div>
+      <div class="authority-item">
+        <div class="authority-icon" aria-hidden="true">🩺</div>
+        <div>
+          <span>대표 수의사 임상 진료</span><br />
+          <strong>홍순일 원장(면허 제5374호) · 성하정 수의사(제5398호)</strong>
+        </div>
+      </div>
+      <div class="authority-item">
+        <div class="authority-icon" aria-hidden="true">🏬</div>
+        <div>
+          <span>용인 봄봄솔루션 경매장 샵인샵</span><br />
+          <strong>매주 수요일 현장 진료실 &amp; 365일 비대면 문진</strong>
+        </div>
+      </div>
+      <div class="authority-item">
+        <div class="authority-icon" aria-hidden="true">🛡️</div>
+        <div>
+          <span>파보겔(Parvogel) 공식 공급처</span><br />
+          <strong>초미세 나노 몬모릴로나이트 500ml 정품 공급</strong>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 이중 타겟 퀵 스위처 (일반 보호자 vs 경매장 파트너) -->
+  <div class="dual-nav-switcher" role="tablist" aria-label="이용 대상자 선택">
+    <button type="button" class="dual-tab-btn active" id="tabB2C" onclick="switchAudienceMode('b2c')" role="tab" aria-selected="true">
+      <span>🐾</span> 일반 보호자: 24시 스마트 사전 문진
+    </button>
+    <button type="button" class="dual-tab-btn" id="tabB2B" onclick="switchAudienceMode('b2b')" role="tab" aria-selected="false">
+      <span>🏬</span> 경매장 파트너: 수요일 현장 픽업 &amp; B2B
+    </button>
+  </div>
+
   <main id="main-content">
   <!-- 히어로 섹션 -->
   <section class="hero-section">
@@ -139,7 +183,7 @@
         <div class="hero-features-strip">
           <div class="hero-feature-item"><span>🚦</span> 4단계 응급도 판정 (Green ~ Red)</div>
           <div class="hero-feature-item"><span>🔬</span> 파보·코로나·브루셀라 진단키트 전문 상담</div>
-          <div class="hero-feature-item"><span>💊</span> 경매장 현장 1순위 <strong>파보겔(Parvogel)</strong> 상비·공급</div>
+          <div class="hero-feature-item"><span>💊</span> 경매장 현장 1순위 <strong>파보겔(Parvogel) 500ml</strong> 상비·공급</div>
         </div>
 
         <div class="hero-cta-group">
@@ -152,21 +196,63 @@
         </div>
       </div>
 
-      <!-- 인터랙티브 스마트 사전 문진 데모 위젯 (VETAZE형 AI 트리아지 2.0) -->
+      <!-- 인터랙티브 스마트 사전 문진 데모 위젯 (VETAZE형 AI 트리아지 3.0) -->
       <div class="hero-interactive-card" id="triage">
         <div class="card-header-badge">
           <div class="badge-live-pulse">
             <span class="pulse-dot"></span>
             <span>24시 스마트 수의 AI 트리아지 가동 중</span>
           </div>
-          <span style="font-size: 11px; color: #0d9488; font-weight: 700;">임상 데이터베이스 v2.4</span>
+          <span style="font-size: 11px; color: #0d9488; font-weight: 700;">임상 데이터베이스 v3.0</span>
         </div>
 
-        <label for="symptomText" style="display:block; font-size: 14px; font-weight: 700; color: var(--primary-800); margin-bottom: 8px;">
-          반려견의 현재 증상을 입력해 주세요:
+        <!-- VETAZE 3.0 원터치 4단계 스텝 셀렉터 (터치 즉시 게이지 연동) -->
+        <div class="triage-steps-card">
+          <div class="step-header">
+            <span class="step-title"><span>🧬</span> 30초 원터치 퀵 체크 (터치 즉시 판정)</span>
+            <span style="font-size:10.5px; color:#64748b;">4개 항목 선택 시 자동 분석</span>
+          </div>
+          
+          <!-- 스텝 1: 월령 -->
+          <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;">1. 자견 월령 (생후)</div>
+          <div class="step-selector-row" id="stepAgeRow">
+            <button type="button" class="step-btn selected" onclick="selectTriageStep('age', 'puppy', this)">~2개월 (신생/고위험)</button>
+            <button type="button" class="step-btn" onclick="selectTriageStep('age', 'junior', this)">3~5개월 (면역형성)</button>
+            <button type="button" class="step-btn" onclick="selectTriageStep('age', 'adult', this)">6개월 이상 (자견/성견)</button>
+          </div>
+
+          <!-- 스텝 2: 배변 상태 -->
+          <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;">2. 배변 상태</div>
+          <div class="step-selector-row" id="stepStoolRow">
+            <button type="button" class="step-btn" onclick="selectTriageStep('stool', 'normal', this)">정상변</button>
+            <button type="button" class="step-btn selected" onclick="selectTriageStep('stool', 'soft', this)">묽은변 (연변)</button>
+            <button type="button" class="step-btn" onclick="selectTriageStep('stool', 'diarrhea', this)">점액·물설사</button>
+            <button type="button" class="step-btn" onclick="selectTriageStep('stool', 'bloody', this)">🚨 혈변(비린내)</button>
+          </div>
+
+          <!-- 스텝 3: 구토 양상 -->
+          <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;">3. 구토 횟수 및 양상</div>
+          <div class="step-selector-row" id="stepVomitRow">
+            <button type="button" class="step-btn" onclick="selectTriageStep('vomit', 'none', this)">구토 없음</button>
+            <button type="button" class="step-btn selected" onclick="selectTriageStep('vomit', 'yellow1', this)">1회 노란토</button>
+            <button type="button" class="step-btn" onclick="selectTriageStep('vomit', 'repeat', this)">2회 이상 반복</button>
+            <button type="button" class="step-btn" onclick="selectTriageStep('vomit', 'foam_blood', this)">🚨 거품/혈성 구토</button>
+          </div>
+
+          <!-- 스텝 4: 전신 활력 -->
+          <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;">4. 전신 활력도</div>
+          <div class="step-selector-row" id="stepVitalRow">
+            <button type="button" class="step-btn selected" onclick="selectTriageStep('vital', 'normal', this)">평소와 비슷함</button>
+            <button type="button" class="step-btn" onclick="selectTriageStep('vital', 'lethargic', this)">기운 없고 밥 안 먹음</button>
+            <button type="button" class="step-btn" onclick="selectTriageStep('vital', 'collapse', this)">🚨 축 처짐 / 저체온</button>
+          </div>
+        </div>
+
+        <label for="symptomText" style="display:block; font-size: 13.5px; font-weight: 700; color: var(--primary-800); margin-bottom: 6px;">
+          자세한 증상 추가 입력 (자유 서술):
         </label>
-        <textarea id="symptomText" class="triage-input-box" placeholder="예: 생후 2개월 말티즈가 새벽부터 노란 물토를 2번 하고 밥을 전혀 안 먹어요. 설사도 조금 묽게 봅니다." maxlength="500" aria-describedby="triageHelp" rows="4"></textarea>
-        <div id="triageHelp" style="font-size:11px; color:#64748b; margin-top:6px;">500자 이내 · Enter(⌘+Enter)로 빠르게 판정 · 개인정보 미입력 권장</div>
+        <textarea id="symptomText" class="triage-input-box" placeholder="예: 생후 2개월 말티즈가 새벽부터 노란 물토를 2번 하고 밥을 전혀 안 먹어요. 설사도 조금 묽게 봅니다." maxlength="500" aria-describedby="triageHelp" rows="3"></textarea>
+        <div id="triageHelp" style="font-size:11px; color:#64748b; margin-top:4px;">500자 이내 · Enter(⌘+Enter)로 빠르게 판정 · 개인정보 미입력 권장</div>
 
         <div class="quick-chips-area" role="group" aria-label="증상 빠른 선택">
           <button type="button" class="quick-chip" onclick="applyChip('새벽에 노란 거품토를 2회 하고 식욕이 떨어졌어요.')">🤮 노란 구토 2회</button>
@@ -360,8 +446,64 @@
         </div>
       </div>
 
+      <!-- [ORCA B2B FAST PRESET] 수요일 경매장 현장 픽업 추천 패키지 3종 -->
+      <div style="margin-top: 28px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:12px;">
+          <div>
+            <h3 style="font-size:18px; font-weight:800; color:#ffffff;">📦 수요일 경매 픽업 베스트 패키지 (원클릭 자동 담기)</h3>
+            <p style="font-size:12.5px; color:#94a3b8; margin:2px 0 0 0;">바쁜 경매일 현장 대기 없이 바로 픽업할 수 있도록 가장 많이 찾는 조합으로 구성했습니다.</p>
+          </div>
+          <span style="font-size:11px; background:rgba(16,185,129,0.2); color:#6ee7b7; padding:3px 8px; border-radius:4px; font-weight:700;">대기시간 0초</span>
+        </div>
+
+        <div class="b2b-package-presets">
+          <!-- 패키지 A -->
+          <div class="package-preset-card" onclick="selectPresetPackage('packageA')">
+            <div>
+              <div style="font-size:11px; color:#0d9488; font-weight:800;">PACK A · 분양 초기 안심</div>
+              <div class="pkg-title">신생 자견 입고 안심 팩</div>
+              <div class="pkg-items">
+                · <strong>파보겔 500ml</strong> 2개<br />
+                · <strong>파보(CPV) 단독키트</strong> 1박스 (10T)<br />
+                · <strong>코로나(CCV) 단독키트</strong> 1박스 (10T)
+              </div>
+            </div>
+            <button type="button" class="pkg-action-btn">⚡ 이 구성으로 1초 발주 예약</button>
+          </div>
+
+          <!-- 패키지 B (추천) -->
+          <div class="package-preset-card" style="border-color:#f59e0b; background:#fffdfa;" onclick="selectPresetPackage('packageB')">
+            <span class="package-badge-rec">⭐ 현장 최다 발주</span>
+            <div>
+              <div style="font-size:11px; color:#d97706; font-weight:800;">PACK B · 경매 필수</div>
+              <div class="pkg-title">경매 낙찰 즉시 처치 팩</div>
+              <div class="pkg-items">
+                · <strong>파보겔 500ml</strong> 3개<br />
+                · <strong>파보+코로나 콤보키트</strong> 2박스 (20T)<br />
+                · 원내 진료 연계 상담 우선권
+              </div>
+            </div>
+            <button type="button" class="pkg-action-btn" style="background:#f59e0b; color:#fff; border-color:#f59e0b;">⚡ 이 구성으로 1초 발주 예약</button>
+          </div>
+
+          <!-- 패키지 C -->
+          <div class="package-preset-card" onclick="selectPresetPackage('packageC')">
+            <div>
+              <div style="font-size:11px; color:#6366f1; font-weight:800;">PACK C · 켄넬 상시 방역</div>
+              <div class="pkg-title">대규모 켄넬 상비 번들</div>
+              <div class="pkg-items">
+                · <strong>파보겔 500ml</strong> 5개<br />
+                · <strong>파보+코로나 콤보키트</strong> 3박스 (30T)<br />
+                · <strong>브루셀라 진단키트</strong> 2박스 (20T)
+              </div>
+            </div>
+            <button type="button" class="pkg-action-btn">⚡ 이 구성으로 1초 발주 예약</button>
+          </div>
+        </div>
+      </div>
+
       <!-- 파보겔 소개 & 실시간 체중별 1회 권장량 계산기 (고화질 정품 쇼케이스) -->
-      <div class="parvogel-highlight-section" id="parvogel-care">
+      <div class="parvogel-highlight-section parvogel-hyper-card" id="parvogel-care">
         <div>
           <div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
             <span style="font-size:11px; background:#fee2e2; color:#b91c1c; padding:3px 8px; border-radius:4px; font-weight:800;">파트너 호평 제품</span>
@@ -384,6 +526,25 @@
                 초미세 흡착 나노 입자 + 유익균 배양물 복합 처방<br />
                 어린 자견 설사·장염 시 장 점막 급속 코팅 및 독소 신속 배출
               </p>
+            </div>
+          </div>
+
+          <!-- [ORCA UPGRADE] 나노 몬모릴로나이트 3대 작용 기전 시각 다이어그램 -->
+          <div class="parvogel-mechanism-grid">
+            <div class="mechanism-card">
+              <span class="mechanism-icon">🔬</span>
+              <strong>1. 초미세 나노 코팅</strong>
+              <p>장 점막 융모 상피세포에 미세 보호막을 신속 형성해 유해균 침투 원천 방어</p>
+            </div>
+            <div class="mechanism-card">
+              <span class="mechanism-icon">🧲</span>
+              <strong>2. 바이러스·독소 흡착</strong>
+              <p>내성 발생 없이 장내 병원체와 엔도톡신을 물리적으로 흡착하여 배변 배출</p>
+            </div>
+            <div class="mechanism-card">
+              <span class="mechanism-icon">💧</span>
+              <strong>3. 탈수 완화 &amp; 점막 안정</strong>
+              <p>체내 수분 유출을 억제하고 장관 내 전해질 균형을 지켜 자견 생체 활력 보존</p>
             </div>
           </div>
 
@@ -703,9 +864,35 @@
             </tr>
           </table>
 
-          <div style="font-size:11px; font-weight:800; color:#475569; margin-bottom:3px;">주요 증상 및 경과 기록:</div>
-          <div class="chart-symptom-box" id="chartSymptoms">
-            새벽 4시경 노란 거품토 2회, 오전 사료 전량 거부, 배에서 꾸르륵 소리 남.
+          <!-- 임상 SOAP 구조화 차트 -->
+          <div class="soap-section">
+            <div class="soap-head"><span>[S]</span> 보호자 주호소 (Subjective)</div>
+            <div class="soap-body" id="chartSymptoms">
+              새벽 4시경 노란 거품토 2회, 오전 사료 전량 거부, 배에서 꾸르륵 소리 남.
+            </div>
+          </div>
+
+          <div class="soap-section">
+            <div class="soap-head"><span>[O]</span> 트리아지 객관 지표 (Objective)</div>
+            <div class="soap-body" id="chartObjective" style="font-size:12px; color:#475569;">
+              · 연령: 생후 ~2개월 (고위험군) | 배변: 묽은변(연변) | 구토: 1회 노란토 | 활력: 정상
+            </div>
+          </div>
+
+          <div class="soap-section">
+            <div class="soap-head"><span>[A]</span> 수의 임상 평가 (Assessment)</div>
+            <div class="soap-body" id="chartAssessment" style="color:#c2410c; font-weight:700;">
+              급성 소화기 감염증 또는 식이성 장염 의심 (자견 탈수 및 저혈당 발생 주의)
+            </div>
+          </div>
+
+          <div class="soap-section">
+            <div class="soap-head"><span>[P]</span> 권장 처치 및 계획 (Plan)</div>
+            <div class="soap-body" id="chartPlan" style="color:#0f766e; font-weight:700;">
+              · CPV/CCV 신속진단키트 검사 병행<br />
+              · 파보겔(Parvogel) 500ml 장점막 흡착 겔 투약 (1~2시간 타약제 시차 분리)<br />
+              · 미온수 소량 축이기 및 보온 유지
+            </div>
           </div>
 
           <div style="font-size:11px; font-weight:800; color:#0d9488; margin-bottom:3px;">보호자 핵심 질의사항:</div>
@@ -856,11 +1043,18 @@
           </div>
         </div>
 
+        <!-- 모달 내 추천 패키지 퀵 버튼 -->
+        <div style="display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap;">
+          <button type="button" class="btn-call" style="font-size:11.5px; padding:5px 9px;" onclick="selectPresetPackage('packageA')">📦 팩A (신생자견)</button>
+          <button type="button" class="btn-call" style="font-size:11.5px; padding:5px 9px; background:#fef3c7; color:#b45309; border-color:#fde68a;" onclick="selectPresetPackage('packageB')">⭐ 팩B (경매처치)</button>
+          <button type="button" class="btn-call" style="font-size:11.5px; padding:5px 9px;" onclick="selectPresetPackage('packageC')">🛡️ 팩C (켄넬번들)</button>
+        </div>
+
         <div style="background: #f8fafc; padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 14px;">
           <strong style="display:block; font-size: 13px; color: var(--primary-800); margin-bottom: 8px;">필요 품목 및 수량 체크:</strong>
           
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size: 13px;">
-            <label><input type="checkbox" id="itemParvogel" checked /> ⚡ <strong>파보겔</strong> 대용량 겔</label>
+            <label><input type="checkbox" id="itemParvogel" checked /> ⚡ <strong>파보겔 500ml</strong> 대용량 겔</label>
             <input type="number" id="qtyParvogel" value="2" min="1" max="100" style="width: 70px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center;" /> 개
           </div>
 
