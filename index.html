@@ -65,6 +65,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./widgets.css" />
 </head>
 <body>
   <a href="#main-content" class="skip-link">본문 바로가기</a>
@@ -1185,6 +1186,60 @@
       </button>
     </div>
   </div>
+  <!-- ===== 장애인 접근 편의 제공 (웹접근성 도구) ===== -->
+  <button type="button" id="accFab" class="acc-fab" aria-label="장애인 접근 편의 도구 열기" aria-expanded="false" aria-controls="accPanel" title="장애인 접근 편의 제공 (접근성 도구)">
+    <span aria-hidden="true">♿</span>
+  </button>
+  <div id="accPanel" class="acc-panel" role="region" aria-label="장애인 접근 편의 도구" hidden>
+    <div class="acc-panel-head">
+      <span><span aria-hidden="true">♿</span> 장애인 접근 편의</span>
+      <button type="button" class="acc-close" data-acc-close aria-label="접근성 도구 닫기">&times;</button>
+    </div>
+    <div class="acc-grid">
+      <button type="button" class="acc-btn" data-acc="text-up" aria-label="글자 크게"><span class="acc-ico" aria-hidden="true">가+</span>글자 크게</button>
+      <button type="button" class="acc-btn" data-acc="text-down" aria-label="글자 작게"><span class="acc-ico" aria-hidden="true">가−</span>글자 작게</button>
+      <button type="button" class="acc-btn" data-acc="text-reset" aria-label="글자 크기 초기화"><span class="acc-ico" aria-hidden="true">1x</span>크기 초기화</button>
+      <button type="button" class="acc-btn" data-acc="contrast" aria-pressed="false"><span class="acc-ico" aria-hidden="true">◐</span>고대비</button>
+      <button type="button" class="acc-btn" data-acc="invert" aria-pressed="false"><span class="acc-ico" aria-hidden="true">◑</span>색 반전</button>
+      <button type="button" class="acc-btn" data-acc="gray" aria-pressed="false"><span class="acc-ico" aria-hidden="true">⚫</span>흑백</button>
+      <button type="button" class="acc-btn" data-acc="cursor" aria-pressed="false"><span class="acc-ico" aria-hidden="true">🖱</span>큰 커서</button>
+      <button type="button" class="acc-btn" data-acc="letter" aria-pressed="false"><span class="acc-ico" aria-hidden="true">A A</span>글자 간격</button>
+      <button type="button" class="acc-btn" data-acc="line" aria-pressed="false"><span class="acc-ico" aria-hidden="true">☰</span>줄 간격</button>
+      <button type="button" class="acc-btn" data-acc="tts" aria-pressed="false"><span class="acc-ico" aria-hidden="true">🔊</span>읽어주기</button>
+      <button type="button" class="acc-btn" data-acc="guide" aria-pressed="false"><span class="acc-ico" aria-hidden="true">▂</span>줄 가이드</button>
+      <button type="button" class="acc-btn acc-btn-reset" data-acc="reset-all" aria-label="접근 편의 전체 초기화"><span class="acc-ico" aria-hidden="true">↺</span>전체 초기화</button>
+    </div>
+    <p class="acc-tip">편의 설정은 이 브라우저에 자동 저장되며, 여러 기능을 동시에 조합할 수 있습니다.</p>
+    <div class="acc-tts-state" id="accTtsState" hidden>
+      <span class="acc-dot" aria-hidden="true"></span>
+      <span id="accTtsText">읽는 중…</span>
+      <button type="button" id="accPauseBtn">일시정지</button>
+      <button type="button" id="accStopBtn">정지</button>
+    </div>
+  </div>
+  <div id="accGuide" class="acc-guide" role="presentation" aria-hidden="true" hidden></div>
+
+  <!-- ===== FAQ 자동응답 챗봇 ===== -->
+  <button type="button" id="chatFab" class="chat-fab" aria-label="문의 챗봇(자주 묻는 질문) 열기" aria-expanded="false" aria-controls="chatPanel" aria-haspopup="dialog">
+    <span aria-hidden="true">💬</span>
+  </button>
+  <div id="chatPanel" class="chat-panel" role="dialog" aria-modal="false" aria-label="자주 묻는 질문 챗봇" hidden>
+    <div class="chat-head">
+      <div>
+        <strong>🐾 에스앤제이 도우미 <span class="chat-badge">AI Q&amp;A</span></strong>
+        <span class="chat-sub">자주 묻는 질문 자동 응답 · 24시간 연중무휴</span>
+      </div>
+      <button type="button" class="chat-close" data-chat-close aria-label="챗봇 닫기">&times;</button>
+    </div>
+    <div id="chatMessages" class="chat-body" aria-live="polite" aria-relevant="additions"></div>
+    <div id="chatChips" class="chat-chips"></div>
+    <form id="chatForm" class="chat-form" autocomplete="off">
+      <label for="chatInput" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">궁금한 점 입력</label>
+      <input id="chatInput" type="text" placeholder="궁금한 점을 입력하세요 (예: 진료시간)" aria-label="궁금한 점 입력" />
+      <button type="submit">전송</button>
+    </form>
+  </div>
+
   <!-- 모바일 하단 고정 액션 바 (접근성·반응형 UX 핵심) -->
   <nav class="mobile-bottom-bar" aria-label="빠른 실행">
     <a href="tel:031-321-6562" class="btn-m-bar" style="background:#0f172a; color:#fff; border-radius:8px;" aria-label="전화 031-321-6562">📞 전화</a>
@@ -1194,5 +1249,6 @@
 
   <script src="./hospital-config.js" defer></script>
   <script src="./app.js" defer></script>
+  <script src="./widgets.js" defer></script>
 </body>
 </html>
